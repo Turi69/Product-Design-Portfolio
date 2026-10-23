@@ -1,0 +1,65 @@
+.about__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4xl);
+  padding-bottom: var(--space-sm);
+}
+
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  color: var(--color-text-body);
+}
+
+.about__body strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.about__skills {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about__skills-label {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.about__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 800px;
+}
+
+.about__chip {
+  position: relative;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-size: var(--text-caption);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-body);
+  color: var(--color-text);
+}
+
+@media (min-width: 810px) and (max-width: 1199px) {
+  .about {
+    padding-block: 88px;
+  }
+}
+
+.about__chip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px dashed var(--color-border-dashed);
+  border-radius: inherit;
+  pointer-events: none;
+}

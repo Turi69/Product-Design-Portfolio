@@ -1,0 +1,56 @@
+.meteors {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.meteors__item {
+  position: absolute;
+  height: 1px;
+  border-radius: 2px;
+  background: linear-gradient(270deg, rgb(0 0 0 / 0.6) 0%, rgb(0 0 0 / 0) 100%);
+  opacity: 0;
+  transform: rotate(22.6deg) translateX(0);
+  transform-origin: left center;
+  animation: meteor linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Head of the streak: a soft point of light at the leading end. */
+.meteors__item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 1px;
+  background: rgb(0 0 0 / 0.2);
+  box-shadow: rgb(255 255 255 / 0.6) 0 0 6px 1px;
+  transform: translateY(-50%);
+}
+
+@keyframes meteor {
+  0% {
+    opacity: 0;
+    transform: rotate(22.6deg) translateX(0);
+  }
+  8% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(22.6deg) translateX(720px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meteors__item {
+    animation: none;
+    opacity: 0.4;
+  }
+}

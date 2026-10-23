@@ -1,0 +1,37 @@
+.split__word {
+  display: inline-block;
+  white-space: pre;
+}
+
+.split__mask {
+  display: inline-block;
+  overflow: hidden;
+  /* Room for descenders and the tight leading of display type. */
+  padding-block: 0.06em;
+  margin-block: -0.06em;
+  vertical-align: top;
+}
+
+.split__char {
+  display: inline-block;
+  animation: split-rise var(--dur-entrance) var(--ease-enter) both;
+  animation-delay: var(--d);
+}
+
+@keyframes split-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split__char {
+    animation: split-fade var(--dur-state) linear both;
+  }
+
+  @keyframes split-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}

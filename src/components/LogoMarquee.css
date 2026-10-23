@@ -1,0 +1,99 @@
+.marquee-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  /* Sits between the title and the filters. */
+  margin: 0 calc(-1 * var(--gutter)) var(--space-8);
+}
+
+.marquee-section__label {
+  padding-inline: var(--gutter);
+  color: var(--color-text-muted);
+}
+
+/* Logos fade out at both edges, so the line has no hard start or end. */
+.marquee {
+  overflow: clip;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Continuous motion with no start or end the visitor cares about: linear, by design. */
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+.marquee__set {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0 var(--space-8) 0 0;
+  list-style: none;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Original brand colours. */
+.logo img {
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Logos set in black ink would vanish on the dark stage: flip their lightness and rotate
+   the hue back, so the black turns light and the brand colours keep their hue. */
+.logo img.logo__mark--invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.logo__label {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text-soft);
+  white-space: nowrap;
+}
+
+.logo__label--circuit {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Reduced motion: one still set that wraps, instead of a moving line. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding-inline: var(--gutter);
+  }
+
+  .marquee__track {
+    width: auto;
+    animation: none;
+  }
+
+  .marquee__set {
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--space-7);
+    padding: 0;
+  }
+
+  .marquee__set + .marquee__set {
+    display: none;
+  }
+}

@@ -1,0 +1,119 @@
+/* Design tokens, mirrored from the live Framer project's colour tokens and text presets. */
+:root {
+  /* Colour: primitives */
+  --ink-900: #0f0f0f;
+  --ink-800: #121212;
+  --ink-700: #262626;
+  --ink-600: #313336;
+  --ink-500: #474747;
+  --grey-300: #979797;
+  --grey-200: #ededed;
+  --grey-150: #f0f0f0;
+  --grey-100: #f2f2f2;
+  --grey-50: #f5f5f5;
+  --white: #fff;
+  --green-500: #22cc66;
+  --purple-700: rgb(114 14 158);
+
+  /* Colour: semantic */
+  --color-page: var(--ink-700);
+  --color-surface: var(--white);
+  --color-surface-muted: var(--grey-200);
+  --color-surface-inverse: var(--ink-900);
+  --color-text: var(--ink-900);
+  --color-text-body: var(--ink-600);
+  --color-text-muted: rgb(0 0 0 / 0.6);
+  --color-text-subtle: rgb(0 0 0 / 0.4);
+  --color-text-faint: rgb(49 51 54 / 0.6);
+  --color-text-disabled: rgb(49 51 54 / 0.3);
+  --color-text-logo: var(--ink-500);
+  --color-text-inverse: var(--white);
+  --color-text-inverse-muted: rgb(255 255 255 / 0.6);
+  --color-border: var(--grey-200);
+  --color-border-soft: rgb(49 51 54 / 0.15);
+  --color-border-dashed: rgb(49 51 54 / 0.3);
+  --color-border-hairline: rgb(33 33 33 / 0.12);
+  --color-border-inverse: rgb(255 255 255 / 0.15);
+  --color-glass: rgb(255 255 255 / 0.25);
+  --color-glass-hover: rgb(255 255 255 / 0.35);
+  --color-focus: #2f6bff;
+
+  /* Type */
+  --font-sans: 'Geist', 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-clock: 'DM Mono', ui-monospace, monospace;
+
+  --text-display: 3rem;        /* 48 */
+  --text-h2: 2.375rem;         /* 38 */
+  --text-h3: 1.5rem;           /* 24 */
+  --text-lead: 1.125rem;       /* 18 */
+  --text-body: 1rem;           /* 16 */
+  --text-small: 0.9375rem;     /* 15 */
+  --text-caption: 0.875rem;    /* 14 */
+
+  --tracking-display: -0.08em;
+  --tracking-h2: -0.06em;
+  --tracking-h3: -0.04em;
+  --tracking-body: -0.03em;
+  --tracking-small: -0.04em;
+  --tracking-mono: -0.02em;
+
+  /* Space */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 10px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+
+  --page-gutter: 8px;
+  --section-pad-y: 108px;
+  --section-pad-x: 36px;
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-section: 24px;
+
+  /* Elevation */
+  --shadow-nav: rgb(0 0 0 / 0.19) 0 0.6px 1.3px -1.5px, rgb(0 0 0 / 0.16) 0 2.3px 5px -3px, rgb(0 0 0 / 0.02) 0 10px 22px -4.5px;
+  --shadow-tile: rgb(0 0 0 / 0.08) 0 1px 2px, rgb(0 0 0 / 0.08) 0 4px 12px -4px;
+
+  /* Motion */
+  --dur-instant: 150ms;
+  --dur-state: 250ms;
+  --dur-layout: 400ms;
+  --dur-entrance: 700ms;
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-move: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layers */
+  --z-sticky: 200;
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --text-display: 2.375rem;  /* 38 */
+    --text-h2: 2rem;           /* 32 */
+  }
+}
+
+@media (max-width: 809px) {
+  :root {
+    --text-lead: 1rem;         /* 16 */
+    --text-h3: 1.25rem;        /* 20 */
+    --section-pad-y: 60px;
+    --section-pad-x: 20px;
+  }
+}

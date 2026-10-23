@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+*.local
+tsconfig.tsbuildinfo
+
+# Local-only handover note, kept on this device
+HANDOVER.md

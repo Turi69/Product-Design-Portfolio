@@ -1,0 +1,124 @@
+html.is-stage,
+html.is-stage body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.index {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(49vw, 80vh, 780px) minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-4);
+  padding-inline: var(--gutter);
+}
+
+.index__stage {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-stage);
+}
+
+/* Name and intro sit above the stack, so cards pass behind the type. */
+.index__name,
+.index__intro {
+  position: relative;
+  z-index: calc(var(--z-stage) + 200);
+  pointer-events: none;
+}
+
+.index__name {
+  grid-column: 1;
+  font-size: clamp(2.5rem, 0.5rem + 5.4vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+
+.index__intro {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: min(100%, 17rem);
+}
+
+.index__tagline {
+  font-size: clamp(1.0625rem, 0.6rem + 0.9vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Fine print: the disciplines, one per line, arriving after the tagline. */
+.index__disciplines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-soft);
+}
+
+.index__disciplines li {
+  animation: index-fine-in var(--dur-entrance) var(--ease-enter) both;
+  animation-delay: calc(1000ms + var(--i) * 40ms);
+}
+
+@keyframes index-fine-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .index__disciplines li {
+    animation-name: index-fine-fade;
+  }
+
+  @keyframes index-fine-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+/* Phone: name at the top, tagline above the nav, the stack between them. */
+@media (max-width: 809px) {
+  .index {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    padding-top: 76px;
+    padding-bottom: 104px;
+  }
+
+  .index__name {
+    font-size: clamp(2.75rem, 1rem + 9vw, 4rem);
+  }
+
+  .index__intro {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+    width: min(100%, 22rem);
+    gap: var(--space-4);
+  }
+
+  /* Phone: the disciplines wrap as one line of fine print to save height. */
+  .index__disciplines {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .index__disciplines li:not(:last-child)::after {
+    content: '·';
+    margin-left: var(--space-3);
+    color: var(--color-text-muted);
+  }
+}

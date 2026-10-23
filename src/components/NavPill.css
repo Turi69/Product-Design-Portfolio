@@ -1,0 +1,70 @@
+.navpill {
+  position: fixed;
+  left: 50%;
+  bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  z-index: var(--z-chrome);
+  transform: translateX(-50%);
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+  animation: navpill-in var(--dur-entrance) var(--ease-enter) 500ms both;
+}
+
+@keyframes navpill-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+  }
+}
+
+.navpill__list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
+
+.navpill__link {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  padding: 0 clamp(14px, 2.4vw, 22px);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color var(--dur-state) var(--ease-move);
+}
+
+.navpill__link.is-lit {
+  color: var(--color-text-inverse);
+}
+
+.navpill__link:active {
+  transform: scale(0.97);
+}
+
+.navpill__link:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--radius-pill);
+}
+
+.navpill__pill {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-invert);
+  transition:
+    transform var(--dur-layout) var(--ease-move),
+    width var(--dur-layout) var(--ease-move);
+}
+
+@media (forced-colors: active) {
+  .navpill__link[aria-current='page'] {
+    outline: 2px solid CanvasText;
+  }
+}

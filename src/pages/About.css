@@ -1,0 +1,418 @@
+/* Hero: full-bleed portrait, headline blurs into focus word by word. */
+.about-hero {
+  position: relative;
+  height: 100dvh;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.about-hero__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  animation: about-zoom 1600ms var(--ease-enter) both;
+}
+
+@keyframes about-zoom {
+  from {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+}
+
+.about-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, oklch(0.145 0.002 70 / 0.55) 0%, oklch(0.145 0.002 70 / 0) 32%),
+    linear-gradient(0deg, var(--color-stage) 0%, oklch(0.145 0.002 70 / 0.35) 40%, oklch(0.145 0.002 70 / 0) 65%);
+  pointer-events: none;
+}
+
+.about-hero__content {
+  position: absolute;
+  inset: auto var(--gutter) 128px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.about-hero__title {
+  max-width: 11em;
+  font-size: var(--text-display);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+}
+
+.about-hero__word {
+  display: inline-block;
+  white-space: pre;
+  animation: about-blur var(--dur-entrance) var(--ease-enter) both;
+  animation-delay: calc(300ms + var(--i) * 70ms);
+}
+
+@keyframes about-blur {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(10px);
+  }
+}
+
+.about-hero__voice {
+  animation: about-blur var(--dur-entrance) var(--ease-enter) 800ms both;
+}
+
+/* Shared two-column section: small label left, content right. */
+.about-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);
+  gap: var(--space-5);
+  padding: var(--space-10) var(--gutter) 0;
+}
+
+.about-section__label {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  padding-top: 0.9em;
+}
+
+.about-approach__text {
+  font-size: var(--text-title);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: var(--tracking-tight);
+  max-width: 22em;
+}
+
+/* Experience table */
+.about-table {
+  grid-column: 2;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.about-table__col-year {
+  width: 18%;
+}
+
+.about-table__col-focus {
+  width: 14%;
+}
+
+.about-table th {
+  padding: 0 var(--space-4) var(--space-3) 0;
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.about-table td {
+  padding: var(--space-5) var(--space-4) var(--space-5) 0;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.about-table__year,
+.about-table__caps {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.about-table__company {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.about-table__company img {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* What I do */
+.about-services__list {
+  grid-column: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+}
+
+/* Fixed name column so every note starts on the same line; proof sits right. */
+.about-services__item {
+  display: grid;
+  grid-template-columns: 3ch minmax(0, 13rem) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.about-services__num {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.about-services__name {
+  font-weight: 600;
+}
+
+.about-services__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 36em;
+}
+
+.about-services__note {
+  color: var(--color-text-soft);
+  line-height: 1.45;
+}
+
+.about-services__skills {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* Keep each skill whole when the line wraps. */
+.about-services__skills > span {
+  white-space: nowrap;
+}
+
+.about-services__proof {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Below wide desktop the proof drops under the skills, so the note keeps its measure. */
+@media (max-width: 1199px) {
+  .about-services__item {
+    grid-template-columns: 3ch minmax(0, 13rem) minmax(0, 1fr);
+    row-gap: var(--space-2);
+  }
+
+  .about-services__proof {
+    grid-column: 3;
+    text-align: left;
+  }
+}
+
+/* Tools grid, laid out like portrait cards */
+.about-tools__grid {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-4);
+}
+
+.about-tools__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.about-tools__media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  transition: background-color var(--dur-state) var(--ease-move);
+}
+
+/* Monochrome glyphs, so the grid reads as one set rather than a row of app icons. */
+.about-tools__media img {
+  width: 48px;
+  height: 48px;
+  transition: transform var(--dur-layout) var(--ease-enter);
+}
+
+@media (hover: hover) {
+  .about-tools__card:hover .about-tools__media {
+    background: var(--color-surface-hover);
+  }
+
+  .about-tools__card:hover .about-tools__media img {
+    transform: scale(1.06);
+  }
+}
+
+.about-tools__name {
+  font-size: var(--text-lead);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.about-tools__use {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Contact: two large light cards */
+.about-contact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-10) var(--gutter) 0;
+  scroll-margin-top: 80px;
+}
+
+.about-contact__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(260px, 30vw, 380px);
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-invert);
+  color: var(--color-text-inverse);
+  transition: transform var(--dur-state) var(--ease-enter);
+}
+
+.about-contact__lead {
+  font-size: var(--text-lead);
+  letter-spacing: var(--tracking-tight);
+}
+
+.about-contact__cta {
+  font-size: clamp(2rem, 1.2rem + 2vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+@media (hover: hover) {
+  .about-contact__card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.about-contact__card:active {
+  transform: scale(0.99);
+}
+
+.about-contact__card:focus-visible {
+  outline-color: var(--color-focus);
+  outline-offset: 4px;
+}
+
+.about-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-7) var(--gutter) 120px;
+  color: var(--color-text-muted);
+}
+
+.about-footer__links {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.about-footer__links a {
+  display: inline-block;
+  padding-block: var(--space-3);
+  transition: color var(--dur-instant) linear;
+}
+
+@media (hover: hover) {
+  .about-footer__links a:hover {
+    color: var(--color-text);
+  }
+}
+
+@media (max-width: 809px) {
+  .about-hero__content {
+    bottom: 112px;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+    padding-top: var(--space-9);
+  }
+
+  .about-table,
+  .about-services__list,
+  .about-tools__grid {
+    grid-column: 1;
+  }
+
+  /* Narrow screens keep the table but drop the focus column, which repeats the role. */
+  .about-table th:last-child,
+  .about-table td:last-child {
+    display: none;
+  }
+
+  .about-table td,
+  .about-table th {
+    font-size: 0.8125rem;
+  }
+
+  .about-services__item {
+    grid-template-columns: 3ch 1fr;
+    row-gap: var(--space-2);
+  }
+
+  .about-services__body,
+  .about-services__proof {
+    grid-column: 2;
+  }
+
+  .about-services__proof {
+    white-space: normal;
+  }
+
+  .about-tools__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-contact {
+    grid-template-columns: 1fr;
+    padding-top: var(--space-9);
+  }
+
+  .about-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 112px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__media img,
+  .about-hero__word,
+  .about-hero__voice {
+    animation: about-fade var(--dur-state) linear both;
+  }
+
+  @keyframes about-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}

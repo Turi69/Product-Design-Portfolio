@@ -1,0 +1,178 @@
+@import './tokens.css';
+
+@font-face {
+  font-family: 'Switzer Fallback';
+  src: local('Arial');
+  size-adjust: 101%;
+  ascent-override: 96%;
+  descent-override: 24%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--color-stage);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: var(--tracking-snug);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  z-index: calc(var(--z-chrome) + 1);
+  transform: translate(-50%, -200%);
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-invert);
+  color: var(--color-text-inverse);
+  font-size: var(--text-caption);
+  transition: transform var(--dur-state) var(--ease-enter);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+.label {
+  font-size: var(--text-label);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Page shell for scrolling pages; leaves room for the top bar and the floating nav. */
+.page {
+  min-height: 100dvh;
+  padding: 120px var(--gutter) 140px;
+  /* Full-bleed rows use negative margins; clip (not hidden) so no sideways scroll appears
+     and no scroll container is created. */
+  overflow-x: clip;
+}
+
+/* Entrance used across pages: rises and sharpens into place once in view. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+  transition:
+    opacity var(--dur-entrance) var(--ease-enter),
+    transform var(--dur-entrance) var(--ease-enter),
+    filter var(--dur-entrance) var(--ease-enter);
+  transition-delay: calc(var(--i, 0) * 50ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+    filter: none;
+    transition: opacity var(--dur-state) linear;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Route change: the new view fades in. Opacity only: a transform here would trap
+   every fixed-position child (the drum stage, the cursor preview) inside <main>. */
+.view {
+  outline: none;
+  animation: view-in var(--dur-layout) var(--ease-enter) backwards;
+}
+
+@keyframes view-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Small mono caption used for meta labels and section numbers. */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

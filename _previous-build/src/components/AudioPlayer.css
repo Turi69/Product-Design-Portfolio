@@ -1,0 +1,95 @@
+.audio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  width: 400px;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.audio__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  height: 44px;
+  padding-inline: var(--space-lg);
+}
+
+.audio__button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface-inverse);
+  color: var(--color-text-inverse);
+  transition: transform var(--dur-instant) var(--ease-move);
+}
+
+@media (hover: hover) {
+  .audio__button:hover {
+    transform: scale(1.05);
+  }
+}
+
+.audio__button:active {
+  transform: scale(0.96);
+}
+
+.audio__button[aria-busy='true'] {
+  cursor: progress;
+}
+
+.audio__wave {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  height: 28px;
+}
+
+/* At rest each bar is a 3px dot; while playing it grows to its voice height. */
+.audio__bar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-text-faint);
+  transition:
+    height var(--dur-state) var(--ease-enter),
+    background-color var(--dur-instant) linear;
+}
+
+.audio__bar.is-played {
+  background: var(--color-text);
+}
+
+.audio__row.is-playing .audio__bar {
+  height: calc(var(--h) * 100%);
+  animation: audio-bar 900ms var(--ease-move) var(--d) infinite alternate;
+}
+
+@keyframes audio-bar {
+  to {
+    transform: scaleY(0.55);
+  }
+}
+
+.audio__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  letter-spacing: var(--tracking-body);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio__row.is-playing .audio__bar {
+    animation: none;
+  }
+}

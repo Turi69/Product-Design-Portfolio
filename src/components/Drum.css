@@ -1,0 +1,136 @@
+.drum {
+  position: absolute;
+  inset: 0;
+  /* Clip, not hidden: a hidden box still scrolls when Tab focuses an off-screen card. */
+  overflow: clip;
+  touch-action: none;
+  user-select: none;
+  animation: drum-in 1100ms var(--ease-enter) 150ms both;
+}
+
+/* Load: the stack rises into place from slightly below and out of focus. */
+@keyframes drum-in {
+  from {
+    opacity: 0;
+    transform: translateY(6%) scale(0.96);
+  }
+}
+
+.drum__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(49vw, 80vh, 780px);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-surface);
+  transform-origin: 50% 50%;
+  will-change: transform, filter, opacity;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.drum__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.drum__card:focus-visible {
+  outline-offset: 6px;
+  border-radius: var(--radius-sm);
+}
+
+/* Label: names the card under the cursor. Dark glass, like the nav pill, so it sits in the theme. */
+.drum-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-preview);
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  gap: 0 var(--space-5);
+  width: max-content;
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 14px var(--space-4) var(--space-3);
+  border-radius: var(--radius-md);
+  background: oklch(0.185 0.003 70 / 0.88);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow:
+    inset 0 0 0 1px var(--color-line),
+    0 24px 48px -24px oklch(0 0 0 / 0.6);
+  color: var(--color-text);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-instant) var(--ease-exit);
+}
+
+.drum-label.is-on {
+  opacity: 1;
+  transition: opacity var(--dur-state) var(--ease-enter);
+}
+
+/* The inner content scales in, so the trailing transform on the label stays untouched. */
+.drum-label > * {
+  transform: scale(0.96);
+  transform-origin: 0 0;
+  transition: transform var(--dur-state) var(--ease-enter);
+}
+
+.drum-label.is-on > * {
+  transform: none;
+}
+
+.drum-label__title {
+  font-size: var(--text-lead);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.drum-label__meta {
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.drum-label__dub {
+  grid-column: 1 / -1;
+  margin-top: var(--space-1);
+  color: var(--color-text-soft);
+  font-size: var(--text-caption);
+  line-height: 1.4;
+}
+
+.drum-label__cta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-caption);
+  font-weight: 500;
+}
+
+@media (max-width: 809px) {
+  .drum__card {
+    width: min(82vw, 52vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drum {
+    animation: none;
+  }
+
+  .drum-label > * {
+    transform: none;
+    transition: none;
+  }
+}

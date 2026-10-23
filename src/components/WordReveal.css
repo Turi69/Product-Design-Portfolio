@@ -1,0 +1,6 @@
+.wreveal__w {
+  --p: 0;
+  opacity: calc(0.14 + var(--p) * 0.86);
+  filter: blur(calc((1 - var(--p)) * 8px));
+  white-space: pre-wrap;
+}

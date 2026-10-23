@@ -1,0 +1,118 @@
+// One list drives the homepage drum, the Works index and the project pages.
+import { gallery, projects as featured } from './home';
+
+export type Category = 'Mobile' | 'Web';
+export type Industry =
+  | 'Commerce'
+  | 'Education'
+  | 'Engineering'
+  | 'Faith'
+  | 'Fintech'
+  | 'Health'
+  | 'Mobility'
+  | 'Property'
+  | 'Sports';
+
+export type Work = {
+  slug: string;
+  title: string;
+  year: string;
+  category: Category;
+  summary: string;
+  /** Very short subtitle for the Index label. */
+  dub?: string;
+  /** Industry, for the Works filter. */
+  industry: Industry;
+  /** Composited product mockup: a generated scene with the real screen fitted in. */
+  mockup: string;
+  paragraphs: string[];
+  screens: string[];
+  format: 'mobile' | 'web';
+  /** Full case study still lives on the original site for these. */
+  caseStudy?: string;
+};
+
+const mockup = (name: string) => `/assets/mockups/${name}.webp`;
+const fromGallery = (label: string) => {
+  const g = gallery.find((x) => x.label === label);
+  if (!g) throw new Error(`Missing gallery item: ${label}`);
+  return g;
+};
+const firstSentence = (p: string) => (p.match(/^[^.]+\./)?.[0] ?? p).trim();
+
+const featuredWork = (slug: string, category: Category): Omit<Work, 'industry'> => {
+  const p = featured.find((x) => x.slug === slug);
+  if (!p) throw new Error(`Missing project: ${slug}`);
+  return {
+    slug,
+    title: p.title,
+    year: p.year,
+    category,
+    summary: p.description.replace(/\s+/g, ' '),
+    mockup: mockup(slug),
+    paragraphs: [p.description.replace(/\s+/g, ' ')],
+    screens: [],
+    format: category === 'Mobile' ? 'mobile' : 'web',
+  };
+};
+
+const galleryWork = (slug: string, label: string, title: string): Omit<Work, 'industry'> => {
+  const g = fromGallery(label);
+  return {
+    slug,
+    title,
+    year: label.match(/\d{4}$/)?.[0] ?? '',
+    category: g.format === 'mobile' ? 'Mobile' : 'Web',
+    summary: firstSentence(g.paragraphs[0]),
+    mockup: mockup(slug),
+    paragraphs: g.paragraphs,
+    screens: g.images,
+    format: g.format,
+  };
+};
+
+/** One-line subtitle shown with the project name on the Index, drawn from each case study. */
+const dubs: Record<string, string> = {
+  wayfinder: 'Safer, fairer trips on Lagos transit',
+  cwook: 'A social feed you can shop from',
+  lemonsplit: 'Split group bills without the chasing',
+  rhapsody: 'Today’s devotional, one tap away',
+  jaa: 'A career platform for JA Africa alumni',
+  circuitmind: 'AI circuit design, made legible',
+  axe: 'Learning paths with human mentors',
+  freyda: 'AI extraction analysts can trust',
+  fantasy: 'Fantasy F1, head to head every weekend',
+  tendarly: 'Assistant intake, then a real doctor',
+  azuri: 'One system for a three-tower estate',
+};
+
+/** Industry per project, condensed from each case study's sector or client. */
+const industries: Record<string, Industry> = {
+  wayfinder: 'Mobility',
+  cwook: 'Commerce',
+  lemonsplit: 'Fintech',
+  rhapsody: 'Faith',
+  jaa: 'Education',
+  circuitmind: 'Engineering',
+  axe: 'Education',
+  freyda: 'Fintech',
+  fantasy: 'Sports',
+  tendarly: 'Health',
+  azuri: 'Property',
+};
+
+export const works: Work[] = [
+  featuredWork('wayfinder', 'Mobile'),
+  featuredWork('cwook', 'Mobile'),
+  galleryWork('lemonsplit', 'Lemon Split 2025', 'LemonSplit'),
+  galleryWork('rhapsody', 'Rhapsody of Realities 2025', 'Rhapsody of Realities'),
+  featuredWork('jaa', 'Web'),
+  galleryWork('circuitmind', 'Circuitmind 2024', 'Circuitmind'),
+  galleryWork('axe', 'AXE 2024', 'AXE'),
+  galleryWork('freyda', 'Freyda 2024', 'Freyda'),
+  galleryWork('fantasy', 'Fantasy One 2024', 'Fantasy One'),
+  galleryWork('tendarly', 'Tendarly 2023', 'Tendarly'),
+  galleryWork('azuri', 'Azuri facility Management 2023', 'Azuri Facility Management'),
+].map((w) => ({ ...w, dub: dubs[w.slug], industry: industries[w.slug] }));
+
+export const workBySlug = (slug: string) => works.find((w) => w.slug === slug);
