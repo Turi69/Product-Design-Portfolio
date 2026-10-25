@@ -1,15 +1,20 @@
+/* Floating glass nav. A little denser than before so labels hold over bright project images,
+   with a soft lift so it reads as floating above the page rather than printed on it. */
 .navpill {
   position: fixed;
   left: 50%;
   bottom: max(var(--space-5), env(safe-area-inset-bottom));
   z-index: var(--z-chrome);
   transform: translateX(-50%);
-  padding: 4px;
+  padding: var(--space-1);
   border-radius: var(--radius-pill);
   background: var(--color-glass);
-  -webkit-backdrop-filter: blur(18px) saturate(1.2);
-  backdrop-filter: blur(18px) saturate(1.2);
-  box-shadow: inset 0 0 0 1px var(--color-line);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    inset 0 0 0 1px var(--color-line),
+    inset 0 1px 0 var(--color-sheen),
+    var(--shadow-float);
   animation: navpill-in var(--dur-entrance) var(--ease-enter) 500ms both;
 }
 
@@ -26,20 +31,33 @@
   display: flex;
 }
 
+/* 44px tall: the iOS minimum target. Inactive labels sit back; the current one is the only strong mark. */
 .navpill__link {
   display: grid;
   place-items: center;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 clamp(14px, 2.4vw, 22px);
   border-radius: var(--radius-pill);
   font-size: var(--text-caption);
   font-weight: 500;
-  color: var(--color-text);
-  transition: color var(--dur-state) var(--ease-move);
+  color: var(--color-text-soft);
+  /* Same duration and curve as the pill, so a label never turns dark before the pill reaches it. */
+  transition: color var(--dur-layout) var(--ease-move);
 }
 
 .navpill__link.is-lit {
   color: var(--color-text-inverse);
+}
+
+@media (hover: hover) {
+  .navpill__link:not(.is-lit):hover {
+    color: var(--color-text);
+    transition-duration: var(--dur-state);
+  }
+}
+
+.navpill__link:not(.is-lit):focus-visible {
+  color: var(--color-text);
 }
 
 .navpill__link:active {
@@ -51,16 +69,41 @@
   border-radius: var(--radius-pill);
 }
 
-.navpill__pill {
+/* The pill marks where you are; the ghost is a quiet highlight for where you are pointing. */
+.navpill__pill,
+.navpill__ghost {
   position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 0;
+  top: var(--space-1);
+  bottom: var(--space-1);
+  /* Items are measured from the list, which starts one padding step in. */
+  left: var(--space-1);
   border-radius: var(--radius-pill);
-  background: var(--color-invert);
   transition:
     transform var(--dur-layout) var(--ease-move),
     width var(--dur-layout) var(--ease-move);
+}
+
+.navpill__pill {
+  background: var(--color-invert);
+}
+
+.navpill__ghost {
+  background: var(--color-line);
+  animation: navpill-ghost-in var(--dur-state) var(--ease-enter) both;
+}
+
+@keyframes navpill-ghost-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navpill__pill,
+  .navpill__ghost,
+  .navpill__link {
+    transition: none;
+  }
 }
 
 @media (forced-colors: active) {

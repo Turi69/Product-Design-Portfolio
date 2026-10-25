@@ -84,9 +84,7 @@ const dubs: Record<string, string> = {
   jaa: 'A career platform for JA Africa alumni',
   circuitmind: 'AI circuit design, made legible',
   axe: 'Learning paths with human mentors',
-  freyda: 'AI extraction analysts can trust',
   fantasy: 'Fantasy F1, head to head every weekend',
-  tendarly: 'Assistant intake, then a real doctor',
   azuri: 'One system for a three-tower estate',
 };
 
@@ -101,9 +99,7 @@ const industries: Record<string, Industry> = {
   jaa: 'Education',
   circuitmind: 'Engineering',
   axe: 'Education',
-  freyda: 'Fintech',
   fantasy: 'Sports',
-  tendarly: 'Health',
   azuri: 'Property',
 };
 
@@ -137,9 +133,7 @@ export const works: Work[] = [
   featuredWork('jaa', 'Web'),
   galleryWork('circuitmind', 'Circuitmind 2024', 'Circuitmind'),
   galleryWork('axe', 'AXE 2024', 'AXE'),
-  galleryWork('freyda', 'Freyda 2024', 'Freyda'),
   galleryWork('fantasy', 'Fantasy One 2024', 'Fantasy One'),
-  galleryWork('tendarly', 'Tendarly 2023', 'Tendarly'),
   galleryWork('azuri', 'Azuri facility Management 2023', 'Azuri Facility Management'),
 ].map((w) => ({ ...w, dub: dubs[w.slug], industry: industries[w.slug] }));
 

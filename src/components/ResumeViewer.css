@@ -1,0 +1,265 @@
+/* Résumé viewer: the paper sheet on the dark stage, chrome in the house glass pill. */
+.resume {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.resume::backdrop {
+  background: var(--color-scrim);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  animation: resume-fade var(--dur-state) var(--ease-enter) both;
+}
+
+.resume[open] .resume__stage {
+  animation: resume-rise var(--dur-layout) var(--ease-enter) both;
+}
+
+.resume[open] .resume__bar,
+.resume[open] .resume__tools {
+  animation: resume-fade var(--dur-state) var(--ease-enter) 120ms both;
+}
+
+/* Exit runs at about 75% of the entrance and eases away. */
+.resume.is-closing::backdrop,
+.resume.is-closing .resume__bar,
+.resume.is-closing .resume__tools {
+  animation: resume-fade-out 380ms var(--ease-exit) both;
+}
+
+.resume.is-closing .resume__stage {
+  animation: resume-sink 380ms var(--ease-exit) both;
+}
+
+@keyframes resume-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes resume-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes resume-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes resume-sink {
+  to {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Header: title left, close right, floating over the stage. */
+.resume__bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--gutter);
+  pointer-events: none;
+}
+
+.resume__bar > * {
+  pointer-events: auto;
+}
+
+.resume__title {
+  font-size: var(--text-caption);
+  font-weight: 500;
+}
+
+.resume__count {
+  margin-left: var(--space-2);
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.resume__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    inset 0 0 0 1px var(--color-line),
+    inset 0 1px 0 var(--color-sheen),
+    var(--shadow-float);
+  color: var(--color-text);
+  transition: background-color var(--dur-instant) linear;
+}
+
+/* Stage: the pannable field the sheet sits on. */
+.resume__stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+
+.resume__stage.is-dragging {
+  cursor: grabbing;
+}
+
+.resume__sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  transform-origin: 0 0;
+}
+
+/* Until a page decodes it holds its exact shape in surface grey, so nothing moves when it lands. */
+.resume__page {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--color-surface);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.resume__error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(32rem, calc(100% - var(--gutter) * 2));
+  transform: translate(-50%, -50%);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-soft);
+  line-height: 1.5;
+  text-align: center;
+  cursor: auto;
+}
+
+.resume__error a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Toolbar: the same glass pill as the site navigation, so the controls read as house chrome. */
+.resume__tools {
+  position: absolute;
+  left: 50%;
+  bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--color-glass);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    inset 0 0 0 1px var(--color-line),
+    inset 0 1px 0 var(--color-sheen),
+    var(--shadow-float);
+  transform: translateX(-50%);
+}
+
+.resume__tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--color-text);
+  transition: background-color var(--dur-instant) linear;
+}
+
+.resume__tool:active:not(:disabled),
+.resume__close:active {
+  transform: scale(0.97);
+}
+
+.resume__tool:disabled {
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.resume__tool:focus-visible,
+.resume__close:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--radius-pill);
+}
+
+.resume__pct {
+  min-width: 64px;
+  font-variant-numeric: tabular-nums;
+}
+
+.resume__divider {
+  width: 1px;
+  height: 20px;
+  margin: 0 var(--space-1);
+  background: var(--color-line-strong);
+}
+
+@media (hover: hover) {
+  .resume__tool:hover:not(:disabled),
+  .resume__close:hover {
+    background: var(--color-surface-hover);
+  }
+}
+
+/* Phones: the download keeps its icon and drops the words, so the pill fits at 320px. */
+@media (max-width: 480px) {
+  .resume__download-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume::backdrop,
+  .resume[open] .resume__stage,
+  .resume[open] .resume__bar,
+  .resume[open] .resume__tools {
+    animation: resume-fade var(--dur-state) linear both;
+  }
+}
+
+@media (forced-colors: active) {
+  .resume__tools,
+  .resume__close {
+    border: 1px solid CanvasText;
+  }
+}

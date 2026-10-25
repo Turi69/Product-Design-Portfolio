@@ -37,7 +37,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--color-surface);
-  animation: project-in 1100ms var(--ease-enter) 150ms both;
+  animation: project-in 1400ms var(--ease-enter) 150ms both;
 }
 
 @keyframes project-in {

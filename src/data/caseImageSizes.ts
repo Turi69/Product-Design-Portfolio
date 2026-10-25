@@ -344,6 +344,10 @@ export const caseImageSizes: Record<string, [number, number]> = {
     786,
     1704
   ],
+  "axe-course-overview": [
+    1512,
+    982
+  ],
   "axe-learner-home": [
     1512,
     982
@@ -356,7 +360,19 @@ export const caseImageSizes: Record<string, [number, number]> = {
     1512,
     982
   ],
+  "axe-lesson-slide": [
+    1512,
+    982
+  ],
   "axe-lesson": [
+    1512,
+    982
+  ],
+  "axe-report-performance": [
+    1512,
+    982
+  ],
+  "axe-report-team": [
     1512,
     982
   ],
@@ -375,6 +391,10 @@ export const caseImageSizes: Record<string, [number, number]> = {
   "axe-story-tutoring": [
     1536,
     1024
+  ],
+  "axe-tutor-builder": [
+    1512,
+    1309
   ],
   "axe-tutor-configure": [
     1512,
@@ -399,6 +419,10 @@ export const caseImageSizes: Record<string, [number, number]> = {
   "axe-tutor-task": [
     1512,
     1236
+  ],
+  "axe-tutor-teams": [
+    1512,
+    982
   ],
   "axe-wire-course": [
     1277,

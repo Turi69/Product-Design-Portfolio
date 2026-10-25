@@ -1,0 +1,93 @@
+/* Opening sequence: white letters on the stage, above everything, gone in about three seconds. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-intro);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.intro__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--color-stage);
+}
+
+.intro__move {
+  position: relative;
+}
+
+.intro__word {
+  height: min(18vw, 28vh);
+  width: auto;
+  max-width: none;
+  overflow: visible;
+  transform-origin: 0 0;
+  color: var(--color-text);
+}
+
+/* Phones: the word takes about two thirds of the width, as it does on desktop. */
+@media (max-width: 640px) {
+  .intro__word {
+    height: 22vw;
+  }
+}
+
+/* Rise: each piece starts as a hairline on the baseline and grows into a solid block. */
+.intro__letter {
+  transform-box: view-box;
+  animation: intro-rise var(--dur-layout) var(--ease-enter) var(--rise-delay) both;
+}
+
+@keyframes intro-rise {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.04);
+  }
+  12% {
+    opacity: 1;
+    transform: scaleY(0.04);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Carve: a heavy outline fills each cell; as it thins, counters open from a point and the letter emerges.
+   stroke-width is a paint property, not transform/opacity: acceptable for four glyphs, once. */
+.intro__glyph {
+  font-family: var(--font-sans);
+  font-size: 100px;
+  font-weight: 600;
+  letter-spacing: 0;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-linejoin: round;
+  stroke-width: 0;
+  animation: intro-carve var(--dur-entrance) var(--ease-move) var(--carve-delay) both;
+}
+
+@keyframes intro-carve {
+  from {
+    stroke-width: 64px;
+  }
+}
+/* While the intro runs, the page holds its entrance so it plays as the backdrop lifts. */
+html[data-intro] .view,
+html[data-intro] .view *,
+html[data-intro] .navpill {
+  animation-play-state: paused;
+}
+
+/* The top bar fades in with the page instead of sitting there when the white lifts. */
+html[data-intro] .topbar {
+  opacity: 0;
+}
+
+html[data-intro] .reveal.is-visible {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+}

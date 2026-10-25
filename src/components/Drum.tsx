@@ -100,7 +100,7 @@ export function Drum({ items, onChange }: Props) {
         autoMove.current = true;
       }
 
-      const k = reduced ? 1 : 1 - Math.pow(0.0018, dt / 1000); // ~90% of the way in 300ms
+      const k = reduced ? 1 : 1 - Math.pow(0.006, dt / 1000); // ~90% of the way in 450ms: a glide, not a snap
       pos.current += (target.current - pos.current) * k;
       if (Math.abs(target.current - pos.current) < 0.0005) pos.current = target.current;
 

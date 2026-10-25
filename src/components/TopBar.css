@@ -10,6 +10,8 @@
   pointer-events: none;
   mix-blend-mode: difference;
   color: var(--ink-100);
+  /* Only ever changes after the opening intro: the bar settles in a beat after the page. */
+  transition: opacity var(--dur-entrance) var(--ease-enter) 300ms;
 }
 
 .topbar > *,

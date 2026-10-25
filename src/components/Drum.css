@@ -5,7 +5,7 @@
   overflow: clip;
   touch-action: none;
   user-select: none;
-  animation: drum-in 1100ms var(--ease-enter) 150ms both;
+  animation: drum-in 1400ms var(--ease-enter) 150ms both;
 }
 
 /* Load: the stack rises into place from slightly below and out of focus. */

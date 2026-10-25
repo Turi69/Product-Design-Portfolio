@@ -91,3 +91,69 @@ Open: the interludes are staged scenes, not research photos. Say so if asked; co
 ## 24/10/2026 — OutOut: key decisions, leadership stop, reflection
 Brief: lift the study to product-design-lead level. Added three optional template blocks: role.decisions ("Key decisions": Before / We chose / Why / Trade-off on a definition list, numbered rows on hairlines, labelled screens cropped to one phone shape so labels align), a "Lead" route stop, and impact.reflection ("Looking back").
 Evidence: the v1 Figma file (OutOut-V1) gives the before states and counts: trips and outings as two create flows (110 frames) vs one v2 event form (37); 35 v1 sign-in screens vs 16 in v2; light yellow-orange v1 vs dark v2; v1 tabs vs v2 tabs plus explorations A, B, C. Why, trade-off, the Lead stop and the reflection are drafted and marked Inferred for the owner to confirm. Baselines for the 20% and the 4/5 were not invented; still needed.
+
+## 25/10/2026 — Résumé viewer (CV link)
+Brief: the top bar CV link opens the résumé in a full-screen centred modal with zoom and pan, instead of a new tab.
+Direction: the paper sheet on the dark stage, nothing else competing. Chrome reuses the house glass pill (same blur, line and 40px targets as the nav pill), so it reads as site navigation, not a third-party PDF viewer. References: Apple Preview and Google Drive's viewer (bottom-centre zoom pill, percentage doubles as reset), Figma's canvas (ctrl/cmd + wheel zooms at the cursor, plain wheel pans).
+Build: native <dialog> with showModal, portalled to body so the top bar's mix-blend-mode does not reach it. Pages are pre-rendered from the PDF at 300 dpi, lossless WebP (~200 KB a page), by tools/resume-pages.py, which also writes src/data/resumePages.ts. Rerun it whenever the PDF changes. Zoom is relative to fit width (50–300%, 1.25 steps) and changes the sheet's width rather than a transform scale, so text re-renders sharp at every level. Pan is a translate, clamped so the sheet is centred where it fits and edge-limited where it does not.
+Input: buttons; + / − / 0 keys; arrows, Page Up/Down, Home/End to pan; wheel pans, ctrl/cmd + wheel and trackpad pinch zoom at the cursor; drag pans; two-finger pinch zooms at the midpoint. Plain click opens the viewer; ctrl/cmd/shift/middle click still reaches the PDF.
+Motion: backdrop fades (240ms enter), the stage rises 24px (420ms enter), chrome fades in 120ms behind it; exit 180ms accelerating. Zoom and pan are instant (direct manipulation). Reduced motion: fades only.
+States: pages hold their exact shape in surface grey while decoding (no shift); load failure shows a message with a PDF download; zoom buttons disable at the limits; focus starts on Close and returns to the CV link; page scroll locked while open.
+Known gap: the pages are images, so screen readers get "Résumé, page 1 of 2" rather than the text. The Download PDF control in the toolbar is the accessible route.
+
+## 25/10/2026 — Opening intro (TURI)
+Brief: the owner asked for studio-onto.com's loader, with the letters TURI, white on the dark stage. Later additions: the letter scaling to fill the screen (Onto's ending), and Onto's gentle page entrance afterwards.
+Studied Onto frame by frame (it is a Lottie file, so nothing was copied): thin lines rise into blocks left to right, counters cut each block into its letter, the word holds, the letters slide into the O and merge, the O scales until it fills the screen, the fill fades off the site.
+Rebuilt in our own type and code (components/Intro.tsx, Intro.css), Switzer 600, which the site already loads:
+- Rise: each letter's ink box is a block that grows from a hairline on the baseline (scaleY), 420ms, 110ms stagger.
+- Carve: each glyph is drawn with a 64-unit outline clipped to its ink box, so it reads as a solid block; the outline thins to 0 (800ms, in-out, 70ms stagger) and counters open from a point. stroke-width is a paint property, accepted for four glyphs, once.
+- Merge: U, R and I slide into the T and dissolve (500ms, in-out, 40ms stagger) while the T centres.
+- Fill: the T scales from inside its stem until white covers the screen; it accelerates because it is leaving (600ms).
+- Lift: a flat white layer fades off (600ms, exit curve) as the page's own entrance (split-text name, tagline, disciplines, nav pill, .reveal sections) is released from html[data-intro]; the top bar fades in 300ms behind.
+Total about 3.7s. Once per browser session (sessionStorage), any input skips straight to the lift, no intro under reduced motion, and no intro if Switzer has not loaded within 1.5s (never draws in the fallback face).
+Rejected: landing the word in the TURI® top bar mark (first build; replaced by the owner's choice of Onto's fill ending).
+Open: a full-screen white moment on a dark site is deliberate here; revisit if it feels too bright on a phone at night.
+
+## 25/10/2026 — Motion retune: gentle, iOS-like, site-wide
+Brief: the owner found the intro's scale too quick and asked for all motion to be very gentle and smooth, to iOS standards.
+Diagnosis: the fill was a linear tween from 1× to ~100×. The eye reads scale logarithmically, so it barely moved for most of its run and rushed at the end; a longer duration alone would not have fixed it.
+Tokens (tokens.css), which carry almost every animation on the site:
+- Durations: instant 120 → 150ms, state 240 → 320ms, layout 420 → 520ms, entrance 800 → 1000ms.
+- Enter: cubic-bezier(0.16, 1, 0.3, 1) (expo out, a hard start) → cubic-bezier(0.32, 0.72, 0, 1), the iOS sheet curve.
+- Move: (0.65, 0, 0.35, 1) → (0.45, 0, 0.25, 1), a soft start and a long settle.
+- Exit: (0.7, 0, 0.84, 0) → (0.42, 0, 0.84, 0.4), eases away instead of snapping.
+Intro: the zoom uses geometric keyframes (each moment multiplies the size by the same amount) on the move curve over 1400ms, and overshoots to 1.6× of full cover so the screen is white before the zoom ends; the merge is 800ms with opacity trailing the slide; beats overlap by 150ms so nothing stops dead; the white lifts over 1000ms on the move curve; skip fades over 600ms. Curves are read from the tokens at runtime, so the intro always matches the pages. Total about 5.2s, skippable.
+Hard-coded timings brought in line: drum and project hero entrances 1100 → 1400ms; résumé viewer close 180 → 380ms; the drum's wheel follow from ~90% in 300ms to ~90% in 450ms (still critically damped, no overshoot).
+Motion character, recorded: calm, unhurried, settled. Nothing starts abruptly; everything glides to rest.
+
+## 25/10/2026 — Ribbon dive tried and rejected
+The owner asked for Netflix's intro (the camera diving into the letter until it separates into ribbons of light) at the moment the T scales. Built twice: coloured ribbons (88 soft vertical bands across the spectrum, added together where they cross), then black ribbons streaking across the white. The owner rejected both ("doesn't look good"), and the intro is back to the approved ending: the even-speed zoom to white, then the white lifting over 1s as the page makes its entrance.
+Lesson: the ribbon look depends on rendered light (bloom, depth of field, motion blur) that flat CSS bands cannot fake well; a convincing version would need video or a shader. Do not retry it with DOM layers.
+
+## 25/10/2026 — Intro ending: dissolve, no white
+The owner asked to drop the white fill: after the T zooms, it should fade gently into the page.
+Ending now: the T grows from inside its stem until it is 2.4 screens tall (scale sized to the viewport, geometric keyframes on the move curve, 1800ms). It dissolves across 30–85% of that zoom, while the dark stage lifts from 35% to the end and the page's held entrance is released at the same moment, so the page comes through the growing letter. The stem never covers the screen, so there is no flat white moment. Skip fades the whole intro over 600ms.
+Measured: 120 frames through the ending at a steady 16.7ms (worst 17.4ms), no dropped frames.
+
+## 25/10/2026 — Nav pill polish
+Reference: iOS tab bars and segmented controls (the selection marks where you are and does not move on hover; 44pt targets).
+- The white pill now stays on the current page. Hover and keyboard focus get their own quiet highlight (a ghost in --color-line) that slides between items, so pointing never hides where you are.
+- Fixed a long-standing 4px offset: items are measured from the list, which starts one padding step inside the nav, but the pill was positioned from the nav's edge. The pill now sits exactly on its label, with equal padding either side.
+- Inactive labels sit back in --color-text-soft and brighten on hover or focus; the current label is the only strong mark.
+- Targets raised from 40px to 44px.
+- Label colour now changes on the pill's own duration and curve, so a label never turns dark before the pill reaches it.
+- Glass recipe denser and lifted (--color-glass 0.62, blur 24px, saturate 1.4, top sheen, --shadow-float), so labels hold over bright project images. New tokens: --color-sheen, --shadow-float. The résumé viewer's toolbar and close button now use the same recipe.
+- Reduced motion: the pill, highlight and label colour change instantly.
+
+## 25/10/2026 — Freyda and Tendarly removed
+At the owner's request, both case studies are off the site: their case study entries (caseStudies.ts), Works list rows and subtitles (projects.ts) and gallery text (home.ts). The Works list now shows 11 projects; the Health filter disappears with Tendarly, its only project. Old links (/work/freyda, /work/tendarly) land on the existing "Project not found" page. Freyda's logo stays in the client logo strip on the Works page, by the owner's choice: a past client, even without a case study.
+
+## 25/10/2026 — AXE: natural photos, real screens
+Story photos: the four AXE interludes were regenerated in Figma (file ndqPxKr2yM1vjGErdzUtG7, gpt-image-2.5-sunburst, 3:2) as natural stock photography: soft window daylight, neutral true-to-life colour, bright exposure, candid moments. Replaces the earlier warm, golden-hour cinematic grade. Learners now span ages (twenties to fifties), since AXE is not age-specific. The at-home photo was generated with a blank black laptop screen facing camera, and the real learner dashboard (axe-learner-home) composited on with tools/composite.mjs (radius 0.02, threshold 30). Sources in source/scenes/axe-story-v2/.
+Screens: the six light screenshots from the old "TC Application" design (Framer-era hash names) are replaced with frames from the AXE Tutor Application file (CUrLhFAhQmxRfn7tYobAqR), exported at 1× (1512 wide) to match the other AXE screens:
+- Lesson editor (117073:83444) as axe-tutor-builder, in the Translate route stop and the tutor gallery.
+- Course overview (116884:82144) as axe-course-overview, now first in the tutor gallery.
+- Report, team tab (117172:59562) as axe-report-team; performance breakdown (117172:61303) as axe-report-performance.
+- Team management with unassigned learners (117172:70379) as axe-tutor-teams.
+- Lesson preview slide (117088:48208) as axe-lesson-slide.
+The old hash images are no longer referenced by the case study; they remain only in home.ts's legacy gallery data and the size table.

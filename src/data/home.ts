@@ -189,20 +189,6 @@ export const gallery: GalleryItem[] = [
     ),
   },
   {
-    label: 'Freyda 2024',
-    format: 'web',
-    paragraphs: [
-      'Freyda is an AI document extraction tool used by investment analysts to pull structured data from fund reports. Analysts loved the extraction quality but kept asking for refunds inside the first 30 days. Research with 9 analysts revealed the issue was trust: users had no way to verify what the AI had extracted against the source document, so they ended up doing the work twice.',
-      'I redesigned the review interface around side-by-side verification. Each extracted field links directly to the highlighted source passage in the original PDF, and analysts confirm or correct values inline. I also added a confidence indicator on each field and a bulk-approve action for high-confidence rows.',
-      'Within two months of launch, the 30-day refund rate dropped from 22% to 4%. Average review time per fund report fell from 38 minutes to 14, while accuracy of final exported data rose from 89% to 97% in a sample audit of 200 reports. Three pilot clients converted to annual contracts, and the verification UI became a lead feature in Freyda’s sales deck.',
-    ],
-    images: imgs(
-      'MmEGU4xPDJA2mPVKyU3qHt0zmhI.png', '1zrCBSEJ5l0H710rlNm8LXTXJW4.png', 'AjzBsQyrz5cZetNSMnxNigDUJbY.png',
-      '9IdPhNKqorV03EFMHcHPum3A.png', 'mO9jSWfV5TC2nd11EKAexHsHKRY.png', 'MhRyYdDwKrwrOVuH6GMuOlrL7jo.png',
-      'SKiKh56w2aEYzMeGAZjclHIF9Go.png', 'a7NcgGkbi0kQgho114E6XgJ6WI4.png', 'Hf6yswPtoqGX0tGdBvW42FNbps.png',
-    ),
-  },
-  {
     label: 'Fantasy One 2024',
     format: 'mobile',
     paragraphs: [
@@ -215,21 +201,6 @@ export const gallery: GalleryItem[] = [
       'AmhWpsVTzHi5jnks27KPzG47zE.png', 'hEVGKhZxV74N36fcpcHIlc7gMyA.png', 'gWSZ5mAHTRoSFRLayvJYqfeOPFU.png',
       'EilMTuZE43hWSxLtxPWPwhz4tIs.png', 'OCOsBemGDKTH03q3IZUxp8ZDLgs.png', 'hLXbHKEjhCsR2TRVirUEwduBVI.png',
       'rcUG5Jf3Ip7AKM1jBNGJhairRPI.png',
-    ),
-  },
-  {
-    label: 'Tendarly 2023',
-    format: 'mobile',
-    paragraphs: [
-      'As the lead designer for Tendarly, a telemedicine application, I created an intuitive interface that combines an AI-powered chatbot with real-time doctor consultations. The app’s advanced language model collects patient symptoms and medical history, automatically connecting them with available physicians without delay.',
-      'My responsibilities included creating UI wireframes, developing a cohesive design system, and creating interactive prototypes for internal review.',
-      'Notable features include AI-driven symptom assessment, secure patient-doctor transitions, comprehensive medical chat histories, detailed consultation notes, actionable follow-ups, and insightful doctor performance dashboards.',
-    ],
-    images: imgs(
-      'CBC5dl58Z9KnCA38TARH1UhppDw.png', 'yyUuhJ2yJokcchgViER5aNmOqU.png', 'zC9L9pOD28UerxtJgwjb5WM3Yk.png',
-      'jW9Id3dkbO3SQe1Xl3vUjVMxhc.png', 'lp316SCuTVyD0EHeMBjibjcAUE.png', 'ohfo1MXEdgMicY1iU8tqrcPDxY.png',
-      'Gc4CDBfDDSOT2pbh8E1bmvi5sg.png', 'Gnp6OwHdnqoVJjyNjY7KTBqO1cE.png', 'vg2t5f405utpIi8J6oHofBJX6rk.png',
-      'DaYzve7eKT6Bto845mtxV3QER8.png',
     ),
   },
   {

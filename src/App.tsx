@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { Intro } from './components/Intro';
 import { NavPill } from './components/NavPill';
 import { TopBar } from './components/TopBar';
 import { About } from './pages/About';
@@ -43,6 +44,7 @@ export default function App() {
         </Routes>
       </main>
       <NavPill />
+      <Intro />
     </>
   );
 }

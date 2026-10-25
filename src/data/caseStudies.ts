@@ -832,7 +832,7 @@ const axe: CaseStudy = {
       {
         stage: 'Translate',
         did: ['Worked with in-house AI specialists to turn teaching methods into machine-learning models for personalised instruction, the hardest part of the project'],
-        artefact: { kind: 'images', format: 'web', images: [{ img: c('aCYAGGJmFgzrvqeGh6wNefMIYbs'), alt: 'AXE content builder assembling a course' }] },
+        artefact: { kind: 'images', format: 'web', images: [{ img: c('axe-tutor-builder'), alt: 'Lesson editor: a tutor building a lesson from content blocks, with the lesson outline beside it' }] },
       },
       {
         stage: 'Design',
@@ -942,19 +942,19 @@ const axe: CaseStudy = {
         shots: [
           { img: c('axe-learner-home'), caption: 'Dashboard: live classes, courses in progress, chats and mentions.' },
           { img: c('axe-lesson'), caption: 'A lesson as slides, with check-in questions.' },
-          { img: c('jbOwhEKcOIF0QHJAKGrxM13owQ'), caption: 'Dashboard: upcoming classes, tasks for review, chats and mentions.' },
-          { img: c('BWxDwlWgPHPnKeVzDMLWjhkDM'), caption: 'Team report: submitted tasks, completion rate and top scorers.' },
-          { img: c('paTxf6QzXqSnuMsynzT83e2y0I'), caption: 'Participation: contribution time and coaching sessions.' },
-          { img: c('LOZEEKJ4sg0hsnGfiX8KWKSGQjI'), caption: 'Performance tracking over time.' },
-          { img: c('s4BD6G5TnDpdt0KnCAnogyuCGc'), caption: 'Lesson reader.' },
+          { img: c('axe-lesson-slide'), caption: 'A lesson slide, with a hidden fact to keep learners curious.' },
+          { img: c('axe-tutor-teams'), caption: 'Teams: team cards, and the learners still to be placed in one.' },
+          { img: c('axe-report-team'), caption: 'Team report: points and task performance for each team.' },
+          { img: c('axe-report-performance'), caption: 'Performance breakdown: points per task and the average score.' },
         ],
       },
       {
         title: 'Tutor workspace',
         shots: [
+          { img: c('axe-course-overview'), caption: 'Course overview: description, level, price and reviews.' },
           { img: c('axe-tutor-import'), caption: 'A new course: import a document or create a lesson.' },
           { img: c('axe-tutor-configure'), caption: 'Course setup in one dialog.' },
-          { img: c('aCYAGGJmFgzrvqeGh6wNefMIYbs'), caption: 'Content builder putting a course together.' },
+          { img: c('axe-tutor-builder'), caption: 'Lesson editor: content blocks, with the lesson outline beside them.' },
           { img: c('axe-tutor-task'), caption: 'Creating a task: assignment, quiz, discussion or project.' },
           { img: c('axe-tutor-grading'), caption: 'Grading a submission with a score and comments.' },
           { img: c('axe-tutor-students'), caption: 'Students ranked by course progress.' },
@@ -982,14 +982,14 @@ const axe: CaseStudy = {
     {
       after: 3,
       img: c('axe-story-team'),
-      alt: 'A team of young professionals learning together around a table with laptops.',
+      alt: 'Four colleagues around an office table, working through a course together on a laptop.',
       time: 'Wednesday, 10:00',
       line: 'At work, a team takes the same course together.',
     },
     {
       after: 4,
       img: c('axe-story-tutoring'),
-      alt: 'A tutor sitting beside a student in a library, helping her through a problem in her notebook.',
+      alt: 'A tutor sitting beside a learner in a library, pointing to a line in her notebook.',
       time: 'Friday, 15:30',
       line: 'The tutor sits with the student the progress view flagged as falling behind.',
     },
@@ -1426,126 +1426,6 @@ const rhapsody: CaseStudy = {
   },
 };
 
-/* ------------------------------------------------------------------- Tendarly */
-
-const tendarly: CaseStudy = {
-  slug: 'tendarly',
-  title: 'Tendarly',
-  meta: [
-    { label: 'Category', value: 'Mobile app' },
-    { label: 'Sector', value: 'Telemedicine' },
-    // Inferred: the App Store lists Heckerbella as the developer of Tendarly Doctor, matching my time there.
-    { label: 'Role', value: 'Lead designer, at Heckerbella' },
-    { label: 'Year', value: '2023' },
-  ],
-  overview: {
-    statement: 'An assistant takes your history. A real doctor takes the call.',
-    body: [
-      'Tendarly is a telemedicine app that pairs an AI-powered chatbot with real-time doctor consultations.',
-      'The assistant collects symptoms and medical history, then connects the patient to an available physician without delay.',
-    ],
-  },
-  problem: {
-    // Inferred: the original copy does not state the problem.
-    statement: 'Seeing a doctor meant waiting, repeating your story, and losing the record afterwards.',
-    points: [
-      { title: 'Slow access', line: 'Patients wait to reach any doctor at all.' },
-      { title: 'Repeated history', line: 'Symptoms explained again at every visit.' },
-      { title: 'Lost records', line: 'Notes and follow-ups don’t stay with the patient.' },
-    ],
-  },
-  solution: {
-    statement: 'Intake by an assistant, then straight to an available doctor, with every note kept.',
-    points: [
-      { title: 'AI symptom intake', line: 'The assistant gathers symptoms before the call.' },
-      { title: 'Instant matching', line: 'Connect with any available doctor, or search for one.' },
-      { title: 'Notes and follow-ups', line: 'Consultation notes and chat history stay in the app.' },
-      { title: 'Doctor dashboards', line: 'Performance insight for the doctors themselves.' },
-    ],
-  },
-  role: {
-    summary: 'I led the design: wireframes, a cohesive design system and interactive prototypes for internal review.',
-    owned: ['Wireframes', 'Conversational UX', 'Design system', 'UI design', 'Prototyping'],
-    stops: [
-      {
-        stage: 'Intake',
-        did: ['Designed the assistant’s greeting and pre-session chat'],
-        artefact: {
-          kind: 'images',
-          format: 'mobile',
-          images: [
-            { img: c('yyUuhJ2yJokcchgViER5aNmOqU'), alt: 'Assistant greeting' },
-            { img: c('DaYzve7eKT6Bto845mtxV3QER8'), alt: 'Pre-session chat collecting symptoms' },
-          ],
-        },
-      },
-      {
-        stage: 'Connect',
-        did: ['Designed payment, matching and the hand-over from assistant to doctor'],
-        artefact: {
-          kind: 'images',
-          format: 'mobile',
-          images: [
-            { img: c('zC9L9pOD28UerxtJgwjb5WM3Yk'), alt: 'Start a session or search for a doctor' },
-            { img: c('lp316SCuTVyD0EHeMBjibjcAUE'), alt: 'Secure payment before the session' },
-            { img: c('ohfo1MXEdgMicY1iU8tqrcPDxY'), alt: 'Connecting to a doctor' },
-          ],
-        },
-      },
-      {
-        stage: 'Consult',
-        did: ['Designed doctor profiles with ratings, and a free first-session offer'],
-        artefact: {
-          kind: 'images',
-          format: 'mobile',
-          images: [
-            { img: c('Gc4CDBfDDSOT2pbh8E1bmvi5sg'), alt: 'Doctor profile with rating and reviews' },
-            { img: c('Gnp6OwHdnqoVJjyNjY7KTBqO1cE'), alt: 'Free session coupon' },
-          ],
-        },
-      },
-      {
-        stage: 'Record',
-        did: ['Structured the doctor’s final note: observation, diagnosis and recommendation'],
-        artefact: { kind: 'images', format: 'mobile', images: [{ img: c('vg2t5f405utpIi8J6oHofBJX6rk'), alt: 'Final consultation note' }] },
-      },
-      {
-        stage: 'System',
-        did: ['Built a cohesive design system and interactive prototypes for internal review'],
-        artefact: { kind: 'chips', items: ['Wireframes', 'Design system', 'Interactive prototypes'] },
-      },
-    ],
-  },
-  impact: {
-    title: 'From symptom to doctor in one flow',
-    caveat: 'Designed and prototyped for internal review, so there are no outcome figures yet.',
-    stats: [
-      { value: '6', label: 'Core features designed', note: 'Symptom intake, hand-over, chat history, notes, follow-ups and doctor dashboards.' },
-      { value: '3', label: 'Deliverables', note: 'Wireframes, a design system and interactive prototypes.' },
-    ],
-  },
-  screens: {
-    title: 'The consult, screen by screen',
-    format: 'mobile',
-    groups: [
-      {
-        shots: [
-          { img: c('CBC5dl58Z9KnCA38TARH1UhppDw'), caption: 'Splash.' },
-          { img: c('yyUuhJ2yJokcchgViER5aNmOqU'), caption: 'The assistant introduces itself.' },
-          { img: c('zC9L9pOD28UerxtJgwjb5WM3Yk'), caption: 'Start a session or search for a doctor.' },
-          { img: c('jW9Id3dkbO3SQe1Xl3vUjVMxhc'), caption: 'Active sessions.' },
-          { img: c('lp316SCuTVyD0EHeMBjibjcAUE'), caption: 'Secure payment before the session.' },
-          { img: c('ohfo1MXEdgMicY1iU8tqrcPDxY'), caption: 'Connecting to an available doctor.' },
-          { img: c('Gc4CDBfDDSOT2pbh8E1bmvi5sg'), caption: 'Doctor profile and reviews.' },
-          { img: c('Gnp6OwHdnqoVJjyNjY7KTBqO1cE'), caption: 'Free first session.' },
-          { img: c('vg2t5f405utpIi8J6oHofBJX6rk'), caption: 'The doctor’s final note.' },
-          { img: c('DaYzve7eKT6Bto845mtxV3QER8'), caption: 'Pre-session chat with the assistant.' },
-        ],
-      },
-    ],
-  },
-};
-
 /* ----------------------------------------------------------------- LemonSplit */
 
 const lemonsplit: CaseStudy = {
@@ -1665,111 +1545,6 @@ const lemonsplit: CaseStudy = {
   },
 };
 
-/* --------------------------------------------------------------------- Freyda */
-
-const freyda: CaseStudy = {
-  slug: 'freyda',
-  title: 'Freyda',
-  meta: [
-    { label: 'Category', value: 'Web platform' },
-    // Public context (directory listings), worth confirming: Freyda is a London fintech.
-    { label: 'Client', value: 'Freyda, London' },
-    { label: 'Role', value: 'Product designer, review experience' },
-    { label: 'Year', value: '2024' },
-  ],
-  overview: {
-    statement: 'AI extraction that analysts can actually trust.',
-    body: [
-      'Freyda is an AI document extraction tool that investment analysts use to pull structured data from fund reports.',
-      'Its customers include institutional investors such as pension funds, endowments and insurers. I redesigned the review interface around verification.',
-    ],
-  },
-  problem: {
-    statement: 'Analysts couldn’t check what the AI extracted, so they did the work twice, then asked for refunds.',
-    points: [
-      { title: '22% refunds', line: 'Requested inside the first 30 days.' },
-      { title: 'No way to verify', line: 'Extracted values sat apart from the source PDF.' },
-      { title: 'Double work', line: 'Analysts re-checked everything by hand.' },
-    ],
-  },
-  solution: {
-    statement: 'Every extracted value sits beside its source, so checking is a glance, not a hunt.',
-    points: [
-      { title: 'Side-by-side review', line: 'Each field links to the highlighted passage in the PDF.' },
-      { title: 'Inline corrections', line: 'Confirm or fix a value where you see it.' },
-      { title: 'Confidence per field', line: 'Know where to look first.' },
-      { title: 'Bulk approve', line: 'Clear high-confidence rows in one action.' },
-    ],
-  },
-  role: {
-    summary: 'I redesigned the review experience around verification, starting from why analysts didn’t trust it.',
-    owned: ['Analyst research', 'Review UX', 'Information design', 'UI design'],
-    stops: [
-      {
-        stage: 'Discover',
-        did: ['Researched with 9 analysts and found the real issue was trust, not extraction quality'],
-        artefact: { kind: 'chips', items: ['9 analysts', 'Trust gap', '22% refunds'] },
-      },
-      {
-        stage: 'Verify',
-        did: ['Put each extracted field next to its highlighted source passage, with inline confirm and correct'],
-        artefact: { kind: 'images', format: 'web', images: [{ img: c('9IdPhNKqorV03EFMHcHPum3A'), alt: 'Extracted fields beside the source PDF' }] },
-      },
-      {
-        stage: 'Prioritise',
-        did: ['Added a confidence indicator on every field and bulk approve for high-confidence rows'],
-        artefact: { kind: 'chips', items: ['Confidence per field', 'Bulk approve'] },
-      },
-      {
-        stage: 'Structure',
-        // Inferred: these screens are in my gallery; the copy does not say I designed import, repository and schema builder.
-        did: ['Designed the import, repository and schema builder around the same review model'],
-        artefact: {
-          kind: 'images',
-          format: 'web',
-          images: [
-            { img: c('AjzBsQyrz5cZetNSMnxNigDUJbY'), alt: 'Document repository with statuses' },
-            { img: c('SKiKh56w2aEYzMeGAZjclHIF9Go'), alt: 'Schema builder with pinned metrics' },
-          ],
-        },
-      },
-      {
-        stage: 'Audit',
-        did: ['After launch, exported data was audited across a sample of 200 reports'],
-        artefact: { kind: 'chips', items: ['200-report audit', 'Accuracy', 'Review time'] },
-      },
-    ],
-  },
-  impact: {
-    title: 'Fewer refunds, faster reviews, cleaner data',
-    stats: [
-      { value: '4%', label: '30-day refund rate', note: 'Down from 22% within two months of launch.' },
-      { value: '14 min', label: 'Review time per report', note: 'Down from 38 minutes.' },
-      { value: '97%', label: 'Exported data accuracy', note: 'Up from 89%, in an audit of 200 reports.' },
-      { value: '3', label: 'Pilots to annual contracts', note: 'The verification UI became a lead feature in the sales deck.' },
-    ],
-  },
-  screens: {
-    title: 'Hi-fi screens',
-    format: 'web',
-    groups: [
-      {
-        shots: [
-          { img: c('MmEGU4xPDJA2mPVKyU3qHt0zmhI'), caption: 'Import: drag in fund reports.' },
-          { img: c('1zrCBSEJ5l0H710rlNm8LXTXJW4'), caption: 'Import in progress, with extraction status.' },
-          { img: c('AjzBsQyrz5cZetNSMnxNigDUJbY'), caption: 'Repository of every document and its status.' },
-          { img: c('9IdPhNKqorV03EFMHcHPum3A'), caption: 'Verification: fields beside the source PDF.' },
-          { img: c('mO9jSWfV5TC2nd11EKAexHsHKRY'), caption: 'Entities and their relationships.' },
-          { img: c('MhRyYdDwKrwrOVuH6GMuOlrL7jo'), caption: 'Schema builder, empty state.' },
-          { img: c('SKiKh56w2aEYzMeGAZjclHIF9Go'), caption: 'Choosing metrics for a schema.' },
-          { img: c('a7NcgGkbi0kQgho114E6XgJ6WI4'), caption: 'Building views from pinned metrics.' },
-          { img: c('Hf6yswPtoqGX0tGdBvW42FNbps'), caption: 'Creating a view.' },
-        ],
-      },
-    ],
-  },
-};
-
 export const caseStudies: Record<string, CaseStudy> = {
   wayfinder,
   whodeygo,
@@ -1781,7 +1556,5 @@ export const caseStudies: Record<string, CaseStudy> = {
   circuitmind,
   fantasy,
   rhapsody,
-  tendarly,
   lemonsplit,
-  freyda,
 };

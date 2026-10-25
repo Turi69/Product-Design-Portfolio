@@ -23,7 +23,9 @@
   --color-invert: var(--ink-100);
   --color-line: oklch(0.97 0.003 70 / 0.12);
   --color-line-strong: oklch(0.97 0.003 70 / 0.24);
-  --color-glass: oklch(0.3 0.004 70 / 0.55);
+  --color-glass: oklch(0.26 0.004 70 / 0.62);     /* floating chrome; dense enough to hold over bright images */
+  --color-sheen: oklch(0.97 0.003 70 / 0.06);     /* a hairline of light along the top edge of glass */
+  --shadow-float: 0 12px 32px oklch(0.145 0.002 70 / 0.35);
   --color-scrim: oklch(0.145 0.002 70 / 0.72);
   --color-focus: oklch(0.82 0.13 220);
   --color-live: var(--green-500);
@@ -61,17 +63,19 @@
   --radius-lg: 16px;
   --radius-pill: 999px;
 
-  /* Motion */
-  --dur-instant: 120ms;
-  --dur-state: 240ms;
-  --dur-layout: 420ms;
-  --dur-entrance: 800ms;
-  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
-  --ease-move: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Motion: gentle and settled, after iOS. Enter is the iOS sheet curve (a soft start, a long
+     glide in); move is a soft ease-in-out; exit eases away without snapping. */
+  --dur-instant: 150ms;
+  --dur-state: 320ms;
+  --dur-layout: 520ms;
+  --dur-entrance: 1000ms;
+  --ease-enter: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-exit: cubic-bezier(0.42, 0, 0.84, 0.4);
+  --ease-move: cubic-bezier(0.45, 0, 0.25, 1);
 
   /* Layers */
   --z-stage: 1;
   --z-chrome: 200;
   --z-preview: 300;
+  --z-intro: 400;
 }
