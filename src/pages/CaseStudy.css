@@ -350,6 +350,146 @@
   font-size: 0.875rem;
 }
 
+/* Key decisions: numbered rows on hairlines, a definition list per call, labelled screens. */
+.case-decisions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.case-decisions ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-decision {
+  display: grid;
+  grid-template-columns: 4ch minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.case-decision__num {
+  padding-top: 6px;
+  color: var(--color-text-muted);
+}
+
+.case-decision__title {
+  margin: 0;
+  font-size: var(--text-lead);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.case-decision dl {
+  display: grid;
+  grid-template-columns: 11ch minmax(0, 1fr);
+  gap: var(--space-3) var(--space-5);
+  max-width: 44em;
+  margin: var(--space-4) 0 0;
+}
+
+.case-decision dt {
+  padding-top: 4px;
+  color: var(--color-text-muted);
+}
+
+.case-decision dd {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.5;
+}
+
+.case-decision__shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
+  gap: var(--space-4);
+  max-width: 44em;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One shape per format, so tall frames don't push their labels out of line. */
+.case-decision__shots img {
+  object-fit: cover;
+  object-position: top;
+}
+
+.case-decision__shots--mobile img {
+  aspect-ratio: 430 / 932;
+}
+
+.case-decision__shots--web {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+}
+
+.case-decision__shots--web img {
+  aspect-ratio: 1512 / 982;
+}
+
+.case-decision__shots figcaption {
+  color: var(--color-text-muted);
+}
+
+.case-reflect {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 44em;
+}
+
+.case-reflect p {
+  margin: 0;
+  color: var(--color-text-soft);
+  line-height: 1.6;
+}
+
+/* Interludes: story photos between sections, read as a timeline of one outing. */
+.case-interlude {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-10) 0 0;
+}
+
+.case-interlude img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.case-interlude figcaption {
+  display: flex;
+  gap: var(--space-5);
+  align-items: baseline;
+  max-width: 44em;
+}
+
+.case-interlude__time {
+  flex: none;
+  min-width: 14ch;
+  color: var(--color-text-muted);
+}
+
+.case-interlude__line {
+  color: var(--color-text-soft);
+  font-size: var(--text-caption);
+  line-height: 1.5;
+}
+
+/* Exactly four cards: two by two, so none is left alone on a row. */
+@media (min-width: 810px) {
+  .case-impact:has(> :nth-child(4):last-child) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* Screens */
 .case-gallery {
   display: flex;
@@ -563,6 +703,37 @@
 
   .case-proto__frame {
     height: 70dvh;
+  }
+
+  .case-interlude {
+    margin-top: var(--space-9);
+  }
+
+  .case-decision {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .case-decision dl {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+
+  .case-decision dd + dt {
+    margin-top: var(--space-3);
+  }
+
+  .case-decision__shots--mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-decision__shots--web {
+    grid-template-columns: 1fr;
+  }
+
+  .case-interlude figcaption {
+    flex-direction: column;
+    gap: var(--space-1);
   }
 }
 

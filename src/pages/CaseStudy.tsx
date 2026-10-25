@@ -4,7 +4,7 @@ import { CountUp } from '../components/CountUp';
 import { Reveal } from '../components/Reveal';
 import { RoleRoute } from '../components/RoleRoute';
 import { WordReveal } from '../components/WordReveal';
-import { sectionNames, type CaseStudy as Case, type Point, type Stat } from '../data/caseStudies';
+import { sectionNames, type CaseStudy as Case, type Decision, type Interlude, type Point, type Stat } from '../data/caseStudies';
 import { workBySlug, works } from '../data/projects';
 import { usePrefersReducedMotion } from '../hooks';
 import './CaseStudy.css';
@@ -91,6 +91,66 @@ function Section({ index, title, children }: { index: number; title: string; chi
   );
 }
 
+/** Key product calls, each with the screens that show the change. */
+function Decisions({ items, format }: { items: Decision[]; format: 'mobile' | 'web' }) {
+  return (
+    <div className="case-decisions">
+      <h3 className="case-gallery__title">Key decisions</h3>
+      <ol>
+        {items.map((d, n) => (
+          <Reveal as="li" className="case-decision" key={d.title}>
+            <span className="case-decision__num mono-label">{pad(n + 1)}</span>
+            <div className="case-decision__body">
+              <h4 className="case-decision__title">{d.title}</h4>
+              <dl>
+                <dt className="mono-label">Before</dt>
+                <dd>{d.before}</dd>
+                <dt className="mono-label">We chose</dt>
+                <dd>{d.chose}</dd>
+                <dt className="mono-label">Why</dt>
+                <dd>{d.why}</dd>
+                <dt className="mono-label">Trade-off</dt>
+                <dd>{d.tradeoff}</dd>
+              </dl>
+              {d.images && (
+                <ul className={`case-decision__shots case-decision__shots--${format}`}>
+                  {d.images.map((im) => (
+                    <li key={im.img.src}>
+                      <figure className="case-shot">
+                        <span className="case-shot__frame">
+                          <img src={im.img.src} width={im.img.w} height={im.img.h} alt={im.alt} loading="lazy" decoding="async" />
+                        </span>
+                        <figcaption className="mono-label">{im.label}</figcaption>
+                      </figure>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </Reveal>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+/** Story photo between sections: one scene, a timestamp and a line. */
+function Interludes({ items }: { items: Interlude[] }) {
+  return (
+    <>
+      {items.map((it) => (
+        <Reveal as="figure" className="case-interlude" key={it.img.src}>
+          <img src={it.img.src} width={it.img.w} height={it.img.h} alt={it.alt} loading="lazy" decoding="async" />
+          <figcaption>
+            <span className="mono-label case-interlude__time">{it.time}</span>
+            <span className="case-interlude__line">{it.line}</span>
+          </figcaption>
+        </Reveal>
+      ))}
+    </>
+  );
+}
+
 /** Live prototype, loaded only when asked for so the page stays light. */
 function Prototype({ src, note, title }: { src: string; note: string; title: string }) {
   const [on, setOn] = useState(false);
@@ -155,6 +215,10 @@ export function CaseStudy({ study }: { study: Case }) {
   const work = workBySlug(study.slug);
   const i = works.findIndex((w) => w.slug === study.slug);
   const next = works[(i + 1) % works.length];
+  const after = (n: number) => {
+    const items = study.interludes?.filter((x) => x.after === n);
+    return items?.length ? <Interludes items={items} /> : null;
+  };
 
   return (
     <article className="case">
@@ -205,13 +269,19 @@ export function CaseStudy({ study }: { study: Case }) {
             )}
           </Section>
 
+          {after(0)}
+
           <Section index={1} title={study.problem.statement}>
             <Points points={study.problem.points} />
           </Section>
 
+          {after(1)}
+
           <Section index={2} title={study.solution.statement}>
             <Points points={study.solution.points} />
           </Section>
+
+          {after(2)}
 
           <Section index={3} title={study.role.summary}>
             <div className="case-owned">
@@ -225,12 +295,27 @@ export function CaseStudy({ study }: { study: Case }) {
               </ul>
             </div>
             <RoleRoute stops={study.role.stops} />
+            {study.role.decisions && <Decisions items={study.role.decisions} format={study.screens.format} />}
           </Section>
+
+          {after(3)}
 
           <Section index={4} title={study.impact.title}>
             <ImpactCards stats={study.impact.stats} />
             {study.impact.caveat && <p className="case-caveat">{study.impact.caveat}</p>}
+            {study.impact.reflection && (
+              <div className="case-reflect">
+                <h3 className="case-gallery__title">Looking back</h3>
+                {study.impact.reflection.map((r, n) => (
+                  <Reveal as="p" index={n} key={n}>
+                    {r}
+                  </Reveal>
+                ))}
+              </div>
+            )}
           </Section>
+
+          {after(4)}
 
           <Section index={5} title={study.screens.title}>
             {study.screens.groups.map((g, gi) => (

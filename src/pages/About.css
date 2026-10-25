@@ -67,7 +67,12 @@
   }
 }
 
-.about-hero__voice {
+/* Who, what and where, settling in after the headline. */
+.about-hero__intro {
+  max-width: 22em;
+  font-size: var(--text-lead);
+  line-height: 1.4;
+  color: var(--color-text-soft);
   animation: about-blur var(--dur-entrance) var(--ease-enter) 800ms both;
 }
 
@@ -92,6 +97,20 @@
   line-height: 1.12;
   letter-spacing: var(--tracking-tight);
   max-width: 22em;
+}
+
+/* Short bio, one idea per paragraph. */
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 36em;
+}
+
+.about-bio__text {
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: var(--color-text-soft);
 }
 
 /* Experience table */
@@ -298,6 +317,14 @@
   letter-spacing: var(--tracking-tight);
 }
 
+.about-contact__meta {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  overflow-wrap: anywhere;
+}
+
 .about-contact__cta {
   font-size: clamp(2rem, 1.2rem + 2vw, 2.5rem);
   font-weight: 600;
@@ -406,7 +433,7 @@
 @media (prefers-reduced-motion: reduce) {
   .about-hero__media img,
   .about-hero__word,
-  .about-hero__voice {
+  .about-hero__intro {
     animation: about-fade var(--dur-state) linear both;
   }
 

@@ -3,7 +3,7 @@ export const img = (name: string) => `/assets/img/${name}`;
 export const logo = (name: string) => `/assets/logos/${name}`;
 
 export const links = {
-  resume: 'https://drive.google.com/file/d/1HjxcGLp3OBFCmoKzdJBqmZqBlq1TCOCm/view?usp=sharing',
+  resume: '/Turi-Ogefere-Resume.pdf',
   linkedin: 'https://www.linkedin.com/in/turi-ogefere',
   phone: 'tel:+2349071841632',
   whatsapp: 'https://wa.me/2349071841632',
@@ -260,9 +260,9 @@ export const whyMe = {
 };
 
 export const experience = [
-  { company: 'AIENAI Tech Ltd.', role: 'Senior designer & Team Lead', years: '2023 - NOW', logo: img('C9ZyhOYZYnzufyHEImHTYvmUtHU.png') },
+  { company: 'AIENAI Tech Ltd.', role: 'Senior Product Designer & Team Lead', years: '2023 - NOW', logo: img('C9ZyhOYZYnzufyHEImHTYvmUtHU.png') },
   { company: 'Heckerbella Ltd.', role: 'Product Designer', years: '2022 - 2023', logo: img('q9aY9OZMnDjMqovMiWDckTtJ6A.png') },
-  { company: 'EasyMunch Ltd', role: 'Web designer', years: '2021 - 2022', logo: img('khNiXn5P2Ej2NeNjRjHWToD8ILc.png') },
+  { company: 'EasyMunch Ltd', role: 'Founder & Product Designer', years: '2021 - 2022', logo: img('khNiXn5P2Ej2NeNjRjHWToD8ILc.png') },
 ];
 
 // Tools from the CV. Glyphs from Simple Icons (CC0), recoloured to the type colour.
@@ -273,7 +273,7 @@ export const stack = [
   { name: 'Framer', use: 'Web design', icon: tool('framer') },
   { name: 'Webflow', use: 'Websites without code', icon: tool('webflow') },
   { name: 'Adobe Creative Cloud', use: 'Brand and campaign assets', icon: tool('adobe-cc') },
-  { name: 'Claude Code', use: 'Vibe coding with AI agents', icon: tool('claude-code') },
+  { name: 'Claude Code', use: 'Front-end builds with AI agents', icon: tool('claude-code') },
   { name: 'Codex', use: 'Agent builds and code review', icon: tool('codex') },
   { name: 'GitHub', use: 'Version control', icon: tool('github') },
   { name: 'Vercel', use: 'Deploys and previews', icon: tool('vercel') },

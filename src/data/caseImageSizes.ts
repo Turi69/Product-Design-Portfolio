@@ -344,6 +344,70 @@ export const caseImageSizes: Record<string, [number, number]> = {
     786,
     1704
   ],
+  "axe-learner-home": [
+    1512,
+    982
+  ],
+  "axe-lesson-iter-a": [
+    1280,
+    832
+  ],
+  "axe-lesson-iter-b": [
+    1512,
+    982
+  ],
+  "axe-lesson": [
+    1512,
+    982
+  ],
+  "axe-story-class": [
+    1536,
+    1024
+  ],
+  "axe-story-learn": [
+    1536,
+    1024
+  ],
+  "axe-story-team": [
+    1536,
+    1024
+  ],
+  "axe-story-tutoring": [
+    1536,
+    1024
+  ],
+  "axe-tutor-configure": [
+    1512,
+    982
+  ],
+  "axe-tutor-grading": [
+    1512,
+    982
+  ],
+  "axe-tutor-import": [
+    1512,
+    982
+  ],
+  "axe-tutor-report": [
+    1512,
+    982
+  ],
+  "axe-tutor-students": [
+    1512,
+    982
+  ],
+  "axe-tutor-task": [
+    1512,
+    1236
+  ],
+  "axe-wire-course": [
+    1277,
+    1600
+  ],
+  "axe-wire-home": [
+    1393,
+    1600
+  ],
   "bBtB0Bf6udu7XBeRzBK2NdPXm78": [
     786,
     1704
@@ -480,6 +544,134 @@ export const caseImageSizes: Record<string, [number, number]> = {
     390,
     844
   ],
+  "outout-01": [
+    430,
+    932
+  ],
+  "outout-02": [
+    430,
+    932
+  ],
+  "outout-03": [
+    430,
+    932
+  ],
+  "outout-04": [
+    430,
+    932
+  ],
+  "outout-05": [
+    430,
+    932
+  ],
+  "outout-06": [
+    430,
+    932
+  ],
+  "outout-07": [
+    430,
+    932
+  ],
+  "outout-08": [
+    430,
+    982
+  ],
+  "outout-09": [
+    430,
+    1256
+  ],
+  "outout-10": [
+    430,
+    1174
+  ],
+  "outout-11": [
+    430,
+    932
+  ],
+  "outout-12": [
+    430,
+    932
+  ],
+  "outout-13": [
+    430,
+    932
+  ],
+  "outout-14": [
+    430,
+    932
+  ],
+  "outout-15": [
+    430,
+    932
+  ],
+  "outout-16": [
+    430,
+    932
+  ],
+  "outout-17": [
+    430,
+    932
+  ],
+  "outout-18": [
+    430,
+    932
+  ],
+  "outout-design-fixed": [
+    430,
+    998
+  ],
+  "outout-design-window": [
+    430,
+    932
+  ],
+  "outout-explore-a": [
+    430,
+    932
+  ],
+  "outout-explore-b": [
+    430,
+    932
+  ],
+  "outout-explore-c": [
+    430,
+    932
+  ],
+  "outout-story-keep": [
+    1536,
+    1024
+  ],
+  "outout-story-party": [
+    1536,
+    1024
+  ],
+  "outout-story-plan": [
+    1536,
+    1024
+  ],
+  "outout-story-split": [
+    1536,
+    1024
+  ],
+  "outout-v1-create": [
+    390,
+    844
+  ],
+  "outout-v1-home": [
+    390,
+    844
+  ],
+  "outout-v1-signup": [
+    390,
+    844
+  ],
+  "outout-v2-home": [
+    430,
+    932
+  ],
+  "outout-v2-signup": [
+    430,
+    932
+  ],
   "pSgBivUXnLdra5NEpeeSTuXOmQ": [
     1440,
     1024
@@ -559,6 +751,86 @@ export const caseImageSizes: Record<string, [number, number]> = {
   "wbCYh0cZaY1jNUmSXSuDfTuuKO4": [
     390,
     844
+  ],
+  "whodeygo-01": [
+    404,
+    853
+  ],
+  "whodeygo-02": [
+    393,
+    852
+  ],
+  "whodeygo-03": [
+    393,
+    852
+  ],
+  "whodeygo-04": [
+    393,
+    852
+  ],
+  "whodeygo-05": [
+    393,
+    852
+  ],
+  "whodeygo-06": [
+    393,
+    852
+  ],
+  "whodeygo-07": [
+    393,
+    852
+  ],
+  "whodeygo-08": [
+    393,
+    852
+  ],
+  "whodeygo-09": [
+    393,
+    852
+  ],
+  "whodeygo-10": [
+    393,
+    852
+  ],
+  "whodeygo-11": [
+    393,
+    852
+  ],
+  "whodeygo-12": [
+    393,
+    852
+  ],
+  "whodeygo-13": [
+    393,
+    852
+  ],
+  "whodeygo-14": [
+    393,
+    852
+  ],
+  "whodeygo-15": [
+    393,
+    852
+  ],
+  "whodeygo-16": [
+    393,
+    852
+  ],
+  "whodeygo-17": [
+    393,
+    852
+  ],
+  "whodeygo-18": [
+    393,
+    852
+  ],
+  "whodeygo-19": [
+    393,
+    852
+  ],
+  "whodeygo-20": [
+    393,
+    852
   ],
   "xN2ZWHu6iMTHyWcUgSXJy5rQ3mQ": [
     786,

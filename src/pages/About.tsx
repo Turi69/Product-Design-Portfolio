@@ -1,15 +1,14 @@
 import { Fragment, useEffect, type CSSProperties } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
-import { VoiceNote } from '../components/VoiceNote';
 import { WordReveal } from '../components/WordReveal';
-import { experience, links, stack, whyMe } from '../data/home';
+import { experience, links, stack } from '../data/home';
 import './About.css';
 
 const focus: Record<string, string> = {
   'AIENAI Tech Ltd.': 'Product',
   'Heckerbella Ltd.': 'Product',
-  'EasyMunch Ltd': 'Web',
+  'EasyMunch Ltd': 'Product',
 };
 
 // From the CV's core skills; each proof is a figure the CV states.
@@ -21,35 +20,35 @@ const services = [
     proof: '11+ products, end to end',
   },
   {
+    name: 'Leadership',
+    note: 'Leading a design team, setting its standards and hiring the people who join it.',
+    skills: ['Team leadership', 'Hiring', 'Mentoring', 'Design critique', 'Design standards'],
+    proof: 'Hiring panels: C54 News, Barbados',
+  },
+  {
+    name: 'Research',
+    note: 'Interviews, usability tests and usage data to decide what to build and fix first.',
+    skills: ['User research', 'Journey mapping', 'Usability testing', 'Analytics reviews'],
+    proof: 'Activation 29% to 62%',
+  },
+  {
     name: 'Design systems',
     note: 'Tokens, components and docs that keep many products consistent.',
     skills: ['DTCG tokens', 'Figma variables', 'Component libraries', 'Theming', 'Versioning'],
     proof: '471 tokens, 103 components',
   },
   {
-    name: 'Vibe coding',
-    note: 'I vibe code what I design: React apps built with AI coding agents from written specs, details polished by hand.',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS v4', 'React Native (Expo)'],
+    name: 'Front-end build',
+    note: 'I build what I design: React front ends made with AI coding agents from written specs, details polished by hand.',
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS v4', 'Claude Code', 'Codex'],
     proof: 'First load cut by 79%',
   },
-  {
-    name: 'AI and automation',
-    note: 'AI features and multi-agent workflows, with the guardrails and evals that make them dependable.',
-    skills: ['Claude Code', 'Codex', 'LLM APIs', 'MCP', 'Guardrails and evals', 'n8n'],
-    proof: '8 agents, 1,746-item catalogue',
-  },
-  {
-    name: 'Research and analytics',
-    note: 'Usability tests and usage data to decide what to fix first.',
-    skills: ['User research', 'Journey mapping', 'Usability testing', 'Analytics reviews'],
-    proof: '+12% conversion',
-  },
-  {
-    name: 'Mentorship',
-    note: 'Coaching designers on my team and through AIENAI Academy.',
-    skills: ['Teen UX', 'Design critique', 'Junior designers'],
-    proof: '40+ students, 6 countries',
-  },
+];
+
+const bio = [
+  'I started as a founder. In 2021 I built Easymunch, a three-sided food delivery marketplace in Benin City, and designed the customer, restaurant and rider sides of it.',
+  'Today I lead design at AIENAI, a UK AI and product consultancy, with a team of 4 designers. We often work without a product manager, so I own product direction as well as the design.',
+  'I also hire. I helped build my own team, led designer hiring at C54 News, and sat on hiring panels for the Government of Barbados.',
 ];
 
 const headline = 'Designer with a founder’s mindset';
@@ -84,9 +83,10 @@ export function About() {
               </span>
             ))}
           </h1>
-          <div className="about-hero__voice">
-            <VoiceNote src={whyMe.audio} label="Hear from me directly" />
-          </div>
+          <p className="about-hero__intro">
+            Senior Product Designer &amp; Team Lead. 5+ years across fintech, edtech and SaaS. Based in Lagos, working
+            with UK teams.
+          </p>
         </div>
       </section>
 
@@ -96,8 +96,21 @@ export function About() {
         </h2>
         <WordReveal
           className="about-approach__text"
-          text="I lead design end to end, from research and problem framing to interface design and implementation, guiding product decisions with clear reasoning and structured workflows."
+          text="I take products from problem to launch, often in place of a product manager. I set the direction, lead the designers who deliver it, and build the front end when that gets it shipped."
         />
+      </section>
+
+      <section className="about-section" aria-labelledby="bio-label">
+        <h2 id="bio-label" className="label about-section__label">
+          About me
+        </h2>
+        <div className="about-bio">
+          {bio.map((p, i) => (
+            <Reveal as="p" className="about-bio__text" index={i} key={i}>
+              {p}
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       <section className="about-section" aria-labelledby="experience-label">
@@ -184,13 +197,16 @@ export function About() {
         <h2 id="contact-title" className="visually-hidden">
           Contact
         </h2>
-        <a className="about-contact__card" href={links.phone}>
-          <span className="about-contact__lead">Interested in working together?</span>
-          <span className="about-contact__cta">Book a short call</span>
-        </a>
         <a className="about-contact__card" href={links.email}>
-          <span className="about-contact__lead">Just want to drop a message?</span>
+          <span className="about-contact__lead">
+            Interested in working together?
+            <span className="about-contact__meta">{links.email.replace('mailto:', '')}</span>
+          </span>
           <span className="about-contact__cta">Get in touch</span>
+        </a>
+        <a className="about-contact__card" href={links.resume} download>
+          <span className="about-contact__lead">Want the full picture?</span>
+          <span className="about-contact__cta">Download résumé</span>
         </a>
       </section>
 

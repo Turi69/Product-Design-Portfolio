@@ -24,6 +24,19 @@ export type Artefact =
 
 export type Stop = { stage: string; did: string[]; artefact?: Artefact };
 
+/** A product call: what was there before, what was chosen, why, and what it cost. Images are labelled ("Version 1", "A"). */
+export type Decision = {
+  title: string;
+  before: string;
+  chose: string;
+  why: string;
+  tradeoff: string;
+  images?: { img: Img; alt: string; label: string }[];
+};
+
+/** A photo between sections that carries the product's story. `after` is the section index (0 to 4). */
+export type Interlude = { after: number; img: Img; alt: string; time: string; line: string };
+
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -33,9 +46,10 @@ export type CaseStudy = {
   overview: { statement: string; body: string[] };
   problem: { statement: string; points: Point[] };
   solution: { statement: string; points: Point[] };
-  role: { summary: string; owned: string[]; stops: Stop[] };
-  impact: { title: string; stats: Stat[]; caveat?: string };
+  role: { summary: string; owned: string[]; stops: Stop[]; decisions?: Decision[] };
+  impact: { title: string; stats: Stat[]; caveat?: string; reflection?: string[] };
   screens: { title: string; format: 'mobile' | 'web'; groups: { title?: string; shots: Shot[] }[]; prototype?: { src: string; note: string } };
+  interludes?: Interlude[];
 };
 
 export const sectionNames = ['Project overview', 'Problem', 'Solution', 'My role and work', 'Impact', 'Screens'] as const;
@@ -170,6 +184,376 @@ const wayfinder: CaseStudy = {
     ],
     prototype: { src: 'https://parse-album-57633362.figma.site/', note: 'For a better experience, open on your mobile phone.' },
   },
+};
+
+/* ------------------------------------------------------------------- WhoDeyGo */
+
+const w = (n: number) => c(`whodeygo-${String(n).padStart(2, '0')}`);
+
+const whodeygo: CaseStudy = {
+  slug: 'whodeygo',
+  title: 'WhoDeyGo',
+  meta: [
+    { label: 'Category', value: 'Mobile app' },
+    { label: 'Sector', value: 'Peer-to-peer logistics' },
+    { label: 'Role', value: 'Design lead and product' },
+    { label: 'Year', value: '2026' },
+  ],
+  overview: {
+    statement: 'Send parcels abroad with travellers already making the trip.',
+    body: [
+      'WhoDeyGo is a mobile marketplace where senders pay verified travellers to carry parcels in their luggage, starting on the London to Lagos route. Payment sits in escrow until the parcel is handed over.',
+      'Any user can send, carry or receive, and the role is set per transaction rather than per account. With no product manager on the team, I led the product definition alongside the design.',
+    ],
+  },
+  problem: {
+    statement: 'Couriers on the corridor are slow and costly, and carrying for strangers lacks trust.',
+    points: [
+      { title: 'No trust', line: 'Senders hand goods to strangers with no evidence trail.' },
+      { title: 'Fixed roles', line: 'The first version forced one role choice at sign-up.' },
+      { title: 'Posting into the void', line: 'Senders requested, then waited with no sign of progress.' },
+      { title: 'Blind acceptance', line: 'Travellers accepted carries without seeing what was inside.' },
+    ],
+  },
+  solution: {
+    statement: 'Per-transaction roles, escrow and evidence at every handoff make carrying for strangers workable.',
+    points: [
+      { title: 'Roles per transaction', line: 'One home for sending, carrying and receiving.' },
+      { title: 'Escrow and suggested prices', line: 'The sender funds escrow; the app suggests a price from the route.' },
+      { title: 'Evidence at handoff', line: 'Itemised contents, photos of every item and two-tap confirmation.' },
+      { title: 'Just-in-time verification', line: 'Identity checks triggered by the action, not at sign-up.' },
+    ],
+  },
+  role: {
+    summary: 'I led design and product definition, and took part in research and testing.',
+    owned: ['Product definition', 'Requirements', 'Design leadership', 'UI design', 'Prototyping', 'Research', 'Usability testing'],
+    stops: [
+      {
+        stage: 'Discover',
+        // Inferred: the research subject (Turi confirmed taking part in research, not its focus).
+        did: ['Took part in user research with senders and travellers', 'Reviewed the traveller booking flow and navigation with the team'],
+        artefact: { kind: 'chips', items: ['Traveller booking flow', 'Four-tab navigation', 'Instant Match deferred'] },
+      },
+      {
+        stage: 'Define',
+        did: [
+          'Led the product definition, requirements and feature set, standing in for a product manager',
+          'Moved roles from the account to the transaction, so one person can send, carry and receive',
+        ],
+        artefact: { kind: 'chips', items: ['Per-transaction roles', 'Escrow', 'Just-in-time verification', 'Declared contents'] },
+      },
+      {
+        stage: 'Design',
+        did: [
+          'Led the design team from flows to hi-fi screens and the design tokens',
+          'Designed sending, carrying and receiving as one shared transaction view',
+        ],
+        artefact: {
+          kind: 'images',
+          format: 'mobile',
+          images: [
+            { img: w(4), alt: 'Home with active and upcoming transactions' },
+            { img: w(8), alt: 'Declaring package contents, with a prohibited item flagged' },
+            { img: w(18), alt: 'Shared transaction view listing the declared items' },
+          ],
+        },
+      },
+      {
+        stage: 'Test',
+        did: ['Took part in usability testing on Android with a three-role script: sender, traveller and receiver', 'Played the traveller, creating trips for a sender to find and match'],
+        artefact: { kind: 'chips', items: ['Sender', 'Traveller', 'Receiver'] },
+      },
+    ],
+  },
+  impact: {
+    title: 'Taken from prototype to device testing',
+    caveat: 'WhoDeyGo is not yet released, so these are counts from the work, not measured outcomes.',
+    stats: [
+      { value: '3', label: 'Roles in one account', note: 'Send, carry and receive, set per transaction instead of at sign-up.' },
+      { value: '20', label: 'Edits from v0.1 to v0.2', note: 'Covering roles, pricing, the receiver journey and navigation.' },
+      { value: '32', label: 'Screens in the v0.2 prototype', note: 'Up from 30, adding the receiver’s screens.' },
+    ],
+  },
+  screens: {
+    title: 'Hi-fi screens',
+    format: 'mobile',
+    groups: [
+      {
+        title: 'Getting started',
+        shots: [
+          { img: w(1), caption: 'Sign in with a one-time code.' },
+          { img: w(2), caption: 'Create an account.' },
+          { img: w(3), caption: 'Identity verified, only when an action needs it.' },
+          { img: w(4), caption: 'Home: active and upcoming transactions in one place.' },
+          { img: w(5), caption: 'Empty home, with both ways to start.' },
+        ],
+      },
+      {
+        title: 'Sending',
+        shots: [
+          { img: w(6), caption: 'Route and timeline, with the going rate shown.' },
+          { img: w(7), caption: 'Choosing a pickup airport.' },
+          { img: w(8), caption: 'Declared contents, checked against the destination’s rules.' },
+          { img: w(9), caption: 'A photo of every item.' },
+          { img: w(10), caption: 'Weight, luggage type and fragile handling.' },
+          { img: w(11), caption: 'Declarations before the request goes out.' },
+        ],
+      },
+      {
+        title: 'Carrying',
+        shots: [
+          { img: w(12), caption: 'Uploading the flight booking.' },
+          { img: w(13), caption: 'A name mismatch, caught before the trip is listed.' },
+          { img: w(14), caption: 'Free carry capacity, worked out from the flight.' },
+          { img: w(15), caption: 'Trip summary with layovers.' },
+          { img: w(16), caption: 'Declarations before the trip is published.' },
+          { img: w(17), caption: 'Reviewing a package before showing interest.' },
+        ],
+      },
+      {
+        title: 'In transit',
+        shots: [
+          { img: w(18), caption: 'Declared items, with attached photos.' },
+          { img: w(19), caption: 'Chat between sender, traveller and receiver.' },
+          { img: w(20), caption: 'All deliveries, by status.' },
+        ],
+      },
+    ],
+  },
+};
+
+/* --------------------------------------------------------------------- OutOut */
+
+// Event covers in these screens are a neutral gradient: the Figma file uses third-party artwork there.
+const o = (n: number) => c(`outout-${String(n).padStart(2, '0')}`);
+
+const outout: CaseStudy = {
+  slug: 'outout',
+  title: 'OutOut',
+  meta: [
+    { label: 'Category', value: 'Mobile app' },
+    { label: 'Sector', value: 'Consumer social, event planning' },
+    { label: 'Role', value: 'Design lead and product' },
+    { label: 'Year', value: '2026' },
+  ],
+  overview: {
+    statement: 'Plan it, split it, keep it. Group outings in one app.',
+    body: [
+      'OutOut helps friend groups organise outings in one place: agree a date, RSVP, split costs, chat and share photos. It is built for 18 to 35 year olds and folds in an earlier gifting concept.',
+      'Version 2 rebuilt the app around the event itself. With no product manager on the team, I led the product definition alongside the design.',
+    ],
+  },
+  problem: {
+    statement: 'Group plans scatter across chats, polls, banking apps and camera rolls, and stall on picking a date.',
+    points: [
+      { title: 'No agreed date', line: 'Hosts guess; guests’ availability goes unasked.' },
+      { title: 'Messy shared costs', line: 'Who paid what gets lost after the night.' },
+      { title: 'Scattered memories', line: 'Photos end up spread across individual phones.' },
+      { title: 'A broken first version', line: 'Version 1 invite links failed for new users.' },
+    ],
+  },
+  solution: {
+    statement: 'One place for the group to pick a date, settle up and keep the night.',
+    points: [
+      { title: 'A date that works', line: 'Guests vote on options or mark when they’re free, so the host stops guessing.' },
+      { title: 'Know who’s coming', line: 'Guests answer in a tap, and the host sees who’s in before booking.' },
+      { title: 'No chasing money', line: 'Costs are split inside the event, so everyone sees what they owe.' },
+      { title: 'Every photo, one album', line: 'Everyone’s shots from the night land in one shared album.' },
+    ],
+  },
+  role: {
+    summary: 'I led design and product definition, worked on research and testing, and built frontend screens.',
+    owned: ['Product definition', 'Requirements', 'Design leadership', 'UI design', 'Design system', 'Prototyping', 'Research', 'Usability testing', 'Frontend build'],
+    stops: [
+      {
+        stage: 'Discover',
+        // Inferred: that the cash-gift survey was part of the research Turi took part in.
+        did: ['Took part in research, including a survey on cash gifts', 'Reviewed version 1 bugs and screens to find where it broke'],
+        artefact: { kind: 'chips', items: ['Version 1 bug review', 'Cash-gift survey', 'Moodboard'] },
+      },
+      {
+        stage: 'Define',
+        did: [
+          'Led the product definition, requirements and feature set, standing in for a product manager',
+          'Merged the gifting concept into OutOut',
+          'Set a roadmap and feature priorities that leadership signed off, which took version 2 to a pilot',
+        ],
+        artefact: { kind: 'chips', items: ['Three date modes', 'Splits inside events', 'Shared albums', 'Gifting merger'] },
+      },
+      {
+        stage: 'Design',
+        did: [
+          'Led a team of 2 to 3 designers through 192 hi-fi frames, from sign-up to shared albums',
+          'Unified the design style into one set of specs, so engineers built with fewer back-and-forths',
+          'Explored three home layouts and seven navigation bars before settling the structure',
+        ],
+        artefact: {
+          kind: 'images',
+          format: 'mobile',
+          images: [
+            { img: c('outout-design-fixed'), alt: 'Creating an event with a cover photo and a fixed date' },
+            { img: c('outout-design-window'), alt: 'A guest marking the days they are free in a date window' },
+            { img: o(14), alt: 'Expenses across all events' },
+          ],
+        },
+      },
+      {
+        stage: 'Lead',
+        did: ['Held weekly design reviews against one shared component set, so three people’s screens read as one product'],
+        artefact: { kind: 'chips', items: ['Weekly reviews', 'Shared components'] },
+      },
+      {
+        stage: 'Build',
+        did: ['Worked on the Flutter frontend, building screens from the designs, home page first'],
+        artefact: { kind: 'chips', items: ['Flutter', 'Claude Code', 'Design tokens'] },
+      },
+      {
+        stage: 'Test',
+        did: ['Took part in usability testing of the version 2 flows', 'Version 2 then went into a pilot with over 100 users'],
+        artefact: { kind: 'quote', text: 'This new version is sooo much more better than the first version. Very intuitive and enjoyable to use.', by: 'Pilot user' },
+      },
+    ],
+    // Before, chose and the frame counts come from the version 1 and version 2 Figma files.
+    // Inferred: the "why" and "trade-off" lines; Turi to confirm.
+    decisions: [
+      {
+        title: 'One event, not trips and outings',
+        before: 'Hosts first chose between a trip and an outing, two separate flows across 110 frames, each with one suggested date for guests to vote on.',
+        chose: 'One event form with the date mode set up front: a fixed date, a poll, or a date window. 37 frames in all.',
+        why: 'The trip or outing choice came before anything useful, and plans stalled on the date, not the label.',
+        tradeoff: 'Three modes in one form is more to design and build, so Fixed stays the default and simple plans take one step.',
+        images: [
+          { img: c('outout-v1-create'), alt: 'Version 1: Create outing, with a single suggested date', label: 'Version 1' },
+          { img: o(9), alt: 'Version 2: creating an event with a poll of two dates', label: 'Version 2' },
+        ],
+      },
+      {
+        title: 'A code, not a password',
+        before: 'Email and password, forgotten-password and reset flows, then a step to pick five interests. 35 screens.',
+        chose: 'Email, a one-time code, a name and an optional photo. 16 screens, sign-in included.',
+        why: 'Most people arrive from a friend’s invite. Every extra step stood between them and the event they were invited to.',
+        tradeoff: 'No interests to personalise suggestions with. We chose to learn from the events people actually create instead.',
+        images: [
+          { img: c('outout-v1-signup'), alt: 'Version 1: create an account with email and password', label: 'Version 1' },
+          { img: c('outout-v2-signup'), alt: 'Version 2: verify your email with a one-time code', label: 'Version 2' },
+        ],
+      },
+      {
+        title: 'A look built for the night out',
+        before: 'A light interface with a yellow and orange palette and styles that varied from flow to flow.',
+        chose: 'A dark interface where event covers and photos lead, a new wordmark, and one component set shared by the whole team.',
+        why: 'The photos carry the mood of an outing, and a dark base lets them do it. One system kept three designers consistent.',
+        tradeoff: 'Every screen was redrawn, which only fitted 10 weeks because the component set came first.',
+        images: [
+          { img: c('outout-v1-home'), alt: 'Version 1: light home screen with upcoming trips', label: 'Version 1' },
+          { img: c('outout-v2-home'), alt: 'Version 2: dark home feed with stories and upcoming events', label: 'Version 2' },
+        ],
+      },
+      {
+        title: 'Create in the middle, chat inside the event',
+        before: 'Version 1’s tabs were Home, Photos, Plan, Expenses and Profile, and chats sat apart from the plans they were about.',
+        chose: 'Home, Calendar, Create, Expenses and Albums, with Create in the centre and each event’s chat opened from the event.',
+        why: 'Creating a plan is the action that starts everything. Group chat already lives elsewhere; money and photos are what people come back for.',
+        tradeoff: 'Chat is one tap deeper, so every event carries a View chat button. We explored seven navigation bars to get there.',
+        images: [
+          { img: c('outout-explore-a'), alt: 'Navigation exploration A: Create as a tab, with Chats', label: 'Exploration A' },
+          { img: c('outout-explore-b'), alt: 'Navigation exploration B: a raised Create button', label: 'Exploration B' },
+          { img: c('outout-explore-c'), alt: 'Navigation exploration C: a floating create button with five tabs', label: 'Exploration C' },
+        ],
+      },
+    ],
+  },
+  impact: {
+    title: 'One clear product, now in pilot with real groups',
+    caveat: 'OutOut is in a pilot, not yet on public release. Adoption compares new users reaching their first created or joined event before and after the redesign.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would put version 2 in front of real friend groups earlier. Version 1’s broken invite links only showed up after release, and a handful of groups in the first weeks would have caught the next problem sooner.',
+      'Next, the pilot needs to show whether groups come back for a second event, not only their first. After that, gifting returns inside events, and splits by item join the three ways to split a bill.',
+    ],
+    stats: [
+      { value: '20%', label: 'More new users reach a first event', note: 'Sign-up to first created or joined event, after the version 2 redesign.' },
+      { value: '10', label: 'Weeks from kick-off to pilot', note: 'From the version 2 kick-off to a pilot build in testers’ hands.' },
+      { value: '100+', label: 'Pilot users', note: 'Version 2 is in pilot testing with friend groups, on a direction leadership signed off.' },
+      { value: '4/5', label: 'Pilot rating', note: 'Average rating from pilot users of version 2.' },
+      { value: '2–3', label: 'Designers led', note: 'One design style and one set of specs, so engineers built with fewer back-and-forths.' },
+    ],
+  },
+  screens: {
+    title: 'Hi-fi screens',
+    format: 'mobile',
+    groups: [
+      {
+        title: 'Getting started',
+        shots: [
+          { img: o(1), caption: 'Splash screen.' },
+          { img: o(2), caption: 'Welcome: find a date for everyone.' },
+          { img: o(3), caption: 'Welcome: relive memories together.' },
+          { img: o(4), caption: 'Email verification code.' },
+          { img: o(5), caption: 'Choosing a display name.' },
+          { img: o(6), caption: 'Profile photo, skippable.' },
+          { img: o(7), caption: 'Empty home, with a calendar import to start.' },
+        ],
+      },
+      {
+        title: 'Planning an event',
+        shots: [
+          { img: o(8), caption: 'New event, fixed date by default.' },
+          { img: o(9), caption: 'Poll: suggest dates and let guests decide.' },
+          { img: o(10), caption: 'Date window: a range and how long it lasts.' },
+        ],
+      },
+      {
+        title: 'Responding',
+        shots: [
+          { img: o(11), caption: 'An invite waiting on the host’s date.' },
+          { img: o(12), caption: 'Voting on the dates that work.' },
+          { img: o(13), caption: 'Attending, with a way to change the response.' },
+        ],
+      },
+      {
+        title: 'Costs and memories',
+        shots: [
+          { img: o(14), caption: 'What you owe and are owed, across events.' },
+          { img: o(15), caption: 'Albums, organised by event.' },
+          { img: o(16), caption: 'An event album with photos and videos.' },
+          { img: o(17), caption: 'Sharing a photo to a story or an album.' },
+          { img: o(18), caption: 'Event chats.' },
+        ],
+      },
+    ],
+  },
+  // Staged scenes generated in Figma; where a phone faces the camera, the real screen is composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('outout-story-plan'),
+      alt: 'Two friends on a sofa at night, one holding up a phone with OutOut open.',
+      time: 'Tuesday, 21:40',
+      line: 'Saturday, or the one after? The host suggests two dates and the group votes from the sofa.',
+    },
+    {
+      after: 2,
+      img: c('outout-story-party'),
+      alt: 'Friends dancing at a street party at golden hour, under string lights.',
+      time: 'Saturday, 18:30',
+      line: 'The date most of the group could make, picked by the group.',
+    },
+    {
+      after: 3,
+      img: c('outout-story-split'),
+      alt: 'A dinner table from above, plates shared between friends, with OutOut’s expenses open on a phone.',
+      time: 'Saturday, 23:10',
+      line: 'Dinner goes into the event’s expenses, split evenly, before anyone leaves the table.',
+    },
+    {
+      after: 4,
+      img: c('outout-story-keep'),
+      alt: 'A phone on a bedsheet the morning after, showing a shared album, beside coffee and instant photos.',
+      time: 'Sunday, 10:15',
+      line: 'Everyone’s photos from the night, in one album.',
+    },
+  ],
 };
 
 /* ---------------------------------------------------------------------- Cwook */
@@ -408,44 +792,42 @@ const axe: CaseStudy = {
   meta: [
     { label: 'Category', value: 'Learning platform' },
     { label: 'Company', value: 'AIENAI' },
-    { label: 'Role', value: 'Lead UI design and front end' },
+    { label: 'Role', value: 'Lead designer and front end' },
     { label: 'Year', value: '2024' },
   ],
   overview: {
     statement: 'A learning platform that blends machine learning with human mentorship.',
     body: [
-      'AXE is a learning management system that adapts to individual and group learning needs, for people learning new skills and for businesses upskilling their teams.',
-      // Resume: "the learning platform for 13 to 19-year-olds". Gallery copy: individuals and businesses. Confirm the audience.
-      'I designed the learner experience and co-built the Next.js, React and TypeScript front end with an engineer.',
+      'AXE is a learning platform that adapts to each learner. It serves three groups: learners, tutors, and organisations upskilling their teams.',
+      'As lead designer I set the design direction, created the design system and made the key calls on what to build, then co-built the Next.js, React and TypeScript front end.',
     ],
   },
   problem: {
-    // Inferred: framed from the solution features; the original copy does not state the problem.
-    statement: 'Courses move every learner at one pace, and mentors can’t see who is falling behind.',
+    // Inferred: framed from the solution features and the tutor screens; the original copy does not state the problem.
+    statement: 'Courses move everyone at one pace, tutors rebuild what they already have, and nobody sees who is falling behind.',
     points: [
       { title: 'One pace for all', line: 'Content doesn’t adapt to what a learner already knows.' },
-      { title: 'Progress hidden', line: 'Mentors and team leads lack a live view of who needs help.' },
-      { title: 'Motivation fades', line: 'Little to keep learners coming back between sessions.' },
+      { title: 'Slow to build', line: 'Tutors recreate material that already exists in their documents.' },
+      { title: 'Progress hidden', line: 'Tutors and team leads can’t see who needs help until it’s late.' },
     ],
   },
   solution: {
-    statement: 'Personalised learning paths, with mentors and team leads watching progress live.',
+    statement: 'Learners move at their own pace, tutors build from what they have, and everyone can see progress.',
     points: [
-      { title: 'Adaptive paths', line: 'Content and pace adjust to each learner.' },
-      { title: 'Rewards', line: 'Engagement systems that reward progress.' },
-      { title: 'Classrooms and tasks', line: 'Virtual classes, collaboration and task management in one place.' },
-      { title: 'Assessment and reports', line: 'Built-in assessments, with team performance at a glance.' },
+      { title: 'Learn in short steps', line: 'Lessons come as short slides with check-in questions, and help is a click away.' },
+      { title: 'Courses from your notes', line: 'Tutors import a lesson document or build one from scratch.' },
+      { title: 'See who needs help', line: 'Progress, scores and task performance for every student, at a glance.' },
+      { title: 'Teams in one space', line: 'Organisations run teams, courses and reports from one workspace.' },
     ],
   },
   role: {
-    summary: 'I led UI design and prototyping, supported research and testing, and co-built the front end.',
-    owned: ['UI design', 'Prototyping', 'User research', 'Usability testing', 'Front end build'],
+    summary: 'I led design: set the direction, built the design system, made the key feature calls, and co-built the front end.',
+    owned: ['Design direction', 'Design system', 'Product decisions', 'UI design', 'Prototyping', 'User research', 'Usability testing', 'Front end build'],
     stops: [
       {
         stage: 'Discover',
-        did: ['Supported user research and usability testing with learners and teams'],
-        // Inferred: the three audiences, from the gallery copy and the team screens.
-        artefact: { kind: 'chips', items: ['Individual learners', 'Teams upskilling', 'Mentors'] },
+        did: ['Supported user research and usability testing with learners, tutors and teams'],
+        artefact: { kind: 'chips', items: ['Learners', 'Tutors', 'Organisations'] },
       },
       {
         stage: 'Translate',
@@ -454,15 +836,24 @@ const axe: CaseStudy = {
       },
       {
         stage: 'Design',
-        did: ['Designed the dashboard, classes, tasks and team reporting'],
+        did: ['Took the learner side from wireframes to hi-fi, then designed the tutor workspace: courses, tasks, grading, students and reports'],
         artefact: {
           kind: 'images',
           format: 'web',
           images: [
-            { img: c('jbOwhEKcOIF0QHJAKGrxM13owQ'), alt: 'Learner dashboard with classes, tasks and mentions' },
-            { img: c('BWxDwlWgPHPnKeVzDMLWjhkDM'), alt: 'Team report with submitted tasks and completion rate' },
+            { img: c('axe-learner-home'), alt: 'Learner dashboard with live classes and courses in progress' },
+            { img: c('axe-tutor-students'), alt: 'Tutor view of students ranked by course progress' },
           ],
         },
+      },
+      {
+        stage: 'Lead',
+        did: [
+          'Set the design direction for the learner and tutor apps',
+          'Created the design system both apps are built on',
+          'Made the critical calls on which features to build and how',
+        ],
+        artefact: { kind: 'chips', items: ['Design direction', 'Design system', 'Feature calls'] },
       },
       {
         stage: 'Build',
@@ -471,18 +862,75 @@ const axe: CaseStudy = {
       },
       {
         stage: 'Test',
-        did: ['Prototype tested in multiple UK locations, with positive feedback'],
-        artefact: { kind: 'chips', items: ['UK prototype testing', 'On track for funding'] },
+        did: ['The whole internal team tested the learner and tutor apps end to end', 'Then a pilot with 2 tutors and 30 students'],
+        artefact: { kind: 'chips', items: ['Internal test', 'Pilot: 2 tutors', 'Pilot: 30 students'] },
+      },
+    ],
+    // Before and chose come from the AXE Design and AXE Tutor Application Figma files (wireframes, iterations, final screens).
+    // Inferred: the "why" and "trade-off" lines; Turi to confirm.
+    decisions: [
+      {
+        title: 'Lessons as short slides, not long modules',
+        before: 'The wireframes showed a course as a list of long modules behind a buy button.',
+        chose: 'Each lesson as numbered slides with check-in questions, and help one click away. Two iterations came before the final layout.',
+        why: 'Short steps keep a learner moving, and the questions show the tutor exactly where understanding breaks.',
+        tradeoff: 'Tutors have to break material into slides, which is why importing their own documents mattered.',
+        images: [
+          { img: c('axe-wire-course'), alt: 'Wireframe: course detail with a list of modules', label: 'Wireframe' },
+          { img: c('axe-lesson-iter-a'), alt: 'Iteration: lesson with slides and questions', label: 'Iteration' },
+          { img: c('axe-lesson-iter-b'), alt: 'Iteration: lesson with a question list', label: 'Iteration' },
+          { img: c('axe-lesson'), alt: 'Final: lesson with slides, questions and next steps', label: 'Final' },
+        ],
+      },
+      {
+        title: 'Start from the tutor’s own notes',
+        before: 'The wireframes covered the learner only: home, browse, course detail and profile. Tutors had no way to bring material in.',
+        chose: 'An empty course offers two routes: import a lesson document, or create a lesson from scratch. Course setup sits in one dialog.',
+        why: 'Tutors already have notes, slides and handouts. Starting from a blank page was the biggest barrier to a first course.',
+        tradeoff: 'Imported documents still need the tutor to check them before learners see them.',
+        images: [
+          { img: c('axe-tutor-import'), alt: 'Empty course offering import or create a lesson', label: 'Tutor' },
+          { img: c('axe-tutor-configure'), alt: 'Configure course dialog with cover image and title', label: 'Tutor' },
+        ],
+      },
+      {
+        title: 'Progress a tutor can act on',
+        before: 'The learner wireframes showed only a learner’s own progress. There was no view across a class.',
+        chose: 'A student list ranked by course progress, a task performance report, and grading with a score and comments.',
+        why: 'A tutor with 30 students needs to spot who is behind at a glance, then act on it in the same place.',
+        tradeoff: 'Colour alone fails some people and some screens, so every progress bar also carries a percentage.',
+        images: [
+          { img: c('axe-tutor-students'), alt: 'Students ranked by course progress', label: 'Students' },
+          { img: c('axe-tutor-report'), alt: 'Task performance report', label: 'Report' },
+          { img: c('axe-tutor-grading'), alt: 'Grading a submission with a score and comments', label: 'Grading' },
+        ],
+      },
+      {
+        title: 'One design system, three roles',
+        before: 'Learner-first wireframes, with the tutor app designed in a separate file.',
+        chose: 'One design system across the learner, tutor and organisation spaces, with the same navigation and a workspace switcher.',
+        why: 'A small team had six months. Shared components let the front end ship both apps instead of building two.',
+        tradeoff: 'Tutor screens are denser than learner ones, so the components had to hold both.',
+        images: [
+          { img: c('axe-learner-home'), alt: 'Learner dashboard', label: 'Learner' },
+          { img: c('axe-tutor-task'), alt: 'Tutor creating a task: assignment, quiz, discussion or project', label: 'Tutor' },
+        ],
       },
     ],
   },
   impact: {
-    title: 'A tested prototype, and a production front end',
-    caveat: 'No usage data yet. UK prototype testing drew positive feedback and put the product on track for funding.',
+    title: 'Funded, built in six months, and in pilot',
+    caveat: 'AXE is in an early pilot, so there is no usage data yet. Before the pilot, the whole internal team tested it end to end.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would bring real tutors in before the internal test. Our own team knew the product too well to stumble where a new tutor would.',
+      'Next, the pilot has to show whether learners finish courses and come back, and whether tutors save time building them. Those numbers decide what we build next.',
+    ],
     stats: [
-      { value: '56', label: 'Routes in the product', note: 'Multi-tenant, with CI checks.' },
-      { value: '4', label: 'Areas I owned in the build', note: 'Learner app, submissions, forum and certificates.' },
-      { value: '6', label: 'Core features designed', note: 'Adaptive paths, rewards, adaptive content, collaboration, classrooms and assessment.' },
+      { value: 'Funded', label: 'Funding secured', note: 'Amount undisclosed, secured with a working, tested product.' },
+      { value: '6', label: 'Months to build', note: 'From wireframes to a working learner and tutor product.' },
+      { value: '30', label: 'Students in the pilot', note: 'Learning with 2 tutors running live courses.' },
+      { value: '3', label: 'Roles, one design system', note: 'Learners, tutors and organisations.' },
     ],
   },
   screens: {
@@ -490,17 +938,62 @@ const axe: CaseStudy = {
     format: 'web',
     groups: [
       {
+        title: 'Learners and teams',
         shots: [
+          { img: c('axe-learner-home'), caption: 'Dashboard: live classes, courses in progress, chats and mentions.' },
+          { img: c('axe-lesson'), caption: 'A lesson as slides, with check-in questions.' },
           { img: c('jbOwhEKcOIF0QHJAKGrxM13owQ'), caption: 'Dashboard: upcoming classes, tasks for review, chats and mentions.' },
           { img: c('BWxDwlWgPHPnKeVzDMLWjhkDM'), caption: 'Team report: submitted tasks, completion rate and top scorers.' },
           { img: c('paTxf6QzXqSnuMsynzT83e2y0I'), caption: 'Participation: contribution time and coaching sessions.' },
           { img: c('LOZEEKJ4sg0hsnGfiX8KWKSGQjI'), caption: 'Performance tracking over time.' },
           { img: c('s4BD6G5TnDpdt0KnCAnogyuCGc'), caption: 'Lesson reader.' },
+        ],
+      },
+      {
+        title: 'Tutor workspace',
+        shots: [
+          { img: c('axe-tutor-import'), caption: 'A new course: import a document or create a lesson.' },
+          { img: c('axe-tutor-configure'), caption: 'Course setup in one dialog.' },
           { img: c('aCYAGGJmFgzrvqeGh6wNefMIYbs'), caption: 'Content builder putting a course together.' },
+          { img: c('axe-tutor-task'), caption: 'Creating a task: assignment, quiz, discussion or project.' },
+          { img: c('axe-tutor-grading'), caption: 'Grading a submission with a score and comments.' },
+          { img: c('axe-tutor-students'), caption: 'Students ranked by course progress.' },
+          { img: c('axe-tutor-report'), caption: 'Task performance report.' },
         ],
       },
     ],
   },
+  // Staged scenes generated in Figma. Only one is a mockup (the lesson laptop), with the real screen composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('axe-story-class'),
+      alt: 'A tutor leading a morning class, several learners with hands raised.',
+      time: 'Monday, 09:00',
+      line: 'A tutor runs a live class from lessons she built out of her own notes.',
+    },
+    {
+      after: 2,
+      img: c('axe-story-learn'),
+      alt: 'A learner at a kitchen table, with an AXE lesson open on a laptop.',
+      time: 'Monday, 16:10',
+      line: 'Later that day, one short lesson and its check-in questions.',
+    },
+    {
+      after: 3,
+      img: c('axe-story-team'),
+      alt: 'A team of young professionals learning together around a table with laptops.',
+      time: 'Wednesday, 10:00',
+      line: 'At work, a team takes the same course together.',
+    },
+    {
+      after: 4,
+      img: c('axe-story-tutoring'),
+      alt: 'A tutor sitting beside a student in a library, helping her through a problem in her notebook.',
+      time: 'Friday, 15:30',
+      line: 'The tutor sits with the student the progress view flagged as falling behind.',
+    },
+  ],
 };
 
 /* ---------------------------------------------------------------------- Azuri */
@@ -619,7 +1112,7 @@ const circuitmind: CaseStudy = {
   meta: [
     { label: 'Category', value: 'Web platform' },
     { label: 'Client', value: 'Circuit Mind, London' },
-    { label: 'Role', value: 'Onboarding and workspace design' },
+    { label: 'Role', value: 'Design lead, version 1 redesign' },
     { label: 'Year', value: '2024' },
   ],
   website: { label: 'circuitmind.io', href: 'https://www.circuitmind.io/product' },
@@ -627,7 +1120,7 @@ const circuitmind: CaseStudy = {
     statement: 'AI that designs circuits, made legible to the engineers who use it.',
     body: [
       'Circuitmind builds AI tooling for electronic circuit design. Its platform turns hardware requirements into candidate schematics, a bill of materials and files ready for ECAD tools.',
-      'The platform automated schematic generation, but most new users left before finishing a first design. I redesigned the onboarding flow and the main workspace.',
+      'The platform automated schematic generation, but most new users left before finishing a first design. I led the redesign of the version 1 product, starting with the onboarding flow and the main workspace.',
     ],
   },
   problem: {
@@ -648,7 +1141,7 @@ const circuitmind: CaseStudy = {
     ],
   },
   role: {
-    summary: 'I redesigned onboarding and the core workspace, grounded in interviews and session recordings.',
+    summary: 'I led the version 1 redesign, from onboarding to the core workspace, grounded in interviews and session recordings.',
     owned: ['User interviews', 'Session analysis', 'Onboarding', 'Workspace UX', 'Data visualisation', 'UI design'],
     stops: [
       {
@@ -690,6 +1183,7 @@ const circuitmind: CaseStudy = {
       { value: '62%', label: 'Week-one activation', note: 'Up from 29%. Activation means completing a first schematic.' },
       { value: '18 min', label: 'Time to first design', note: 'Down from 47 minutes.' },
       { value: '2x', label: 'Trial-to-paid conversion', note: 'Reported by the sales team in the first quarter.' },
+      { value: 'US$900k', label: 'Raised since', note: 'Circuit Mind has raised US$900k since the redesign.' },
     ],
   },
   screens: {
@@ -1278,6 +1772,8 @@ const freyda: CaseStudy = {
 
 export const caseStudies: Record<string, CaseStudy> = {
   wayfinder,
+  whodeygo,
+  outout,
   cwook,
   jaa,
   axe,

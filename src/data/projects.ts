@@ -9,8 +9,10 @@ export type Industry =
   | 'Faith'
   | 'Fintech'
   | 'Health'
+  | 'Logistics'
   | 'Mobility'
   | 'Property'
+  | 'Social'
   | 'Sports';
 
 export type Work = {
@@ -74,6 +76,8 @@ const galleryWork = (slug: string, label: string, title: string): Omit<Work, 'in
 /** One-line subtitle shown with the project name on the Index, drawn from each case study. */
 const dubs: Record<string, string> = {
   wayfinder: 'Safer, fairer trips on Lagos transit',
+  whodeygo: 'Send parcels with travellers already flying',
+  outout: 'Plan it, split it, keep it, as a group',
   cwook: 'A social feed you can shop from',
   lemonsplit: 'Split group bills without the chasing',
   rhapsody: 'Today’s devotional, one tap away',
@@ -89,6 +93,8 @@ const dubs: Record<string, string> = {
 /** Industry per project, condensed from each case study's sector or client. */
 const industries: Record<string, Industry> = {
   wayfinder: 'Mobility',
+  whodeygo: 'Logistics',
+  outout: 'Social',
   cwook: 'Commerce',
   lemonsplit: 'Fintech',
   rhapsody: 'Faith',
@@ -103,6 +109,28 @@ const industries: Record<string, Industry> = {
 
 export const works: Work[] = [
   featuredWork('wayfinder', 'Mobile'),
+  ({
+    slug: 'whodeygo',
+    title: 'WhoDeyGo',
+    year: '2026',
+    category: 'Mobile',
+    summary: 'A peer-to-peer app that matches people sending parcels abroad with travellers already flying that route.',
+    mockup: mockup('whodeygo'),
+    paragraphs: ['A peer-to-peer app that matches people sending parcels abroad with travellers already flying that route.'],
+    screens: [],
+    format: 'mobile',
+  } satisfies Omit<Work, 'industry'>),
+  ({
+    slug: 'outout',
+    title: 'OutOut',
+    year: '2026',
+    category: 'Mobile',
+    summary: 'A mobile app for friend groups to agree a date, split costs and share photos from every outing.',
+    mockup: mockup('outout'),
+    paragraphs: ['A mobile app for friend groups to agree a date, split costs and share photos from every outing.'],
+    screens: [],
+    format: 'mobile',
+  } satisfies Omit<Work, 'industry'>),
   featuredWork('cwook', 'Mobile'),
   galleryWork('lemonsplit', 'Lemon Split 2025', 'LemonSplit'),
   galleryWork('rhapsody', 'Rhapsody of Realities 2025', 'Rhapsody of Realities'),
