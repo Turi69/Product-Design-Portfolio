@@ -1,9 +1,62 @@
 import { Fragment, useEffect, type CSSProperties } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { WordReveal } from '../components/WordReveal';
 import { experience, links, stack } from '../data/home';
+import { workBySlug } from '../data/projects';
 import './About.css';
+
+const workTitle = (slug: string) => workBySlug(slug)?.title ?? slug;
+
+// The habit colleagues name as Turi's strongest suit, drawn as a section cut: the surface is light,
+// the layers beneath carry the weight. Every figure comes from a published case study.
+const layers: { lens: string; question: string; proof: string; figure?: string; work?: string }[] = [
+  {
+    lens: 'Surface',
+    question: 'How does it look and feel?',
+    proof: 'The part everyone sees. I start here and keep going.',
+  },
+  {
+    lens: 'People',
+    question: 'What will people actually do?',
+    proof: 'On Circuitmind, session recordings showed engineers quitting before their first design. The fix was a guided first project, not a fresh coat of paint.',
+    figure: 'Activation 29% to 62%',
+    work: 'circuitmind',
+  },
+  {
+    lens: 'Business',
+    question: 'What does it change for the business?',
+    proof: 'On OutOut I set the roadmap leadership signed off and took version 2 to a pilot in 10 weeks, with more new users reaching their first event.',
+    figure: '+20% reach a first event',
+    work: 'outout',
+  },
+  {
+    lens: 'Build',
+    question: 'What will it take to build and run?',
+    proof: 'On AXE I set one design system for learners, tutors and organisations, then co-built the Next.js front end with an engineer.',
+    figure: 'Built in 6 months',
+    work: 'axe',
+  },
+];
+
+// The three ways Turi works, each backed by the case studies where it happened.
+const modes = [
+  {
+    name: 'Leading a team',
+    note: 'I lead a team of 4 designers at AIENAI. Monday planning and Friday reviews against standards I set mean each designer owns their product, and the founder no longer reviews our work daily.',
+    works: ['axe', 'outout', 'whodeygo'],
+  },
+  {
+    name: 'Inside a team',
+    note: 'Small team or large, I work to the team’s direction. At Heckerbella I led Tendarly’s design under our design team lead, and co-designed Azuri with its lead designer.',
+    works: ['tendarly', 'azuri'],
+  },
+  {
+    name: 'On my own',
+    note: 'With no product manager or supporting designers, I own the problem, the product calls and the design. I redesigned Circuitmind as its only designer, and built Easymunch as its founder.',
+    works: ['circuitmind'],
+  },
+];
 
 const focus: Record<string, string> = {
   'AIENAI Tech Ltd.': 'Product',
@@ -47,7 +100,7 @@ const services = [
 
 const bio = [
   'I started as a founder. In 2021 I built Easymunch, a three-sided food delivery marketplace in Benin City, and designed the customer, restaurant and rider sides of it.',
-  'Today I lead design at AIENAI, a UK AI and product consultancy, with a team of 4 designers. We often work without a product manager, so I own product direction as well as the design.',
+  'Today I lead design at AIENAI, a UK AI and product consultancy, where I own product direction as well as the design.',
   'I also hire. I helped build my own team, led designer hiring at C54 News, and sat on hiring panels for the Government of Barbados.',
 ];
 
@@ -94,10 +147,59 @@ export function About() {
         <h2 id="approach-label" className="label about-section__label">
           My approach
         </h2>
-        <WordReveal
-          className="about-approach__text"
-          text="I take products from problem to launch, often in place of a product manager. I set the direction, lead the designers who deliver it, and build the front end when that gets it shipped."
-        />
+        <div className="about-approach__body">
+          <WordReveal
+            className="about-approach__text"
+            text="I design past the screen. Every decision has to work for the people who use it, the business that pays for it and the engineers who build it."
+          />
+          <p className="about-approach__note">Colleagues name it as my strongest suit.</p>
+          <ol className="about-layers" aria-label="How I think through a decision">
+            {layers.map((l, i) => (
+              <Reveal
+                as="li"
+                className={l.work ? 'about-layers__item' : 'about-layers__item about-layers__item--surface'}
+                index={i}
+                key={l.lens}
+              >
+                <span className="about-layers__lens">{l.lens}</span>
+                <span className="about-layers__body">
+                  <span className="about-layers__question">{l.question}</span>
+                  <span className="about-layers__proof">{l.proof}</span>
+                </span>
+                {l.work && (
+                  <span className="about-layers__evidence">
+                    <span className="about-layers__figure">{l.figure}</span>
+                    <Link className="about-link" to={`/work/${l.work}`}>
+                      {workTitle(l.work)} case study
+                    </Link>
+                  </span>
+                )}
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="about-section" aria-labelledby="modes-label">
+        <h2 id="modes-label" className="label about-section__label">
+          How I work
+        </h2>
+        <ul className="about-modes">
+          {modes.map((m, i) => (
+            <Reveal as="li" className="about-modes__item" index={i} key={m.name}>
+              <span className="about-modes__name">{m.name}</span>
+              <span className="about-modes__note">{m.note}</span>
+              <span className="about-modes__work">
+                <span className="visually-hidden">Case studies: </span>
+                {m.works.map((slug) => (
+                  <Link className="about-link" to={`/work/${slug}`} key={slug}>
+                    {workTitle(slug)}
+                  </Link>
+                ))}
+              </span>
+            </Reveal>
+          ))}
+        </ul>
       </section>
 
       <section className="about-section" aria-labelledby="bio-label">

@@ -201,3 +201,14 @@ The same pass. Facts from the owner: Turi was the only designer on the redesign,
 - Looking back and a caveat defining activation and the source of the conversion figure.
 - Story interludes generated in Figma: a hardware engineer's week in a London lab, from a block-diagram sketch to a board that powers up. One mockup, the desk, with the real power tree workspace composited on. Sources in source/scenes/circuitmind-story/.
 - 26/10/2026: Circuitmind's year changed from 2024 to 2026 at the owner's request (case study meta, Works label and gallery label).
+
+## 26/10/2026 — About: how I think, how I work
+Brief from the owner: show Turi works in small or large teams, leads a team, and works solo without a PM or supporting designers; and the strength colleagues name first, thinking past look and feel to user behaviour, business impact and technical impact.
+Direction: a decision drawn as a section cut. The surface layer is drawn light, the layers beneath carry the weight.
+References: the site's own "What I do" rows (hairline rhythm, mono proof right) and case study "Key decisions" labels; architectural section drawings (surface light, structure full weight); engineering decision records (context, decision, consequence). The design-inspiration search returned nothing usable.
+- My approach: new statement, "I design past the screen. Every decision has to work for the people who use it, the business that pays for it and the engineers who build it.", then "Colleagues name it as my strongest suit."
+- Signature: four layers, Surface (muted: "The part everyone sees. I start here and keep going."), People (Circuitmind, activation 29% to 62%), Business (OutOut, +20% reach a first event, pilot in 10 weeks), Build (AXE, one design system, co-built front end, 6 months). Each layer asks its question, gives the proof and links its case study. Every figure is already published in a case study.
+- New How I work section: Leading a team (4 designers at AIENAI, Monday planning and Friday reviews, the founder no longer reviews daily; AXE, OutOut, WhoDeyGo), Inside a team (Tendarly under Heckerbella's design team lead, Azuri as co-designer), On my own (Circuitmind as only designer, Easymunch as founder). Three columns on wide desktop, rows below 1200px, stacked on phones.
+- Bio's second paragraph shortened so the team detail is said once.
+- New .about-link style for quiet case study links (caption size, underline on a strong line colour, 27px tall targets).
+Rejected: three equal cards with icons (banned pattern); a quote attributed to colleagues (no verbatim quote exists, so none is invented).
