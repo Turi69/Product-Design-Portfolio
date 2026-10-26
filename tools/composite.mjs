@@ -1,8 +1,8 @@
 // Fit a real screen into the blank black screen of a generated scene.
-// node composite.mjs <scene.png> <screen.png> <out.webp> [radiusRatio] [threshold]
+// node composite.mjs <scene.png> <screen.png> <out.webp> [radiusRatio] [threshold] [occlude]
 import sharp from 'sharp';
 
-const [,, scenePath, screenPath, outPath, radiusArg = '0.14', thrArg = '22'] = process.argv;
+const [,, scenePath, screenPath, outPath, radiusArg = '0.14', thrArg = '22', occludeArg] = process.argv;
 const radiusRatio = Number(radiusArg);
 const threshold = Number(thrArg);
 
@@ -42,7 +42,7 @@ for (let start = 0; start < W * H; start++) {
     }
   }
   const fill = count / ((maxX - minX + 1) * (maxY - minY + 1));
-  if (!edge && fill > 0.8 && (!best || count > best.count)) best = { count, minX, minY, maxX, maxY, fill };
+  if (!edge && fill > 0.8 && (!best || count > best.count)) best = { id, count, minX, minY, maxX, maxY, fill };
 }
 if (!best) throw new Error('No screen found; try a higher threshold');
 
@@ -73,8 +73,19 @@ const screen = await sharp(screenPath)
   .png()
   .toBuffer();
 
+// "occlude": keep only the screen's own dark pixels, so whatever sits in front of it (a shoulder, a hand) stays in front.
+let layer = screen;
+if (occludeArg === 'occlude') {
+  const a = Buffer.alloc(w * h * 4, 255);
+  for (let j = 0; j < h; j++) {
+    for (let i = 0; i < w; i++) a[(j * w + i) * 4 + 3] = label[(y + j) * W + (x + i)] === best.id ? 255 : 0;
+  }
+  const alpha = await sharp(a, { raw: { width: w, height: h, channels: 4 } }).blur(0.8).png().toBuffer();
+  layer = await sharp(screen).composite([{ input: alpha, blend: 'dest-in' }]).png().toBuffer();
+}
+
 await sharp(scenePath)
-  .composite([{ input: screen, left: x, top: y }])
+  .composite([{ input: layer, left: x, top: y }])
   .webp({ quality: 86 })
   .toFile(outPath);
 console.log('wrote', outPath);

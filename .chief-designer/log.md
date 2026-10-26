@@ -171,3 +171,22 @@ Facts from the owner: both apps are live; Turi led the design with the internal 
 - Screens regrouped: Before the call, With the doctor.
 - Story interludes generated in Figma (ndqPxKr2yM1vjGErdzUtG7, gpt-image-2.5-sunburst, 3:2), natural daylight in whites and soft blues to match the app: one patient's Tuesday from a cough at 06:50 to the pharmacy at 12:30. One mockup only, the kitchen, with the real pre-session chat composited on (tools/composite.mjs, threshold 45). Sources in source/scenes/tendarly-story/.
 Open: the assistant is "Stacy" on the greeting screen and "Tendy" in the chat; the copy avoids naming it.
+
+## 26/10/2026 — Azuri at lead level
+The same pass as OutOut, AXE and Tendarly. Facts from the owner: Turi was co-designer with the lead designer, not the lead; the system is live and used daily by Eko Development Company's facility and operations teams; Turi designed property and occupants, the tower dashboards with requests and incidents, and members and roles; automated maintenance workflows shipped, the 3D property view did not; no numbers, feedback or Figma file. Enterprise product, so no public link.
+- Meta: Enterprise web app; client Eko Development Company (the app's own footer, and the press, use this name, not "EKO Development Group"); Role Co-designer, at Heckerbella.
+- 3D property view removed everywhere, including the gallery text in home.ts, which also said "I led" and cited unconfirmed "early feedback".
+- Route: Structure, Occupants, Operate, Access, Partner (how the work was split with the lead), Launch.
+- Four key decisions, from evidence in the screens: the building as the way in (incidents are located as tower, floor, apartment); details beside the list; a dashboard for each tower (its building switcher); access by role with a reason (the Reason column in Manage members).
+- Impact: Daily use, 3 towers on one system; caveat explains the missing link and figures.
+- Story interludes modelled on the real towers from EstateIntel's gallery (two white residential slabs with terracotta bands, a dark glass office tower, Eko Atlantic waterfront): an operations manager's Monday from arrival to dusk. One mockup, the office, with the real Azuri One dashboard composited on.
+- tools/composite.mjs gains an "occlude" option: only the screen's own dark pixels are replaced, so a shoulder or hand in front of the screen stays in front. Sources in source/scenes/azuri-story/.
+
+## 26/10/2026 — WhoDeyGo at lead level
+The same pass as OutOut, AXE, Tendarly and Azuri. Facts from the owner: in internal device testing, not released; Turi led 2 designers; no results yet; the Figma Archive's earlier light-theme screens are not to be shown, so decisions use final screens only.
+- Copy is definitive: the owner asked for "2 designers", not a range. Saved as a standing rule for all case studies.
+- Solution points rewritten as outcomes for senders and travellers.
+- New Lead stop (2 designers, work split by journey, reviews against one set of tokens). The 20 changes and 32 screens moved from Impact into the Define and Design stops.
+- Four key decisions: roles belong to the parcel, not the person; declare every item, checked as you go; see inside before saying yes; evidence, not self-report (identity when an action needs it, flight bookings instead of typed trips).
+- Impact 2x2: 3 roles in one account, testing on Android devices, 2 designers led, 20 fixes to version 1. Looking back added.
+- Story interludes generated in Figma: one parcel from a London flat to a family home in Lagos. One mockup, the traveller on his sofa, with the real package review screen composited on (composite.mjs with occlude, so his fingers stay in front). Sources in source/scenes/whodeygo-story/.

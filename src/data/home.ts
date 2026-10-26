@@ -222,9 +222,9 @@ export const gallery: GalleryItem[] = [
     label: 'Azuri facility Management 2023',
     format: 'web',
     paragraphs: [
-      'I led the design of Azuri’s web‑based Facility Management System, unifying finance, maintenance, security, inventory, and space management for a three‑tower mixed‑use complex owned by EKO Development Group. My work covered information architecture, role‑based user flows, high‑fidelity prototypes, and a scalable design system.',
-      'Key highlights include real‑time analytics dashboards, an interactive 3D property view, automated maintenance and vendor workflows, and comprehensive finance and electricity billing modules.',
-      'The system is now live and actively used by EKO Development Group. Early feedback confirms markedly smoother workflows and higher operational efficiency across their facilities.',
+      'I co-designed Azuri’s web-based facility management system with the lead designer at Heckerbella. It unifies finance, maintenance, security, inventory and space management for Azuri Towers, a three-tower mixed-use estate in Eko Atlantic, Lagos, owned by Eko Development Company.',
+      'I designed the property and occupant views, each tower’s dashboard with its maintenance requests and incidents, and members and roles. Maintenance and vendor work is routed automatically.',
+      'The system is live and used every day by Eko Development Company’s facility and operations teams.',
     ],
     images: imgs(
       'dH1IuDss3uGKOsvHeTDL4bHtF8k.png', 'TjQLUXIVu5IVC0V35Y826TqiYE.png', 'f6ZrkFkC7q60T94DfQqnzTdkbXU.png',

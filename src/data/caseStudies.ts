@@ -203,7 +203,7 @@ const whodeygo: CaseStudy = {
     statement: 'Send parcels abroad with travellers already making the trip.',
     body: [
       'WhoDeyGo is a mobile marketplace where senders pay verified travellers to carry parcels in their luggage, starting on the London to Lagos route. Payment sits in escrow until the parcel is handed over.',
-      'Any user can send, carry or receive, and the role is set per transaction rather than per account. With no product manager on the team, I led the product definition alongside the design.',
+      'Any user can send, carry or receive, and the role is set per transaction rather than per account. With no product manager on the team, I led the product definition alongside the design, and a team of 2 designers through version 2.',
     ],
   },
   problem: {
@@ -218,15 +218,15 @@ const whodeygo: CaseStudy = {
   solution: {
     statement: 'Per-transaction roles, escrow and evidence at every handoff make carrying for strangers workable.',
     points: [
-      { title: 'Roles per transaction', line: 'One home for sending, carrying and receiving.' },
-      { title: 'Escrow and suggested prices', line: 'The sender funds escrow; the app suggests a price from the route.' },
-      { title: 'Evidence at handoff', line: 'Itemised contents, photos of every item and two-tap confirmation.' },
-      { title: 'Just-in-time verification', line: 'Identity checks triggered by the action, not at sign-up.' },
+      { title: 'Send, carry or receive', line: 'One account and one home, whatever your part in each parcel.' },
+      { title: 'A fair price, held safe', line: 'The going rate for the route is shown, and payment waits in escrow.' },
+      { title: 'Know what you carry', line: 'Every item declared, checked and photographed before anyone says yes.' },
+      { title: 'Trust when it counts', line: 'Identity and flights are checked at the moment they matter, not at sign-up.' },
     ],
   },
   role: {
-    summary: 'I led design and product definition, and took part in research and testing.',
-    owned: ['Product definition', 'Requirements', 'Design leadership', 'UI design', 'Prototyping', 'Research', 'Usability testing'],
+    summary: 'I led design, product definition and a team of 2 designers, and took part in research and testing.',
+    owned: ['Product definition', 'Requirements', 'Design leadership', 'UI design', 'Design tokens', 'Prototyping', 'Research', 'Usability testing'],
     stops: [
       {
         stage: 'Discover',
@@ -238,14 +238,14 @@ const whodeygo: CaseStudy = {
         stage: 'Define',
         did: [
           'Led the product definition, requirements and feature set, standing in for a product manager',
-          'Moved roles from the account to the transaction, so one person can send, carry and receive',
+          'Turned the review into 20 changes from version 1 to version 2, covering roles, pricing, the receiver journey and navigation',
         ],
         artefact: { kind: 'chips', items: ['Per-transaction roles', 'Escrow', 'Just-in-time verification', 'Declared contents'] },
       },
       {
         stage: 'Design',
         did: [
-          'Led the design team from flows to hi-fi screens and the design tokens',
+          'Took the flows to hi-fi screens and design tokens, 32 screens in the version 2 prototype',
           'Designed sending, carrying and receiving as one shared transaction view',
         ],
         artefact: {
@@ -259,19 +259,87 @@ const whodeygo: CaseStudy = {
         },
       },
       {
+        stage: 'Lead',
+        // Inferred: how the work was split and reviewed; Turi confirmed leading 2 designers.
+        did: [
+          'Led 2 designers, splitting the work by journey: sending, carrying and receiving',
+          'Reviewed every journey against one set of design tokens, so the three read as one product',
+        ],
+        artefact: { kind: 'chips', items: ['2 designers', 'Design reviews', 'Design tokens'] },
+      },
+      {
         stage: 'Test',
-        did: ['Took part in usability testing on Android with a three-role script: sender, traveller and receiver', 'Played the traveller, creating trips for a sender to find and match'],
+        did: [
+          'Took part in usability testing on Android with a three-role script: sender, traveller and receiver',
+          'Played the traveller, creating trips for a sender to find and match',
+        ],
         artefact: { kind: 'chips', items: ['Sender', 'Traveller', 'Receiver'] },
+      },
+    ],
+    // Before comes from the version 1 review and the v0.1 to v0.2 edit list; the images are final screens, by Turi's choice.
+    // Inferred: the why and trade-off lines, and the "before" of the last two decisions; Turi to confirm.
+    decisions: [
+      {
+        title: 'Roles belong to the parcel, not the person',
+        before: 'Version 1 asked new users to choose one role at sign-up: sender or traveller.',
+        chose: 'Roles are set per transaction. One home lists everything active and upcoming, anyone can send a package or be a traveller from it, and receivers became a third role.',
+        why: 'The same person sends a parcel home one month and carries one the next. A role at sign-up made them decide before they had a reason to.',
+        tradeoff: 'One home now holds three kinds of transaction, so every card carries its role and status.',
+        images: [
+          { img: w(4), alt: 'Home with active and upcoming transactions across roles', label: 'Home' },
+          { img: w(5), alt: 'Empty home with both ways to start', label: 'First visit' },
+          { img: w(20), alt: 'Deliveries, each tagged sending, receiving or travelling', label: 'Deliveries' },
+        ],
+      },
+      {
+        title: 'Declare every item, checked as you go',
+        before: 'A sender could describe a package in their own words, which no one could check.',
+        chose: 'Each item is declared on its own line and checked against the destination’s rules as it is added. Prohibited items are flagged, medication asks for a prescription, and every item gets a photo.',
+        why: 'The traveller answers for the bag at customs. A description can’t be checked; a list can.',
+        tradeoff: 'Declaring takes the sender longer, so items go in one line at a time and each is checked while they type.',
+        images: [
+          { img: w(8), alt: 'Declared contents, with a prohibited item flagged', label: 'Contents' },
+          { img: w(9), alt: 'Taking a photo of each declared item', label: 'Photos' },
+        ],
+      },
+      {
+        title: 'See inside before saying yes',
+        before: 'In version 1, travellers accepted carries without seeing what was inside.',
+        chose: 'A traveller reviews the package first: whether it is safe to carry, each declared item with its photos, and who the sender is. Then they choose interested or not.',
+        why: 'Nobody should agree to carry a stranger’s bag on a fee and a title.',
+        tradeoff: 'One more screen before accepting, so the safe-to-carry verdict sits at the top and the choice is two buttons.',
+        images: [
+          { img: w(17), alt: 'Package review: safe to carry, items and sender, before showing interest', label: 'Review' },
+          { img: w(18), alt: 'Declared items with their photos', label: 'Items' },
+        ],
+      },
+      {
+        title: 'Evidence, not self-report',
+        before: 'Trust rested on what people said: identity asked for up front, trip details taken on their word.',
+        chose: 'Sign up with an email code, and identity is checked only when an action needs it. Travellers upload their booking, so a name mismatch is caught before the trip is listed and free carry capacity is worked out from the flight.',
+        why: 'Asking for ID before someone has seen the app loses them. The trust that matters is at the moment of carrying, and a booking is evidence where typed details are only a claim.',
+        tradeoff: 'Verification interrupts a first send or trip, so it is one short step with the reason shown.',
+        images: [
+          { img: w(12), alt: 'Uploading the flight booking', label: 'Booking' },
+          { img: w(13), alt: 'A passenger name mismatch, caught before the trip is listed', label: 'Mismatch' },
+          { img: w(14), alt: 'Free carry capacity worked out from the flight', label: 'Capacity' },
+        ],
       },
     ],
   },
   impact: {
-    title: 'Taken from prototype to device testing',
-    caveat: 'WhoDeyGo is not yet released, so these are counts from the work, not measured outcomes.',
+    title: 'A trusted way to carry, now in device testing',
+    caveat: 'WhoDeyGo is in internal device testing and not yet released, so there are no user outcomes yet.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would put version 2 in front of real senders and travellers before polishing it. Fixed roles and blind acceptance surfaced in an internal review; people outside the team would have found the next problem sooner.',
+      'Next, release has to show what matters for a marketplace: how long a request waits for its first offer, how many matches end in a handover, and what senders pay against a courier quote for the same parcel.',
+    ],
     stats: [
       { value: '3', label: 'Roles in one account', note: 'Send, carry and receive, set per transaction instead of at sign-up.' },
-      { value: '20', label: 'Edits from v0.1 to v0.2', note: 'Covering roles, pricing, the receiver journey and navigation.' },
-      { value: '32', label: 'Screens in the v0.2 prototype', note: 'Up from 30, adding the receiver’s screens.' },
+      { value: 'Testing', label: 'On Android devices', note: 'Internal builds, tested with a three-role script: sender, traveller and receiver.' },
+      { value: '2', label: 'Designers led', note: 'Alongside the product definition, with no product manager on the team.' },
+      { value: '20', label: 'Fixes to version 1', note: 'Roles, pricing, the receiver journey and navigation, from the product review.' },
     ],
   },
   screens: {
@@ -320,6 +388,38 @@ const whodeygo: CaseStudy = {
       },
     ],
   },
+  // Staged scenes generated in Figma, following one parcel from London to Lagos.
+  // Only one is a mockup (the sofa), with the real package review screen composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('whodeygo-story-pack'),
+      alt: 'A woman in a London flat packing gifts into a small box for her family.',
+      time: 'Thursday, 19:30',
+      line: 'In London, a box of gifts for her mother in Lagos.',
+    },
+    {
+      after: 2,
+      img: c('whodeygo-story-review'),
+      alt: 'Over a traveller’s shoulder: his phone shows WhoDeyGo’s package review, safe to carry, beside a half-packed suitcase.',
+      time: 'Friday, 08:10',
+      line: 'A traveller flying home on Saturday checks what’s inside before he says yes.',
+    },
+    {
+      after: 3,
+      img: c('whodeygo-story-handover'),
+      alt: 'In an airport departures hall, the sender hands the box to the traveller beside his suitcase.',
+      time: 'Saturday, 10:40',
+      line: 'At the airport, the handover is confirmed in two taps.',
+    },
+    {
+      after: 4,
+      img: c('whodeygo-story-arrive'),
+      alt: 'At a family home in Lagos, an older woman smiles as the traveller hands her the box.',
+      time: 'Sunday, 16:20',
+      line: 'In Lagos, her mother receives it, and the traveller is paid.',
+    },
+  ],
 };
 
 /* --------------------------------------------------------------------- OutOut */
@@ -1002,66 +1102,49 @@ const azuri: CaseStudy = {
   slug: 'azuri',
   title: 'Azuri Facility Management',
   meta: [
-    { label: 'Category', value: 'Web platform' },
-    { label: 'Client', value: 'EKO Development Group' },
-    { label: 'Role', value: 'Lead product designer, at Heckerbella' },
+    { label: 'Category', value: 'Enterprise web app' },
+    { label: 'Client', value: 'Eko Development Company' },
+    { label: 'Role', value: 'Co-designer, at Heckerbella' },
     { label: 'Year', value: '2023' },
   ],
   overview: {
-    statement: 'One system to run a three-tower, mixed-use complex.',
+    statement: 'One system to run a three-tower, mixed-use estate.',
     body: [
-      'Azuri’s web-based facility management system unifies finance, maintenance, security, inventory and space management for a three-tower mixed-use complex owned by EKO Development Group.',
-      // Public context (developer and trade press), worth confirming: the Azuri towers sit in the Marina District of Eko Atlantic, Lagos.
-      'The complex sits in the Marina District of Eko Atlantic, Lagos, with residential towers and an office tower.',
+      'Azuri Facility Management is the web app Eko Development Company’s facility and operations teams use every day to run Azuri Towers in the Marina District of Eko Atlantic, Lagos: two residential towers and an office tower, with retail, car parks and lofts around them. It brings finance, maintenance, security, inventory and space into one system.',
+      'I was co-designer at Heckerbella, working with the lead designer. I designed the property and occupant views, each tower’s dashboard with its maintenance requests and incidents, and members and roles.',
     ],
   },
   problem: {
     // Inferred: framed from what the system unifies; the original copy does not state the problem.
-    statement: 'Running three towers meant juggling finance, repairs, security and occupancy in separate places.',
+    statement: 'Running three towers meant juggling occupants, repairs, security and bills in separate places.',
     points: [
-      { title: 'Scattered operations', line: 'Five operational areas, with no single source of truth.' },
+      { title: 'Scattered records', line: 'Residents, office tenants and units tracked in different places.' },
       { title: 'Slow repair loops', line: 'Maintenance requests and vendors handled by hand.' },
-      { title: 'No estate-wide view', line: 'Occupancy and billing hard to see across towers.' },
+      { title: 'No estate-wide view', line: 'Occupancy and space hard to see across the towers.' },
+      { title: 'Many teams', line: 'Operations, security and housekeeping each need their own access.' },
     ],
   },
   solution: {
-    statement: 'A single web system for the whole estate, from residents and offices to bills and repairs.',
+    statement: 'One web app for the whole estate, from residents and offices to repairs and bills.',
     points: [
-      { title: 'Live dashboards', line: 'Occupancy, maintenance and incidents in real time.' },
-      { title: '3D property view', line: 'Explore towers, floors and units visually.' },
-      { title: 'Automated workflows', line: 'Maintenance and vendor work routed automatically.' },
-      { title: 'Finance and billing', line: 'Finance and electricity billing built in.' },
+      { title: 'Every building at a glance', line: 'Space and occupancy for each tower, car park and retail floor on one overview.' },
+      { title: 'Know who lives and works here', line: 'Residents, owners and office occupants, with tenancy, parking and service charges.' },
+      { title: 'Repairs that route themselves', line: 'Maintenance requests reach the right team and vendor automatically.' },
+      { title: 'Each team, its own access', line: 'Roles decide what operations, security and housekeeping staff can see and do.' },
     ],
   },
   role: {
-    summary: 'I led the design at Heckerbella, from information architecture to a scalable design system.',
-    owned: ['Information architecture', 'Role-based flows', 'Hi-fi prototypes', 'Design system'],
+    summary: 'I co-designed the system with the lead designer, owning property and occupants, the tower dashboards, and access.',
+    owned: ['Property and occupants', 'Tower dashboards', 'Maintenance and incidents', 'Members and roles', 'Role-based flows', 'Hi-fi prototypes'],
     stops: [
       {
         stage: 'Structure',
-        did: ['Organised the estate into one information architecture across five operational areas'],
-        artefact: { kind: 'chips', items: ['Finance', 'Maintenance', 'Security', 'Inventory', 'Space'] },
+        did: ['Mapped the estate into the property section: each tower, car park, retail floor and loft with its own space and occupancy'],
+        artefact: { kind: 'chips', items: ['Azuri One', 'Azuri Two', 'Azuri Offices', 'Podium Retail', 'Car parks', 'Lofts'] },
       },
       {
-        stage: 'Roles',
-        did: ['Designed role-based user flows, so each team sees its own work'],
-        artefact: { kind: 'images', format: 'web', images: [{ img: c('TjQLUXIVu5IVC0V35Y826TqiYE'), alt: 'Manage members, with roles and access' }] },
-      },
-      {
-        stage: 'Design',
-        did: ['Designed the dashboards and the building overview across all three towers'],
-        artefact: {
-          kind: 'images',
-          format: 'web',
-          images: [
-            { img: c('dH1IuDss3uGKOsvHeTDL4bHtF8k'), alt: 'Azuri One dashboard with maintenance requests and incidents' },
-            { img: c('4lGtRekp8itXvuh4aHHhls3RIek'), alt: 'Building overview of Azuri One, Azuri Two and Azuri Offices' },
-          ],
-        },
-      },
-      {
-        stage: 'Systemise',
-        did: ['Built a scalable design system and high-fidelity prototypes for every module'],
+        stage: 'Occupants',
+        did: ['Designed resident and office occupant lists with a detail panel, so staff check tenancy, parking and service charges without leaving the list'],
         artefact: {
           kind: 'images',
           format: 'web',
@@ -1072,18 +1155,84 @@ const azuri: CaseStudy = {
         },
       },
       {
+        stage: 'Operate',
+        did: ['Designed each tower’s dashboard: occupancy, maintenance requests and incident reports on one screen'],
+        artefact: { kind: 'images', format: 'web', images: [{ img: c('dH1IuDss3uGKOsvHeTDL4bHtF8k'), alt: 'Azuri One dashboard with maintenance requests and incidents' }] },
+      },
+      {
+        stage: 'Access',
+        did: ['Designed members and roles, so each team sees only its own work'],
+        artefact: { kind: 'images', format: 'web', images: [{ img: c('TjQLUXIVu5IVC0V35Y826TqiYE'), alt: 'Manage members, with roles and the reason for each member’s access' }] },
+      },
+      {
+        stage: 'Partner',
+        // Inferred: that the lead designer owned finance and billing, and how the two halves were kept consistent.
+        did: [
+          'Split the system with the lead designer: I took property, dashboards and access, while the lead took finance and billing',
+          'Built my screens from the same component set, so both halves read as one product',
+        ],
+        artefact: { kind: 'chips', items: ['Co-design', 'Shared components', 'Role-based flows'] },
+      },
+      {
         stage: 'Launch',
-        did: ['Shipped to EKO Development Group, where it is live and in daily use'],
+        did: ['Shipped to Eko Development Company, whose facility and operations teams run the estate on it every day'],
+        artefact: { kind: 'chips', items: ['Live', 'Daily use', 'Enterprise, no public access'] },
+      },
+    ],
+    // No earlier versions survive, so "before" describes the usual way, and the images are final screens.
+    // Inferred: the before, why and trade-off lines; Turi to confirm.
+    decisions: [
+      {
+        title: 'The building is the way in',
+        before: 'Facility tools usually start from modules: a finance screen, a maintenance screen, a long list of units.',
+        chose: 'Property opens on a building overview, one card per tower, car park and retail floor with its space and occupancy. Each opens to its own residents and requests.',
+        why: 'Staff think in buildings. An incident is in Azuri One, floor 21, apartment 34, so the system is organised the same way.',
+        tradeoff: 'Lists across the whole estate take an extra step, so Residents also has an all-buildings view with a building filter.',
+        images: [
+          { img: c('4lGtRekp8itXvuh4aHHhls3RIek'), alt: 'Building overview of the towers, car parks, retail and lofts', label: 'Overview' },
+          { img: c('5bpYA4RPJb8RqYkwCR45rdgM'), alt: 'Residents across the estate, filtered by building', label: 'All residents' },
+        ],
+      },
+      {
+        title: 'Details beside the list',
+        before: 'Opening a record usually means leaving the list and losing your place in a long table.',
+        chose: 'A detail panel opens beside the list: owner, tenant, apartment, parking lot and service charge, with deactivation at the bottom.',
+        why: 'Staff check one occupant after another. Keeping the list in view keeps their place.',
+        tradeoff: 'The list narrows while the panel is open, so it keeps the columns staff scan first: apartment, owner and resident.',
+        images: [
+          { img: c('f6ZrkFkC7q60T94DfQqnzTdkbXU'), alt: 'Residents list with the resident detail panel open', label: 'Residents' },
+          { img: c('YYDujWkfuASEySMAPu1wtwhVo'), alt: 'Office occupants with the occupant detail panel open', label: 'Offices' },
+        ],
+      },
+      {
+        title: 'A dashboard for each tower',
+        before: 'One dashboard for the whole estate mixes every tower’s requests, so a manager filters before they can act.',
+        chose: 'Each tower has its own dashboard: occupancy, open maintenance requests and incident reports, with a switcher across the towers, offices, retail and lofts.',
+        why: 'Operations managers answer for buildings, so their first screen should be their building.',
+        tradeoff: 'Totals for the whole estate are a step away, on the building overview.',
+        images: [{ img: c('dH1IuDss3uGKOsvHeTDL4bHtF8k'), alt: 'Azuri One dashboard with maintenance requests and incidents', label: 'Dashboard' }],
+      },
+      {
+        title: 'Access by role, with a reason',
+        before: 'Access granted person by person drifts as staff join, move and leave.',
+        chose: 'Members are invited with a role that sets what they can see and do, and a super admin manages the list. Each member’s access carries a reason.',
+        why: 'Operations, security and housekeeping need different parts of the system, and staff change.',
+        tradeoff: 'Roles are broad, so the recorded reason is what tells an admin why someone has access.',
+        images: [{ img: c('TjQLUXIVu5IVC0V35Y826TqiYE'), alt: 'Manage members, with roles, dates assigned and reasons', label: 'Members' }],
       },
     ],
   },
   impact: {
-    title: 'Live, and running the estate',
-    caveat: 'Early feedback reports markedly smoother workflows and higher operational efficiency; there are no measured figures yet.',
+    title: 'Live, and running the estate every day',
+    caveat: 'Azuri is an internal enterprise tool, so there is no public link. I don’t have usage figures to share.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would spend a morning with the operations team before designing the dashboards. We worked from how the estate is organised; watching a manager start the day would have shown which requests deserve the top of the screen.',
+      'Next, I would measure how long a maintenance request takes from report to fix, for each tower. It is the clearest sign of whether the system makes the estate easier to run.',
+    ],
     stats: [
-      { value: '3', label: 'Towers on one system', note: 'Azuri One, Azuri Two and Azuri Offices.' },
-      { value: '5', label: 'Operational areas unified', note: 'Finance, maintenance, security, inventory and space.' },
-      { value: 'Live', label: 'In use by EKO Development Group', note: 'Shipped and running day to day.' },
+      { value: 'Daily', label: 'In use by the operations team', note: 'Eko Development Company’s facility and operations teams run Azuri Towers on it.' },
+      { value: '3', label: 'Towers on one system', note: 'Azuri One, Azuri Two and Azuri Offices, with retail, car parks and lofts.' },
     ],
   },
   screens: {
@@ -1091,17 +1240,55 @@ const azuri: CaseStudy = {
     format: 'web',
     groups: [
       {
+        title: 'Property and occupants',
+        shots: [
+          { img: c('4lGtRekp8itXvuh4aHHhls3RIek'), caption: 'Building overview: every tower, car park and retail floor.' },
+          { img: c('f6ZrkFkC7q60T94DfQqnzTdkbXU'), caption: 'Azuri One residents, with a resident’s details beside the list.' },
+          { img: c('5bpYA4RPJb8RqYkwCR45rdgM'), caption: 'Residents across the estate, with service charge status.' },
+          { img: c('YYDujWkfuASEySMAPu1wtwhVo'), caption: 'Office occupants and company details.' },
+        ],
+      },
+      {
+        title: 'Operations',
         shots: [
           { img: c('dH1IuDss3uGKOsvHeTDL4bHtF8k'), caption: 'Tower dashboard: occupancy, maintenance requests and incidents.' },
-          { img: c('TjQLUXIVu5IVC0V35Y826TqiYE'), caption: 'Manage members and their access.' },
-          { img: c('f6ZrkFkC7q60T94DfQqnzTdkbXU'), caption: 'Residents, with tenancy and building details.' },
-          { img: c('4lGtRekp8itXvuh4aHHhls3RIek'), caption: 'Building overview across the three towers.' },
-          { img: c('5bpYA4RPJb8RqYkwCR45rdgM'), caption: 'Residents across the estate.' },
-          { img: c('YYDujWkfuASEySMAPu1wtwhVo'), caption: 'Office occupants and company details.' },
+          { img: c('TjQLUXIVu5IVC0V35Y826TqiYE'), caption: 'Members, their roles and the reason for their access.' },
         ],
       },
     ],
   },
+  // Staged scenes generated in Figma, modelled on Azuri Towers (white facades, terracotta bands, a dark glass office tower).
+  // Only one is a mockup (the office), with the real Azuri One dashboard composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('azuri-story-arrive'),
+      alt: 'An operations manager walking toward Azuri Towers in the morning: two white and terracotta residential towers either side of a dark glass office tower.',
+      time: 'Monday, 07:20',
+      line: 'The operations manager arrives before residents leave for work.',
+    },
+    {
+      after: 2,
+      img: c('azuri-story-office'),
+      alt: 'The operations manager at her desk with Azuri One’s dashboard on screen, the neighbouring tower and the Atlantic through the window.',
+      time: 'Monday, 08:05',
+      line: 'Azuri One’s dashboard: new maintenance requests, and a stairwell light reported overnight.',
+    },
+    {
+      after: 3,
+      img: c('azuri-story-repair'),
+      alt: 'A technician on a stepladder replacing a stairwell light, with the neighbouring tower and the coast through the window.',
+      time: 'Monday, 10:30',
+      line: 'The request reaches maintenance, and the light is fixed by mid-morning.',
+    },
+    {
+      after: 4,
+      img: c('azuri-story-dusk'),
+      alt: 'Azuri Towers at dusk across the marina, apartment windows lit and reflected in the water.',
+      time: 'Monday, 18:45',
+      line: 'Residents home, offices emptying, and the day’s requests closed.',
+    },
+  ],
 };
 
 /* ---------------------------------------------------------------- Circuitmind */

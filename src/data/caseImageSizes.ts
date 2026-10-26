@@ -432,6 +432,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
     1393,
     1600
   ],
+  "azuri-story-arrive": [
+    1536,
+    1024
+  ],
+  "azuri-story-dusk": [
+    1536,
+    1024
+  ],
+  "azuri-story-office": [
+    1536,
+    1024
+  ],
+  "azuri-story-repair": [
+    1536,
+    1024
+  ],
   "bBtB0Bf6udu7XBeRzBK2NdPXm78": [
     786,
     1704
@@ -871,6 +887,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
   "whodeygo-20": [
     393,
     852
+  ],
+  "whodeygo-story-arrive": [
+    1536,
+    1024
+  ],
+  "whodeygo-story-handover": [
+    1536,
+    1024
+  ],
+  "whodeygo-story-pack": [
+    1536,
+    1024
+  ],
+  "whodeygo-story-review": [
+    1536,
+    1024
   ],
   "xN2ZWHu6iMTHyWcUgSXJy5rQ3mQ": [
     786,
