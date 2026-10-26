@@ -167,7 +167,7 @@ export const gallery: GalleryItem[] = [
     paragraphs: [
       'Circuitmind builds AI tooling for electronic circuit design. Their flagship platform helped engineers automate schematic generation, but onboarding was a wall: new users abandoned the product before completing their first design, with a 71% drop-off rate inside week one. The core issue, surfaced through 12 user interviews and session recordings, was that engineers did not understand how the AI co-pilot fit into their existing workflow.',
       'I redesigned the onboarding flow and the main workspace. The new flow walks engineers through a guided first project using their own component library, with contextual tips replacing the previous static documentation. I introduced a workspace shell with three clear panes: input, AI suggestions, and validation output.',
-      'After release, week-one activation (defined as completing a first schematic) climbed from 29% to 62%. Time-to-first-design fell from 47 minutes to 18. The sales team reported a 2x increase in trial-to-paid conversion within the first quarter, and Circuitmind used the redesigned onboarding as the core demo in investor meetings.',
+      'After release, week-one activation (defined as completing a first schematic) climbed from 29% to 62%. Time-to-first-design fell from 47 minutes to 18. The sales team reported a 2x increase in trial-to-paid conversion within the first quarter. I also designed the pitch deck for their raise, with the redesigned onboarding as its core demo, and Circuit Mind raised US$900k.',
     ],
     images: imgs(
       'EppeMWBHHRSaR1neLbFIg4CdppY.png', '8DIFSsfVi4pR5CfcRlmFB6MEnjI.png',

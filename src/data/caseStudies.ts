@@ -1297,39 +1297,40 @@ const circuitmind: CaseStudy = {
   slug: 'circuitmind',
   title: 'Circuitmind',
   meta: [
-    { label: 'Category', value: 'Web platform' },
+    { label: 'Category', value: 'AI web platform' },
     { label: 'Client', value: 'Circuit Mind, London' },
     { label: 'Role', value: 'Design lead, version 1 redesign' },
     { label: 'Year', value: '2024' },
   ],
-  website: [{ label: 'circuitmind.io', href: 'https://www.circuitmind.io/product' }],
+  website: [{ label: 'circuitmind.io', href: 'https://www.circuitmind.io/' }],
   overview: {
     statement: 'AI that designs circuits, made legible to the engineers who use it.',
     body: [
-      'Circuitmind builds AI tooling for electronic circuit design. Its platform turns hardware requirements into candidate schematics, a bill of materials and files ready for ECAD tools.',
-      'The platform automated schematic generation, but most new users left before finishing a first design. I led the redesign of the version 1 product, starting with the onboarding flow and the main workspace.',
+      'Circuit Mind builds AI for electronic circuit design. Engineers describe a system’s architecture and requirements, and the platform proposes candidate schematics, a bill of materials and files ready for their ECAD tools.',
+      'Version 1 automated schematic generation, but most new users left before finishing a first design. I led the redesign as the only designer, working with the founders and engineers, starting with onboarding and the main workspace. I also designed the pitch deck that helped Circuit Mind raise US$900k.',
     ],
   },
   problem: {
     statement: 'Engineers couldn’t see where the AI co-pilot fit their workflow, so most quit before their first design.',
     points: [
       { title: '71% drop-off', line: 'Most new users left inside week one.' },
+      { title: '47 minutes to value', line: 'Reaching a first design took most of an hour.' },
       { title: 'Static documentation', line: 'Help lived in docs, not in the product.' },
-      { title: 'Unclear model', line: 'No obvious line between what you input and what the AI suggests.' },
+      { title: 'Unclear model', line: 'No line between what you input and what the AI suggests.' },
     ],
   },
   solution: {
     statement: 'A guided first project, and a workspace split into input, AI suggestions and validation.',
     points: [
-      { title: 'Guided first project', line: 'Engineers start with their own component library.' },
-      { title: 'Tips in context', line: 'Contextual guidance replaces static documentation.' },
-      { title: 'Three-pane workspace', line: 'Input, AI suggestions and validation output, side by side.' },
-      { title: 'Analysis in view', line: 'Power tree, BoM and efficiency curves beside the design.' },
+      { title: 'Start with your own parts', line: 'A guided first project built from the engineer’s own component library.' },
+      { title: 'Help where you are', line: 'Tips in context replace static documentation.' },
+      { title: 'See what the AI did', line: 'Input, AI suggestions and validation output, side by side.' },
+      { title: 'Check before you trust', line: 'Power tree, BoM and efficiency curves beside the design.' },
     ],
   },
   role: {
-    summary: 'I led the version 1 redesign, from onboarding to the core workspace, grounded in interviews and session recordings.',
-    owned: ['User interviews', 'Session analysis', 'Onboarding', 'Workspace UX', 'Data visualisation', 'UI design'],
+    summary: 'As the only designer, I led the version 1 redesign with the founders and engineers, then designed the pitch deck for their raise.',
+    owned: ['User interviews', 'Session analysis', 'Onboarding', 'Workspace UX', 'Data visualisation', 'UI design', 'Pitch deck design'],
     stops: [
       {
         stage: 'Discover',
@@ -1344,6 +1345,7 @@ const circuitmind: CaseStudy = {
       {
         stage: 'Onboard',
         did: ['Designed a guided first project using the engineer’s own component library, with contextual tips'],
+        artefact: { kind: 'chips', items: ['Own component library', 'Guided first project', 'Tips in context'] },
       },
       {
         stage: 'Workspace',
@@ -1358,19 +1360,75 @@ const circuitmind: CaseStudy = {
         },
       },
       {
+        stage: 'Lead',
+        did: [
+          'Led the design end to end as the only designer, setting direction with the founders',
+          'Worked with the engineers through the build, so the release matched the design',
+        ],
+        artefact: { kind: 'chips', items: ['Founders', 'Engineers', 'Design lead'] },
+      },
+      {
         stage: 'Measure',
-        did: ['After release, activation, time to first design and conversion were measured'],
+        did: ['Tracked the release with the team on three numbers: week-one activation, time to first design and trial-to-paid conversion'],
         artefact: { kind: 'chips', items: ['Activation', 'Time to first design', 'Trial to paid'] },
+      },
+      {
+        stage: 'Pitch',
+        did: ['Designed the founders’ pitch deck, with the redesigned onboarding as the core demo in investor meetings. Circuit Mind raised US$900k.'],
+        artefact: { kind: 'chips', items: ['Pitch deck', 'Investor demo', 'US$900k raised'] },
+      },
+    ],
+    // Before comes from the version 1 findings (drop-off, static docs, no line between input and AI). No version 1 screens survive.
+    // Inferred: the why and trade-off lines, and the "before" of the last two decisions; Turi to confirm.
+    decisions: [
+      {
+        title: 'Start from the engineer’s own parts',
+        before: 'New users started cold, with help in static documentation, and 71% left in their first week.',
+        chose: 'A guided first project built from the engineer’s own component library, with tips in context at each step.',
+        why: 'Engineers trust parts they already use. Seeing the AI work with their own library showed where it fits their workflow, the gap every interview pointed to.',
+        tradeoff: 'Bringing a library in is a step before the first design, so the guided project starts small and the rest of the library follows later.',
+      },
+      {
+        title: 'Three panes: your input, the AI’s suggestions, the checks',
+        before: 'There was no clear line between what an engineer put in and what the AI suggested.',
+        chose: 'A workspace shell with three panes, input, AI suggestions and validation output, side by side.',
+        why: 'Engineers answer for every part on the board. Giving the AI’s suggestions their own pane lets them accept, change or reject each one.',
+        tradeoff: 'Three panes need a wide screen, so the analysis views open inside the panes rather than on new pages.',
+        images: [{ img: c('EppeMWBHHRSaR1neLbFIg4CdppY'), alt: 'Workspace with the power tree above the bill of materials', label: 'Workspace' }],
+      },
+      {
+        title: 'Analysis beside the design, not after it',
+        before: 'Checking a design meant leaving it for separate reports.',
+        chose: 'The power tree, bill of materials and efficiency curves sit beside the design, and each component opens to its schematic and electrical specs.',
+        why: 'An engineer accepts a suggestion only once the numbers hold up. Seeing them in place turns the AI’s output into a design they can sign off.',
+        tradeoff: 'These are dense views for a dense job, so the power tree leads and detail opens on demand.',
+        images: [
+          { img: c('4iQLGuyVperGb93vQKmOax8PD7A'), alt: 'Efficiency curves across load', label: 'Efficiency' },
+          { img: c('8DIFSsfVi4pR5CfcRlmFB6MEnjI'), alt: 'Component detail with schematic and electrical specs', label: 'Component' },
+        ],
+      },
+      {
+        title: 'Count the first design, not the sign-up',
+        before: 'A sign-up looked like success, and hid that most new users never finished a design.',
+        chose: 'Activation means completing a first schematic in week one, tracked with time to first design and trial-to-paid conversion.',
+        why: 'A first schematic is the moment the product proves its value. A sign-up proves nothing.',
+        tradeoff: 'The stricter definition made the starting point look worse, 29%, but it showed exactly what to fix.',
       },
     ],
   },
   impact: {
     title: 'More engineers reached a first design, faster',
+    caveat: 'Activation means completing a first schematic in week one. The sales team reported the conversion change in the first quarter after release.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would watch new engineers try the guided project before release, not only interview them before it. The 12 interviews showed where people gave up; watching the fix in use would have shown sooner what still confused them.',
+      'Next, I would follow engineers past their first design: how many come back for a second board, and how many of the AI’s suggestions they keep. Activation shows they start; those numbers show they trust it.',
+    ],
     stats: [
       { value: '62%', label: 'Week-one activation', note: 'Up from 29%. Activation means completing a first schematic.' },
       { value: '18 min', label: 'Time to first design', note: 'Down from 47 minutes.' },
       { value: '2x', label: 'Trial-to-paid conversion', note: 'Reported by the sales team in the first quarter.' },
-      { value: 'US$900k', label: 'Raised since', note: 'Circuit Mind has raised US$900k since the redesign.' },
+      { value: 'US$900k', label: 'Funding raised', note: 'After the redesign, with a pitch deck I designed and the new onboarding as its demo.' },
     ],
   },
   screens: {
@@ -1387,6 +1445,38 @@ const circuitmind: CaseStudy = {
       },
     ],
   },
+  // Staged scenes generated in Figma: one hardware engineer's week in a London lab.
+  // Only one is a mockup (the desk), with the real power tree workspace composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('circuitmind-story-brief'),
+      alt: 'A hardware engineer at a lab bench sketching a circuit block diagram in a notebook, a bare circuit board and test equipment beside her.',
+      time: 'Monday, 09:10',
+      line: 'A new board to design, starting from a block diagram in a notebook.',
+    },
+    {
+      after: 2,
+      img: c('circuitmind-story-design'),
+      alt: 'Over the engineer’s shoulder: Circuit Mind’s power tree and bill of materials on her monitor.',
+      time: 'Monday, 10:30',
+      line: 'Her own parts in, and the AI’s suggestions back in their own pane, with the power tree beside them.',
+    },
+    {
+      after: 3,
+      img: c('circuitmind-story-review'),
+      alt: 'Two engineers at a lab bench reviewing a prototype board under a magnifier lamp.',
+      time: 'Wednesday, 14:00',
+      line: 'The numbers hold up, so the team signs the design off.',
+    },
+    {
+      after: 4,
+      img: c('circuitmind-story-board'),
+      alt: 'A hand holding a freshly assembled circuit board, its green status light on.',
+      time: 'Friday, 16:45',
+      line: 'The first boards are back, and they power up.',
+    },
+  ],
 };
 
 /* ---------------------------------------------------------------- Fantasy One */

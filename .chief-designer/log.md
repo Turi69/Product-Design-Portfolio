@@ -190,3 +190,13 @@ The same pass as OutOut, AXE, Tendarly and Azuri. Facts from the owner: in inter
 - Four key decisions: roles belong to the parcel, not the person; declare every item, checked as you go; see inside before saying yes; evidence, not self-report (identity when an action needs it, flight bookings instead of typed trips).
 - Impact 2x2: 3 roles in one account, testing on Android devices, 2 designers led, 20 fixes to version 1. Looking back added.
 - Story interludes generated in Figma: one parcel from a London flat to a family home in Lagos. One mockup, the traveller on his sofa, with the real package review screen composited on (composite.mjs with occlude, so his fingers stay in front). Sources in source/scenes/whodeygo-story/.
+
+## 26/10/2026 — Circuitmind at lead level
+The same pass. Facts from the owner: Turi was the only designer on the redesign, working with the founders and engineers; Turi designed the pitch deck that helped Circuit Mind raise US$900k; no Figma file, so decisions use the four existing screens or none.
+- Link now points to circuitmind.io (the home page) instead of /product.
+- Overview, role summary, a new Pitch stop and the US$900k card now credit the pitch deck, with the redesigned onboarding as its demo (from the owner's gallery copy). The home.ts gallery text says the same.
+- New Lead stop (only designer, direction with the founders, build with the engineers). Measure stop rewritten in the active voice; Onboard stop gains its chips.
+- Problem gains "47 minutes to value" from the measured baseline.
+- Four key decisions: start from the engineer's own parts; three panes for input, AI suggestions and checks; analysis beside the design; count the first design, not the sign-up. Two are text only, as no onboarding screens exist.
+- Looking back and a caveat defining activation and the source of the conversion figure.
+- Story interludes generated in Figma: a hardware engineer's week in a London lab, from a block-diagram sketch to a board that powers up. One mockup, the desk, with the real power tree workspace composited on. Sources in source/scenes/circuitmind-story/.

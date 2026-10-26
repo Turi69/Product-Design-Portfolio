@@ -460,6 +460,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
     393,
     852
   ],
+  "circuitmind-story-board": [
+    1536,
+    1024
+  ],
+  "circuitmind-story-brief": [
+    1536,
+    1024
+  ],
+  "circuitmind-story-design": [
+    1536,
+    1024
+  ],
+  "circuitmind-story-review": [
+    1536,
+    1024
+  ],
   "dH1IuDss3uGKOsvHeTDL4bHtF8k": [
     1440,
     1024
