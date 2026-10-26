@@ -133,7 +133,7 @@ export const works: Work[] = [
   galleryWork('lemonsplit', 'Lemon Split 2025', 'LemonSplit'),
   galleryWork('rhapsody', 'Rhapsody of Realities 2025', 'Rhapsody of Realities'),
   featuredWork('jaa', 'Web'),
-  galleryWork('circuitmind', 'Circuitmind 2024', 'Circuitmind'),
+  galleryWork('circuitmind', 'Circuitmind 2026', 'Circuitmind'),
   galleryWork('axe', 'AXE 2024', 'AXE'),
   galleryWork('fantasy', 'Fantasy One 2024', 'Fantasy One'),
   galleryWork('tendarly', 'Tendarly 2023', 'Tendarly'),

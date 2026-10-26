@@ -162,7 +162,7 @@ export const gallery: GalleryItem[] = [
     ),
   },
   {
-    label: 'Circuitmind 2024',
+    label: 'Circuitmind 2026',
     format: 'web',
     paragraphs: [
       'Circuitmind builds AI tooling for electronic circuit design. Their flagship platform helped engineers automate schematic generation, but onboarding was a wall: new users abandoned the product before completing their first design, with a 71% drop-off rate inside week one. The core issue, surfaced through 12 user interviews and session recordings, was that engineers did not understand how the AI co-pilot fit into their existing workflow.',

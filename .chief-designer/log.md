@@ -200,3 +200,4 @@ The same pass. Facts from the owner: Turi was the only designer on the redesign,
 - Four key decisions: start from the engineer's own parts; three panes for input, AI suggestions and checks; analysis beside the design; count the first design, not the sign-up. Two are text only, as no onboarding screens exist.
 - Looking back and a caveat defining activation and the source of the conversion figure.
 - Story interludes generated in Figma: a hardware engineer's week in a London lab, from a block-diagram sketch to a board that powers up. One mockup, the desk, with the real power tree workspace composited on. Sources in source/scenes/circuitmind-story/.
+- 26/10/2026: Circuitmind's year changed from 2024 to 2026 at the owner's request (case study meta, Works label and gallery label).

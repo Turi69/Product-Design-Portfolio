@@ -1300,7 +1300,7 @@ const circuitmind: CaseStudy = {
     { label: 'Category', value: 'AI web platform' },
     { label: 'Client', value: 'Circuit Mind, London' },
     { label: 'Role', value: 'Design lead, version 1 redesign' },
-    { label: 'Year', value: '2024' },
+    { label: 'Year', value: '2026' },
   ],
   website: [{ label: 'circuitmind.io', href: 'https://www.circuitmind.io/' }],
   overview: {
