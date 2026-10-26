@@ -43,7 +43,7 @@ const layers: { lens: string; question: string; proof: string; figure?: string; 
 const modes = [
   {
     name: 'Leading a team',
-    note: 'I lead a team of 4 designers at AIENAI. Monday planning and Friday reviews against standards I set mean each designer owns their product, and the founder no longer reviews our work daily.',
+    note: 'I lead a team of 4 designers at AIENAI. Monday planning, a Wednesday critique and a Friday final review against standards I set mean each designer owns their product, and the founder no longer reviews our work daily.',
     works: ['axe', 'outout', 'whodeygo'],
   },
   {

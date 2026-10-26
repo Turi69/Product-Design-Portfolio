@@ -212,3 +212,35 @@ References: the site's own "What I do" rows (hairline rhythm, mono proof right) 
 - Bio's second paragraph shortened so the team detail is said once.
 - New .about-link style for quiet case study links (caption size, underline on a strong line colour, 27px tall targets).
 Rejected: three equal cards with icons (banned pattern); a quote attributed to colleagues (no verbatim quote exists, so none is invented).
+
+## 26/10/2026 — Cwook, reframed as a concept
+The same pass, adapted for work that never shipped. Facts from the owner: a self-initiated idea for merging e-commerce with social shopping; designed alone; the interviews happened, the usability tests did not; shelved; 2024, not 2025.
+- Honesty first: removed the usability test figures (2m 30s, 5%, 10%, 8/10, 9/10), the tester quote and the Test stop, and the marketing filler ("seamlessly", "helping businesses turn engagement into direct sales").
+- Meta: Mobile app concept; Self-initiated, solo; 2024 (also in home.ts, so Works and the drum agree). Works subtitle now starts "Concept:".
+- Overview opens on the question the concept asks, and says plainly it was never built.
+- Four key decisions from the final screens: video first, catalogue second; buy without leaving the post; look first, sign up later (Continue as guest); shops you follow, not stores you visit.
+- Impact: 3 shopper types interviewed, 1 designer end to end; caveat says there are no outcomes. Looking back names the gap (the vendor side) and the cheapest test of the riskiest bet.
+- Story interludes generated in Figma, set in Lagos: a vendor films stock, a shopper scrolls, the trainers appear in her feed (the one mockup, real feed screen composited on), delivery at her office. Sources in source/scenes/cwook-story/.
+Flagged, not fixed: the feed screen's product description is placeholder copy ("Your hub for everything McDonald's…"). It lives in the exported screen, so it needs a fix in Figma and a re-export.
+
+## 26/10/2026 — Rhapsody at lead level
+First of two pieces after the portfolio review against a design-manager brief (strongest impact story after Circuitmind, previously unpolished). Facts from the owner: Turi led 4 designers; the 30 reader interviews were run with the research team; the new home and the audio player were prototype-tested with readers; the home layout was A/B tested (today-first against the old home; winner known, no figure); the reach claim (7 million daily readers, 242 countries) stays, owner-confirmed.
+- Meta: Design lead, team of 4. Overview and role summary credit the team; Discover says "with the research team".
+- New Test stop (prototypes and the A/B test) and Lead stop (4 designers, the today-first rule). Measure rewritten in the active voice.
+- Problem gains "Language buried". Solution points rewritten as reader outcomes.
+- Four key decisions: today's devotion is the home screen (A/B tested); language on the surface (text only, as the exported home screen does not show the picker; tickets −64%); two levels of settings, not four; audio before new features (3.4x plays).
+- Impact: six cards (3 rows of 2, 2 rows of 3), adding 4 designers led; caveat states the baseline and the 90-day rating window. Looking back: test more than the home; follow readers past week one.
+- Story interludes generated in Figma: one Monday of readers, dawn in Lagos (and the one mockup, the real home screen), a London bus with audio playing, bedtime in Accra with the children's edition. Sources in source/scenes/rhapsody-story/.
+
+## 26/10/2026 — New case study: the AIENAI design team
+Second piece after the design-manager review: the team itself as the case study, answering "led and developed designers", "prioritised and managed projects" and "high-performing team culture". Facts from the owner and the résumé: 4 designers, all hired by Turi (portfolio review, design task, panel, trial project), 3 of them juniors; 1 junior promoted; all three juniors own a product, run critiques and mentor newer designers; standards are a shared component library, written principles and handoff specs; the founder's near-daily reviews replaced by Monday planning and Friday critique on video calls; work ranked on impact against effort, research, founder and client goals, and sprint capacity; results: founder freed, faster delivery, fewer engineering questions; no before-and-after counts kept.
+- Structure: the standard case study, slug design-team, first in the works list (home drum and Works). New Category "Team" and Industry "Leadership" (a filter chip); Work gains an optional mockupAlt, used by the case study hero and the project page.
+- Route: Hire, Standards, Rituals, Prioritise, Develop, Beyond (C54 News hiring, Barbados panels, 40+ students mentored).
+- Four key decisions: reviews with the team, not the founder; one designer, one product; standards written down; hire on real work. Text only.
+- Impact: six cards (4 hired and led, 1 of 3 juniors promoted, 2 rituals, Rhapsody +27%, OutOut 10 weeks to pilot, 40+ students). Caveat says no counts were kept and where the change shows. Looking back: measure from week one; put the growth path on paper.
+- Screens: "What the team shipped", grouped by product with each result in the group title.
+- Hero: a still life of three phones on a walnut plinth, generated in Figma at 4:3 like the other mockups, with OutOut, Rhapsody and WhoDeyGo composited on.
+- Story interludes: a remote week (Monday planning call, a designer at work with a real AXE lesson screen on his monitor, a Friday critique, a junior giving feedback). Staged, flagged in code as not the real team. The AXE dashboard was avoided because it shows the "[user first name]" placeholder.
+- tools/composite.mjs now fills several blank screens in one pass (comma-separated screens, filled left to right), so dark-themed screens are never mistaken for empty ones. Sources in source/scenes/design-team/.
+- 26/10/2026 correction from the owner: the team runs three rituals, not two: Monday planning, a Wednesday sprint check-in where the team critiques together, and a Friday final review. Updated across the team study (solution, Rituals stop, first decision, impact card, story captions) and the About page's Leading a team.
+- 26/10/2026: phone screens in the screens gallery and the route's fanned phones now show one phone-screen height (430:932, cropped from the top), matching the decision shots; long scroll captures such as Rhapsody's 4,071px home no longer run off the page. The team study's screens section is retitled 'A few of the products the team shipped, the ones I can show', and its overview says the same.

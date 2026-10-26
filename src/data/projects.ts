@@ -1,7 +1,7 @@
 // One list drives the homepage drum, the Works index and the project pages.
 import { gallery, projects as featured } from './home';
 
-export type Category = 'Mobile' | 'Web';
+export type Category = 'Mobile' | 'Web' | 'Team';
 export type Industry =
   | 'Commerce'
   | 'Education'
@@ -9,6 +9,7 @@ export type Industry =
   | 'Faith'
   | 'Fintech'
   | 'Health'
+  | 'Leadership'
   | 'Logistics'
   | 'Mobility'
   | 'Property'
@@ -27,6 +28,8 @@ export type Work = {
   industry: Industry;
   /** Composited product mockup: a generated scene with the real screen fitted in. */
   mockup: string;
+  /** Alt text for the mockup, where "[title] on a phone" would not describe it. */
+  mockupAlt?: string;
   paragraphs: string[];
   screens: string[];
   format: 'mobile' | 'web';
@@ -75,10 +78,11 @@ const galleryWork = (slug: string, label: string, title: string): Omit<Work, 'in
 
 /** One-line subtitle shown with the project name on the Index, drawn from each case study. */
 const dubs: Record<string, string> = {
+  'design-team': 'Hiring, standards and rituals for 4 designers',
   wayfinder: 'Safer, fairer trips on Lagos transit',
   whodeygo: 'Send parcels with travellers already flying',
   outout: 'Plan it, split it, keep it, as a group',
-  cwook: 'A social feed you can shop from',
+  cwook: 'Concept: a social feed you can shop from',
   lemonsplit: 'Split group bills without the chasing',
   rhapsody: 'Today’s devotional, one tap away',
   jaa: 'A career platform for JA Africa alumni',
@@ -91,6 +95,7 @@ const dubs: Record<string, string> = {
 
 /** Industry per project, condensed from each case study's sector or client. */
 const industries: Record<string, Industry> = {
+  'design-team': 'Leadership',
   wayfinder: 'Mobility',
   whodeygo: 'Logistics',
   outout: 'Social',
@@ -106,6 +111,18 @@ const industries: Record<string, Industry> = {
 };
 
 export const works: Work[] = [
+  ({
+    slug: 'design-team',
+    title: 'AIENAI design team',
+    year: '2026',
+    category: 'Team',
+    summary: 'How I hired, set standards for and grew a team of 4 designers who now ship without the founder in the room.',
+    mockup: mockup('design-team'),
+    mockupAlt: 'Three phones side by side showing OutOut, Rhapsody of Realities and WhoDeyGo, products the team shipped',
+    paragraphs: ['How I hired, set standards for and grew a team of 4 designers who now ship without the founder in the room.'],
+    screens: [],
+    format: 'mobile',
+  } satisfies Omit<Work, 'industry'>),
   featuredWork('wayfinder', 'Mobile'),
   ({
     slug: 'whodeygo',

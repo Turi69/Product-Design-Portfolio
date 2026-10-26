@@ -46,7 +46,7 @@ export function Project() {
       </header>
 
       <figure className="project__hero">
-        <img src={work.mockup} alt={`${work.title} on a ${work.format === 'mobile' ? 'phone' : 'laptop'}`} width={1280} height={960} />
+        <img src={work.mockup} alt={work.mockupAlt ?? `${work.title} on a ${work.format === 'mobile' ? 'phone' : 'laptop'}`} width={1280} height={960} />
       </figure>
 
       <section className="project__body" aria-labelledby="overview-label">

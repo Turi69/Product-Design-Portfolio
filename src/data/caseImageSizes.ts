@@ -476,6 +476,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
     1536,
     1024
   ],
+  "cwook-story-delivery": [
+    1536,
+    1024
+  ],
+  "cwook-story-feed": [
+    1536,
+    1024
+  ],
+  "cwook-story-scroll": [
+    1536,
+    1024
+  ],
+  "cwook-story-vendor": [
+    1536,
+    1024
+  ],
   "dH1IuDss3uGKOsvHeTDL4bHtF8k": [
     1440,
     1024
@@ -483,6 +499,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
   "deGCUl7IajgcuaHZ0ToZP5IbWk": [
     1440,
     1794
+  ],
+  "design-team-story-critique": [
+    1536,
+    1024
+  ],
+  "design-team-story-feedback": [
+    1536,
+    1024
+  ],
+  "design-team-story-plan": [
+    1536,
+    1024
+  ],
+  "design-team-story-work": [
+    1536,
+    1024
   ],
   "eQ7CdXhIFMMCwCdZ1x7BPybsIM": [
     786,
@@ -763,6 +795,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
   "rcUG5Jf3Ip7AKM1jBNGJhairRPI": [
     390,
     844
+  ],
+  "rhapsody-story-dawn": [
+    1536,
+    1024
+  ],
+  "rhapsody-story-home": [
+    1536,
+    1024
+  ],
+  "rhapsody-story-kids": [
+    1536,
+    1024
+  ],
+  "rhapsody-story-listen": [
+    1536,
+    1024
   ],
   "s4BD6G5TnDpdt0KnCAnogyuCGc": [
     1512,

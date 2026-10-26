@@ -240,7 +240,7 @@ export function CaseStudy({ study }: { study: Case }) {
         </dl>
       </header>
 
-      {work && <ParallaxHero src={work.mockup} alt={`${study.title} on a ${work.format === 'mobile' ? 'phone' : 'laptop'}`} />}
+      {work && <ParallaxHero src={work.mockup} alt={work.mockupAlt ?? `${study.title} on a ${work.format === 'mobile' ? 'phone' : 'laptop'}`} />}
 
       <div className="case-body">
         <SectionRail />

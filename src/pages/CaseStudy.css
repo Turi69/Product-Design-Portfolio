@@ -548,6 +548,13 @@
   border-radius: var(--radius-sm);
 }
 
+/* One phone screen tall, the same shape as the decision shots: long scroll captures show their top. */
+.case-gallery__grid--mobile .case-shot__frame img {
+  aspect-ratio: 430 / 932;
+  object-fit: cover;
+  object-position: top;
+}
+
 .case-shot figcaption {
   font-size: var(--text-caption);
   line-height: 1.5;

@@ -56,6 +56,197 @@ export const sectionNames = ['Project overview', 'Problem', 'Solution', 'My role
 
 const shots = (names: string[]): Shot[] => names.map((n) => ({ img: c(n) }));
 
+/* --------------------------------------------------------------- Design team */
+
+// The team itself as the case study. Facts from Turi (26/10/2026) and the résumé: 4 designers, all hired by Turi,
+// 3 of them juniors, 1 promoted; Monday planning, a Wednesday sprint check-in with team critique and a Friday final review, on video calls; no before-and-after counts.
+const designTeam: CaseStudy = {
+  slug: 'design-team',
+  title: 'AIENAI design team',
+  meta: [
+    { label: 'Category', value: 'Team leadership' },
+    { label: 'Company', value: 'AIENAI, remote' },
+    { label: 'Role', value: 'Design lead, team of 4' },
+    { label: 'Year', value: '2023–2026' },
+  ],
+  overview: {
+    statement: 'A design team that ships without the founder in the room.',
+    body: [
+      'At AIENAI, a UK AI and product consultancy, I lead a remote team of 4 designers across client and in-house products. The ones I can show here include OutOut, Rhapsody of Realities, WhoDeyGo and AXE.',
+      'The founder used to review the team’s work almost daily. I hired the team, set its standards, rituals and priorities, and grew each designer to own a product. Direction comes from me; the work comes from them.',
+    ],
+  },
+  problem: {
+    // Inferred: the juniors and silos points are framed from the résumé's "developed every one" and "spreading knowledge"; Turi to confirm.
+    statement: 'Every design decision waited for the founder’s review.',
+    points: [
+      { title: 'A bottleneck', line: 'The founder reviewed the team’s work almost daily.' },
+      { title: 'Revision loops', line: 'Work went round in review instead of moving forward.' },
+      { title: 'Knowledge in silos', line: 'What one designer learned stayed on their product.' },
+      { title: 'Juniors waiting', line: '3 of the 4 designers were juniors who needed answers to move.' },
+    ],
+  },
+  solution: {
+    statement: 'Shared standards, three rituals, and one owner for every product.',
+    points: [
+      { title: 'Three rituals, not daily sign-off', line: 'Monday planning, a Wednesday critique and a Friday final review, run by me.' },
+      { title: 'One designer, one product', line: 'Each designer owns a product end to end.' },
+      { title: 'Standards anyone can read', line: 'A component library, written principles and handoff specs.' },
+      { title: 'Hiring on real work', line: 'Portfolio, a design task, a panel and a trial project.' },
+    ],
+  },
+  role: {
+    summary: 'I hired the team, set its standards, rituals and priorities, and developed each designer to own a product, while I hold the quality bar across all of them.',
+    owned: ['Hiring', 'Design standards', 'Critique and review', 'Prioritisation', 'Mentoring', 'Career growth', 'Stakeholder management'],
+    stops: [
+      {
+        stage: 'Hire',
+        did: ['Hired all 4 designers on the team through a portfolio review, a design task, a panel interview and a trial project'],
+        artefact: { kind: 'chips', items: ['Portfolio review', 'Design task', 'Panel interview', 'Trial project'] },
+      },
+      {
+        stage: 'Standards',
+        did: ['Set the standards the team designs to: a shared component library, written design principles and handoff specs'],
+        artefact: { kind: 'chips', items: ['Component library', 'Design principles', 'Handoff specs'] },
+      },
+      {
+        stage: 'Rituals',
+        did: ['Replaced the founder’s near-daily reviews with three rituals I run on video calls: Monday planning, a Wednesday sprint check-in where the team critiques each other’s work, and a Friday final review'],
+        artefact: { kind: 'chips', items: ['Monday planning', 'Wednesday critique', 'Friday final review', 'On video calls'] },
+      },
+      {
+        stage: 'Prioritise',
+        did: ['Rank the work every Monday on four things: impact against effort, research findings, founder and client goals, and what the sprint can carry'],
+        artefact: { kind: 'chips', items: ['Impact against effort', 'Research findings', 'Business goals', 'Sprint capacity'] },
+      },
+      {
+        stage: 'Develop',
+        did: [
+          'Developed every designer, including 3 juniors, to own a product end to end',
+          'One junior has been promoted; all three now run critiques and mentor newer designers',
+        ],
+        artefact: { kind: 'chips', items: ['Own a product', '1 promoted', 'Run critiques', 'Mentor others'] },
+      },
+      {
+        stage: 'Beyond',
+        did: ['Led designer hiring for C54 News, sat on hiring panels for the Government of Barbados, and mentored 40+ students across 6 countries through AIENAI Academy'],
+        artefact: { kind: 'chips', items: ['C54 News', 'Government of Barbados', 'AIENAI Academy'] },
+      },
+    ],
+    // The first decision's before and every chose come from Turi's answers and the résumé.
+    // Inferred: the before of the last three decisions, and every why and trade-off; Turi to confirm.
+    decisions: [
+      {
+        title: 'Reviews with the team, not the founder',
+        before: 'The founder reviewed the team’s work almost daily, and every decision waited for that meeting.',
+        chose: 'Three rituals I run on video calls: Monday planning, a Wednesday sprint check-in where the whole team critiques each other’s work, and a Friday final review.',
+        why: 'Daily founder reviews made one person the bottleneck and the designers dependent on them. Critique among peers spreads what each designer learns and builds their judgement.',
+        tradeoff: 'Feedback comes three times a week instead of every day, so designers bring blockers to me directly in between.',
+      },
+      {
+        title: 'One designer, one product',
+        before: 'Designers moved between products as work came in, so no one answered for a product’s quality end to end.',
+        chose: 'Each designer owns a product end to end, against standards I set. I give direction and hold the quality bar; they make the calls.',
+        why: 'Ownership is how a junior designer grows into one who makes product decisions. You can’t learn to own a product by touching it on Tuesdays.',
+        tradeoff: 'Cover is thinner when someone is away, so the shared library and handoff specs keep any designer able to pick up another’s product.',
+      },
+      {
+        title: 'Standards written down, not held in my head',
+        before: 'Quality lived in my reviews. If I didn’t see it, nobody checked it.',
+        chose: 'A shared component library, written design principles and a handoff spec engineers can rely on.',
+        why: 'Standards the team can read let them review each other without me in the room, and handoff specs answer engineering’s questions before they’re asked.',
+        tradeoff: 'Writing and keeping standards takes time from product work, so they grow from what the Wednesday critiques keep catching, not from a rulebook up front.',
+      },
+      {
+        title: 'Hire on real work',
+        before: 'A portfolio shows a designer’s best day, polished after the fact.',
+        chose: 'Four stages: a portfolio review, a design task, a panel interview, then a trial project before an offer.',
+        why: 'The trial shows how someone works with the team on an ordinary day: how they take feedback, ask questions and finish.',
+        tradeoff: 'Four stages are slow and lose some candidates, so the task and the trial are short and scoped to real problems.',
+      },
+    ],
+  },
+  impact: {
+    title: 'A team that grows, and ships without the founder in the room',
+    caveat: 'I did not keep a before-and-after count of review rounds. The change shows in who runs reviews now, in faster delivery, and in fewer questions from engineering at handoff.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would measure from the first week: review rounds per feature, time from brief to handoff, and questions from engineering. Everyone on the team can see the change, but I can’t put a number on it, and I should be able to.',
+      'Next, the growth path goes on paper. One promotion came from my judgement; the next should come from a plan the designer and I agreed months before.',
+    ],
+    stats: [
+      { value: '4', label: 'Designers hired and led', note: 'Including 3 juniors, each now owning a product end to end.' },
+      { value: '1 of 3', label: 'Juniors promoted', note: 'All three now run critiques and mentor newer designers.' },
+      { value: '3', label: 'Rituals, not daily sign-off', note: 'Monday planning, Wednesday critique and Friday final review replaced the founder’s near-daily reviews.' },
+      { value: '+27%', label: 'Rhapsody week-one retention', note: 'Shipped with all 4 designers on the redesign.' },
+      { value: '10', label: 'Weeks to the OutOut pilot', note: 'From kick-off to a build in testers’ hands.' },
+      { value: '40+', label: 'Students mentored', note: 'Across 6 countries, through AIENAI Academy.' },
+    ],
+  },
+  screens: {
+    title: 'A few of the products the team shipped, the ones I can show',
+    format: 'mobile',
+    groups: [
+      {
+        title: 'OutOut: 10 weeks to pilot, 20% more new users reach a first event',
+        shots: [
+          { img: c('outout-v2-home'), caption: 'Home: stories and upcoming events.' },
+          { img: c('outout-09'), caption: 'Creating an event with a poll of dates.' },
+          { img: c('outout-14'), caption: 'What you owe and are owed, across events.' },
+        ],
+      },
+      {
+        title: 'Rhapsody of Realities: +27% week-one retention, rating 3.6 to 4.5',
+        shots: [
+          { img: c('G5imiWo65UKuMh0HhHOjrXrhwg'), caption: 'Home: today’s devotion, read or listen.' },
+          { img: c('LioOMlw2l83M4lu17jd1BQO7Xw8'), caption: 'Audio devotion.' },
+          { img: c('484HlXqOJB3przOHYZ2Ql851ns'), caption: 'Rhapsody for Kids.' },
+        ],
+      },
+      {
+        title: 'WhoDeyGo: in device testing',
+        shots: [
+          { img: c('whodeygo-04'), caption: 'Home: active and upcoming transactions.' },
+          { img: c('whodeygo-08'), caption: 'Declared contents, checked against the destination’s rules.' },
+          { img: c('whodeygo-17'), caption: 'Reviewing a package before showing interest.' },
+        ],
+      },
+    ],
+  },
+  // Staged scenes generated in Figma showing a remote team's week; they are not photos of the actual team.
+  // Only one is a mockup (the desk), with a real AXE screen composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('design-team-story-plan'),
+      alt: 'A designer at her home desk on a video call, headphones on, a priority grid sketched in her notebook.',
+      time: 'Monday, 09:00',
+      line: 'Monday planning on a call: the week’s work, ranked in the open.',
+    },
+    {
+      after: 2,
+      img: c('design-team-story-work'),
+      alt: 'Over a designer’s shoulder: an AXE lesson screen on his monitor, wireframe sketches on the desk.',
+      time: 'Tuesday, 11:30',
+      line: 'Between rituals, each designer works on the product they own, to the same standards.',
+    },
+    {
+      after: 3,
+      img: c('design-team-story-critique'),
+      alt: 'A designer presenting her work on a video call, explaining with one hand.',
+      time: 'Wednesday, 15:00',
+      line: 'Wednesday check-in: each designer shows work in progress, and the team critiques it together.',
+    },
+    {
+      after: 4,
+      img: c('design-team-story-feedback'),
+      alt: 'A designer at his home desk on a video call, writing feedback notes as he listens.',
+      time: 'Friday, 15:00',
+      line: 'Friday final review. The juniors who once waited for answers now run critiques of their own.',
+    },
+  ],
+};
+
 /* ------------------------------------------------------------------ WayFinder */
 
 const wayfinder: CaseStudy = {
@@ -662,16 +853,16 @@ const cwook: CaseStudy = {
   slug: 'cwook',
   title: 'Cwook Social',
   meta: [
-    { label: 'Category', value: 'Mobile app' },
+    { label: 'Category', value: 'Mobile app concept' },
     { label: 'Sector', value: 'Social commerce' },
-    { label: 'Role', value: 'Research, UI and usability testing' },
-    { label: 'Year', value: '2025' },
+    { label: 'Role', value: 'Self-initiated, solo' },
+    { label: 'Year', value: '2024' },
   ],
   overview: {
-    statement: 'A social platform where what you discover, you can buy.',
+    statement: 'What if you could buy what you discover, without leaving the feed?',
     body: [
-      'Cwook is an e-commerce social media platform that blends social interaction with sales capabilities, helping businesses turn engagement into direct sales.',
-      'The platform seamlessly integrates payment and delivery capabilities, allowing users to purchase items they discover on the app with ease.',
+      'Cwook is a concept I designed on my own: a social app where vendors post products as short videos, and shoppers buy them without leaving the feed, with payment and delivery handled in the app.',
+      'It was never built. I explored it to answer one question: can the pull of a social feed and the trust of a proper checkout live in one product? I set it aside after the hi-fi design.',
     ],
   },
   problem: {
@@ -683,21 +874,21 @@ const cwook: CaseStudy = {
     ],
   },
   solution: {
-    statement: 'A social feed and a shop in one app, with payment and delivery built in.',
+    statement: 'A feed you can shop from, with payment and delivery built in.',
     points: [
-      { title: 'Discover and engage', line: 'Like, comment and share, as on any social app.' },
-      { title: 'Buy where you found it', line: 'Check out without leaving the post.' },
-      { title: 'Payment and delivery handled', line: 'Vendors never redirect buyers or deliver themselves.' },
-      { title: 'Brand communities', line: 'Vendors build loyal followings and sell directly.' },
+      { title: 'Discover as you scroll', line: 'Products arrive as full-screen videos to like, comment on and share.' },
+      { title: 'Buy where you found it', line: 'Add to basket from the post, without leaving the feed.' },
+      { title: 'Follow the shops you like', line: 'Each vendor has a page with its products and followers.' },
+      { title: 'A checkout you can trust', line: 'Payment and delivery happen in the app, not in a DM.' },
     ],
   },
   role: {
-    summary: 'I ran the research, designed the app, and tested it with users before revising it.',
-    owned: ['Interviews', 'Market analysis', 'Personas', 'Journey mapping', 'UI design', 'Prototyping', 'Usability testing'],
+    summary: 'A self-initiated concept: I ran the interviews, defined the product and designed it end to end, on my own.',
+    owned: ['Interviews', 'Market analysis', 'Personas', 'Journey mapping', 'Product definition', 'UI design', 'Prototyping'],
     stops: [
       {
         stage: 'Discover',
-        did: ['In-depth interviews with three shopper archetypes', 'Market analysis across social media and e-commerce'],
+        did: ['Interviewed three shopper archetypes in depth', 'Analysed the market across social media and e-commerce'],
         artefact: {
           kind: 'people',
           people: [
@@ -709,7 +900,12 @@ const cwook: CaseStudy = {
       },
       {
         stage: 'Define',
-        did: ['Built three personas and an affinity map', 'Found the community gap: shoppers want connection, not just checkout'],
+        did: [
+          'Built three personas and an affinity map from the interviews',
+          'Found the community gap: shoppers want connection, not just checkout',
+          // Inferred: the bet stated as one sentence; Turi to confirm.
+          'Framed the concept as one bet: people will buy from a feed they open to be entertained',
+        ],
         artefact: {
           kind: 'people',
           people: [
@@ -726,32 +922,72 @@ const cwook: CaseStudy = {
       },
       {
         stage: 'Design',
-        did: ['Designed the hi-fi screens and an interactive prototype'],
+        did: ['Designed 31 hi-fi screens and an interactive prototype, from sign-up to the shoppable feed, vendor pages, basket and checkout'],
         artefact: {
           kind: 'images',
           format: 'mobile',
           images: [
-            { img: c('oeZ0PZx5BS6ZkPp7EcK178QxCMY'), alt: 'Explore feed' },
-            { img: c('jHiGMDuaGm0nm1uMhsDcMi5CA4'), alt: 'Product post' },
-            { img: c('rEAipDSir4hqtxCJmDgx2Y14dY'), alt: 'Cart' },
+            { img: c('Nrj9eSBZfZLVhNc8dslaB7dXWk'), alt: 'A product in the feed, full screen, with like, comment, share and basket actions' },
+            { img: c('jHiGMDuaGm0nm1uMhsDcMi5CA4'), alt: 'The basket opened as a sheet over the post' },
+            { img: c('UpQJrdC2NcXsul6nsDqqVV9rXY'), alt: 'A vendor page with products and a Follow button' },
           ],
         },
       },
+    ],
+    // The images are final screens; there were no earlier versions.
+    // Inferred: the before, why and trade-off lines; Turi to confirm.
+    decisions: [
       {
-        stage: 'Test',
-        did: ['Ran usability tests: purchase, interact and share tasks', 'Measured time on task, errors, drop off, ease of use and satisfaction', 'Revised sign-up and navigation from the findings'],
-        artefact: { kind: 'quote', text: 'I found the app to be intuitive and easy to use, I was able to complete the tasks quickly and efficiently. No stress.', by: 'Test participant' },
+        title: 'Video first, catalogue second',
+        before: 'Shopping apps open on a grid of products. It reads as a catalogue, not a feed.',
+        chose: 'The feed shows one product at a time, full screen, with like, comment, share and add to basket at the side. Explore keeps a grid for people who know what they want.',
+        why: 'People open social apps to be entertained. Meeting them there is the whole bet.',
+        tradeoff: 'One product per screen is slow for a focused shopper, so Explore and the vendor pages keep a browsable grid.',
+        images: [
+          { img: c('Nrj9eSBZfZLVhNc8dslaB7dXWk'), alt: 'A product in the feed, full screen', label: 'Feed' },
+          { img: c('oeZ0PZx5BS6ZkPp7EcK178QxCMY'), alt: 'Explore, with products grouped by category', label: 'Explore' },
+        ],
+      },
+      {
+        title: 'Buy without leaving the post',
+        before: 'On social media, buying means a DM, a bank transfer and a wait to hear back.',
+        chose: 'The basket opens as a sheet over the post, so a shopper can add an item, check the total and keep scrolling.',
+        why: 'Every screen between seeing something and buying it is a chance to lose interest.',
+        tradeoff: 'A sheet holds less than a page, so the full basket has its own tab, grouped by when items were added.',
+        images: [
+          { img: c('jHiGMDuaGm0nm1uMhsDcMi5CA4'), alt: 'The basket opened as a sheet over the post', label: 'Sheet' },
+          { img: c('ylEttAtVD5bAI0rwXLjNdO4UWiY'), alt: 'The full basket, grouped into today and older', label: 'Basket' },
+        ],
+      },
+      {
+        title: 'Look first, sign up later',
+        before: 'Most shopping apps ask for an account before you have seen anything you want.',
+        chose: 'The first screen offers Continue as guest alongside Create account and Sign in.',
+        why: 'The feed has to earn the sign-up. A form before the first product loses people who came to look.',
+        tradeoff: 'Guests are harder to bring back, so following a shop or saving a basket is where an account starts to pay off.',
+        images: [{ img: c('0BOcr69q9xAwQMwgWWdLMtkMYCo'), alt: 'Welcome screen with Create account, Sign in and Continue as guest', label: 'Welcome' }],
+      },
+      {
+        title: 'Shops you follow, not stores you visit',
+        before: 'Online stores are places you visit and leave. Nothing brings you back but a discount.',
+        chose: 'Every vendor has a page with its products, categories and a Follow button, and what they post comes to the feed.',
+        why: 'Interviewees wanted connection and reviews they could trust. Following a shop is how a community forms around it.',
+        tradeoff: 'A follow only means something if vendors keep posting, the side of the idea I designed least.',
+        images: [{ img: c('UpQJrdC2NcXsul6nsDqqVV9rXY'), alt: 'A vendor page with products, categories and a Follow button', label: 'Shop page' }],
       },
     ],
   },
   impact: {
-    title: 'Tested with users, then revised',
+    title: 'A concept, set aside with its bets written down',
+    caveat: 'Cwook is a self-initiated concept. It was never built, launched or tested with users, so there are no outcomes to report.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I designed the shopper’s side first and the vendor’s side barely at all. A feed like this lives on vendors posting every day, so that is where I would start now.',
+      'Before building anything, I would test the riskiest bet cheaply: will people buy from a feed they open to be entertained? A clickable prototype with real products and a real checkout would answer it in a week.',
+    ],
     stats: [
-      { value: '2m 30s', label: 'Average time on task', note: 'Range of 1 to 4 minutes.' },
-      { value: '5%', label: 'User error rate', note: 'Mostly minor and easily corrected.' },
-      { value: '10%', label: 'User drop off', note: 'Some cited technical difficulties.' },
-      { value: '8/10', label: 'Ease of use', note: 'Average rating from testers.' },
-      { value: '9/10', label: 'Satisfaction', note: 'Testers would use it again.' },
+      { value: '3', label: 'Shopper types interviewed', note: 'Bargain hunters, quality-first buyers and social shoppers, before any screen was drawn.' },
+      { value: '1', label: 'Designer, end to end', note: 'Research, product definition and every screen, on my own.' },
     ],
   },
   screens: {
@@ -768,11 +1004,43 @@ const cwook: CaseStudy = {
         shots: shots(['oeZ0PZx5BS6ZkPp7EcK178QxCMY', 'Nrj9eSBZfZLVhNc8dslaB7dXWk', 'McAuUC5nnLzdm2NA4qrJqTpENVk', 'UpQJrdC2NcXsul6nsDqqVV9rXY', 'GzXJSceVmZwPoWR4VbAtDYHrXM', 'bzVFNiy4JmIOuAz9aGEJ95uQs', 'eyqihmcvwtslCPeRr2w60VmM1LY', 'jHiGMDuaGm0nm1uMhsDcMi5CA4']),
       },
       {
-        title: 'Cart and checkout',
+        title: 'Basket and checkout',
         shots: shots(['ylEttAtVD5bAI0rwXLjNdO4UWiY', 'XTbNLd3VZ8wPILWAMER3Gyk6aes', 'M8lg7GdKnT5bqE7Tv1F63ACqyu0', 'Etw6GjlVNEdbXU1ejk6LFzU5kF8', 'Y7RCihobVg36j87SjZGWOK4An8', 'rEAipDSir4hqtxCJmDgx2Y14dY', '4UILKOrpFp60OEcB9oiDMlcyrAc', 'zJgSmiU7FneNJOBRhRxv8drSM8', '5I1oVh3KcPpDgIEiIVGhsSAbU7A', 'PWDiq95AgFZbqWiyZONrhp5xtrk', 'lcZ3k5fuLZL86bUrvN6empzwuU', 'wbCYh0cZaY1jNUmSXSuDfTuuKO4']),
       },
     ],
   },
+  // Staged scenes generated in Figma, imagining the concept in use in Lagos: one pair of trainers from a vendor's video to a shopper's door.
+  // Only one is a mockup (the sofa, over the shoulder), with the real feed screen composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('cwook-story-vendor'),
+      alt: 'A sneaker shop owner filming a pair of white trainers on a turntable with his phone and a ring light.',
+      time: 'Saturday, 10:15',
+      line: 'A vendor films his new stock for the feed.',
+    },
+    {
+      after: 2,
+      img: c('cwook-story-scroll'),
+      alt: 'A woman relaxing on a sofa in the evening, scrolling on her phone.',
+      time: 'Saturday, 19:40',
+      line: 'Across town, a shopper scrolls after a long week.',
+    },
+    {
+      after: 3,
+      img: c('cwook-story-feed'),
+      alt: 'Over her shoulder: her phone shows the trainers full screen in Cwook’s feed, with the basket button beside them.',
+      time: 'Saturday, 19:52',
+      line: 'The trainers come up in her feed. She adds them to her basket without leaving it.',
+    },
+    {
+      after: 4,
+      img: c('cwook-story-delivery'),
+      alt: 'A dispatch rider handing a parcel to the woman at the gate of her office.',
+      time: 'Tuesday, 13:05',
+      line: 'Delivered to her office, paid for in the app. No DM, no bank transfer.',
+    },
+  ],
 };
 
 /* ------------------------------------------------------------------------ JAA */
@@ -1596,16 +1864,16 @@ const rhapsody: CaseStudy = {
   meta: [
     { label: 'Category', value: 'Mobile app' },
     { label: 'Sector', value: 'Faith and devotional' },
-    { label: 'Role', value: 'Lead designer, reading and IA' },
+    { label: 'Role', value: 'Design lead, team of 4' },
     { label: 'Year', value: '2025' },
   ],
   website: [{ label: 'myapp.rhapsodyofrealities.org', href: 'https://myapp.rhapsodyofrealities.org/' }],
   overview: {
     statement: 'Today’s devotional, one tap away.',
     body: [
-      // Reach figures are from my own notes; the product site does not state them. Confirm before publishing.
+      // Reach figures are from Turi's notes, confirmed by Turi on 26/10/2026.
       'Rhapsody of Realities reaches over 7 million daily readers across 242 countries.',
-      'The app brings daily devotionals, study plans, audio, communities and rewards together, with experiences for adults, teens and children. I led the redesign of the reading experience and information architecture.',
+      'The app brings daily devotionals, study plans, audio, communities and rewards together, for adults, teens and children. I led a team of 4 designers through the redesign of its reading experience and information architecture.',
     ],
   },
   problem: {
@@ -1613,25 +1881,26 @@ const rhapsody: CaseStudy = {
     points: [
       { title: '41% week-one churn', line: 'The legacy app lost readers fast.' },
       { title: 'Deep navigation', line: 'Today’s article sat several taps away.' },
-      { title: 'Broken audio', line: 'Playback cut out with the screen locked.' },
+      { title: 'Language buried', line: 'Switching language meant digging through settings.' },
+      { title: 'Broken audio', line: 'Playback cut out when the screen locked.' },
     ],
   },
   solution: {
     statement: 'A home built around today’s devotion, with audio and language one tap away.',
     points: [
-      { title: 'Today first', line: 'Article, audio and language picker within one tap.' },
-      { title: 'Shallower settings', line: 'Rebuilt from four levels deep to two.' },
-      { title: 'Background audio', line: 'Fixed with engineering, so listening continues.' },
-      { title: 'Room to grow', line: 'Study plans, rewards, kids and live programmes.' },
+      { title: 'Today, first', line: 'Today’s article, its audio and the language picker within one tap of home.' },
+      { title: 'Settings you can find', line: 'Rebuilt from four levels deep to two.' },
+      { title: 'Keep listening', line: 'Audio plays on with the screen locked.' },
+      { title: 'Room to grow', line: 'Study plans, rewards, kids and live programmes, without crowding today.' },
     ],
   },
   role: {
-    summary: 'I led the redesign of the reading experience and information architecture.',
-    owned: ['Reader interviews', 'Information architecture', 'Reading UX', 'Audio UX', 'UI design', 'Engineering collaboration'],
+    summary: 'I led a team of 4 designers through the redesign, worked with the research team on discovery, and tested the new home before it shipped.',
+    owned: ['Design leadership', 'Reader interviews', 'Information architecture', 'Reading UX', 'Audio UX', 'Prototype testing', 'A/B testing', 'Engineering collaboration'],
     stops: [
       {
         stage: 'Discover',
-        did: ['Interviewed 30 readers across three countries and found three pain points'],
+        did: ['Interviewed 30 readers across three countries with the research team, and found three pain points'],
         artefact: { kind: 'chips', items: ['Nigeria', 'Ghana', 'United Kingdom'] },
       },
       {
@@ -1641,7 +1910,7 @@ const rhapsody: CaseStudy = {
           kind: 'images',
           format: 'mobile',
           images: [
-            { img: c('G5imiWo65UKuMh0HhHOjrXrhwg'), alt: 'Home with today’s devotion and rewards' },
+            { img: c('G5imiWo65UKuMh0HhHOjrXrhwg'), alt: 'Home with today’s devotion, read and listen' },
             { img: c('Rmxy2xyIALBl7smTCqCCrb8frQU'), alt: 'Welcome screen' },
             { img: c('fa7OzRsck0NFwAOOjdtVX885A3c'), alt: 'Theme settings' },
           ],
@@ -1651,6 +1920,15 @@ const rhapsody: CaseStudy = {
         stage: 'Listen',
         did: ['Designed the audio devotion and worked with engineering to keep it playing in the background'],
         artefact: { kind: 'images', format: 'mobile', images: [{ img: c('LioOMlw2l83M4lu17jd1BQO7Xw8'), alt: 'Audio player for today’s devotion' }] },
+      },
+      {
+        stage: 'Test',
+        did: [
+          'Tested prototypes of the new home and the audio player with readers before build',
+          // Inferred: that the winning version was the today-first home; it is the home that shipped.
+          'A/B tested the today-first home against the old home. The today-first home won, and shipped.',
+        ],
+        artefact: { kind: 'chips', items: ['Prototype: new home', 'Prototype: audio player', 'A/B: home layouts'] },
       },
       {
         stage: 'Extend',
@@ -1666,20 +1944,71 @@ const rhapsody: CaseStudy = {
         },
       },
       {
+        stage: 'Lead',
+        // Inferred: how the work was split and the today-first rule; Turi confirmed leading 4 designers.
+        did: [
+          'Led 4 designers across reading, audio, plans and the children’s experience',
+          'Held every area to one rule: nothing new could push today’s devotion off the home screen',
+        ],
+        artefact: { kind: 'chips', items: ['4 designers', 'Design reviews', 'Today-first rule'] },
+      },
+      {
         stage: 'Measure',
-        did: ['Post-launch metrics were measured against a six-week baseline'],
+        did: ['Measured the release against a six-week baseline: session length, week-one retention, audio plays, language tickets and store rating'],
         artefact: { kind: 'chips', items: ['Six-week baseline', 'Retention', 'Audio plays', 'Store rating'] },
+      },
+    ],
+    // Before comes from the interviews and the legacy app's numbers. No legacy screens survive, so images are final screens.
+    // Inferred: the why and trade-off lines; Turi to confirm.
+    decisions: [
+      {
+        title: 'Today’s devotion is the home screen',
+        before: 'The legacy home was cluttered, and today’s article sat several taps away.',
+        chose: 'Home opens on today’s devotion, with read and listen side by side. We A/B tested it against the old home, and it won.',
+        why: 'Readers come back every day for one thing. Everything else can wait a tap.',
+        tradeoff: 'Plans, the store and audio moved to their own tabs, and rewards sit below today, so none of them gets the first screen.',
+        images: [{ img: c('G5imiWo65UKuMh0HhHOjrXrhwg'), alt: 'Home with today’s devotion, read and listen', label: 'Home' }],
+      },
+      {
+        title: 'Language on the surface, not in settings',
+        before: 'Switching language meant digging through settings, so readers wrote to support instead.',
+        chose: 'The language picker sits within one tap of home, beside today’s devotion.',
+        why: 'A devotional read in many languages has to switch in a tap. Burying it cost readers their reading and the support team its time.',
+        tradeoff: 'One more control near the top of home, so it stays a compact picker rather than a menu. Language tickets fell 64%.',
+      },
+      {
+        title: 'Two levels of settings, not four',
+        before: 'Settings ran four levels deep, and readers got lost in them.',
+        chose: 'Settings were rebuilt into two levels, with theme and colour together on one screen.',
+        why: 'Most readers change a setting once and leave. Two levels means they find it without a map.',
+        tradeoff: 'Flatter lists are longer, so related options are grouped under clear headings rather than nested.',
+        images: [{ img: c('fa7OzRsck0NFwAOOjdtVX885A3c'), alt: 'Theme and colour settings on one screen', label: 'Settings' }],
+      },
+      {
+        title: 'Audio before new features',
+        before: 'Audio stopped whenever the phone’s screen locked.',
+        chose: 'We worked with engineering to keep audio playing in the background, and designed a player for listening on the move.',
+        why: 'Many readers listen while commuting or cooking. A devotional that stops when the phone sleeps loses them halfway through.',
+        tradeoff: 'Background playback took engineering time from new features, so it was fixed before study plans grew. Audio plays rose 3.4x.',
+        images: [{ img: c('LioOMlw2l83M4lu17jd1BQO7Xw8'), alt: 'Audio player for today’s devotion', label: 'Audio' }],
       },
     ],
   },
   impact: {
     title: 'Longer sessions, more listening, fewer tickets',
+    caveat: 'Measured against a six-week baseline before the redesign. The store rating moved within 90 days of release.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would A/B test more than the home screen. The home test settled the biggest argument with evidence instead of opinion; settings and audio went out on interviews and prototype tests alone.',
+      'Next, I would follow readers past week one: do they finish study plans, and does listening replace reading or add to it? Retention shows they come back; those numbers show what they come back for.',
+    ],
     stats: [
+      { value: '+27%', label: 'Week-one retention', note: 'Against a six-week baseline before the redesign.' },
       { value: '5.8 min', label: 'Average session', note: 'Up from 3.2 minutes.' },
-      { value: '+27%', label: 'Week-one retention', note: 'Against a six-week baseline.' },
       { value: '3.4x', label: 'Audio plays', note: 'With background playback fixed.' },
-      { value: '−64%', label: 'Language support tickets', note: 'Language picker moved to home.' },
+      { value: '−64%', label: 'Language support tickets', note: 'With the language picker moved to home.' },
       { value: '4.5', label: 'Google Play rating', note: 'Up from 3.6 within 90 days.' },
+      { value: '4', label: 'Designers led', note: 'Across reading, audio, plans and the children’s experience.' },
     ],
   },
   screens: {
@@ -1687,20 +2016,58 @@ const rhapsody: CaseStudy = {
     format: 'mobile',
     groups: [
       {
+        title: 'Reading and listening',
         shots: [
           { img: c('yql0eRXnFITLGF93BwqvxhaVXAs'), caption: 'Splash.' },
           { img: c('Rmxy2xyIALBl7smTCqCCrb8frQU'), caption: 'Welcome.' },
           { img: c('G5imiWo65UKuMh0HhHOjrXrhwg'), caption: 'Home: today’s devotion, read or listen.' },
-          { img: c('EGIl8tB0uBUFicPD6BxQMeiBHno'), caption: 'Study plans by category.' },
-          { img: c('72bRWsijoUpNQ78JbQ3LP1LsQG8'), caption: 'Basic, premium and family plans.' },
           { img: c('LioOMlw2l83M4lu17jd1BQO7Xw8'), caption: 'Audio devotion.' },
           { img: c('fg8Lf91yLtm9B1k7OMgakhSxRjA'), caption: 'Live programme with comments.' },
+        ],
+      },
+      {
+        title: 'Plans, kids and settings',
+        shots: [
+          { img: c('EGIl8tB0uBUFicPD6BxQMeiBHno'), caption: 'Study plans by category.' },
+          { img: c('72bRWsijoUpNQ78JbQ3LP1LsQG8'), caption: 'Basic, premium and family plans.' },
           { img: c('484HlXqOJB3przOHYZ2Ql851ns'), caption: 'Rhapsody for Kids.' },
           { img: c('fa7OzRsck0NFwAOOjdtVX885A3c'), caption: 'Theme and colour settings.' },
         ],
       },
     ],
   },
+  // Staged scenes generated in Figma: one day of readers in Lagos, London and Accra.
+  // Only one is a mockup (by the window), with the real home screen composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('rhapsody-story-dawn'),
+      alt: 'A woman by a window at dawn in Lagos, reading on her phone with a cup of tea beside her.',
+      time: 'Monday, 05:45',
+      line: 'In Lagos, before the house wakes, today’s devotion.',
+    },
+    {
+      after: 2,
+      img: c('rhapsody-story-home'),
+      alt: 'Over her shoulder: the Rhapsody home screen with today’s devotion, read and listen.',
+      time: 'Monday, 05:46',
+      line: 'Today’s devotion is the first thing she sees. Read or listen, one tap either way.',
+    },
+    {
+      after: 3,
+      img: c('rhapsody-story-listen'),
+      alt: 'A man on the upper deck of a London bus, eyes closed, listening through earbuds with his phone in his pocket.',
+      time: 'Monday, 07:40',
+      line: 'On a London bus, the audio plays on with his phone in his pocket.',
+    },
+    {
+      after: 4,
+      img: c('rhapsody-story-kids'),
+      alt: 'A father and his young daughter on a sofa in Accra, reading from a tablet together.',
+      time: 'Monday, 19:30',
+      line: 'In Accra, the children’s edition at bedtime.',
+    },
+  ],
 };
 
 /* ------------------------------------------------------------------- Tendarly */
@@ -2046,6 +2413,7 @@ const lemonsplit: CaseStudy = {
 };
 
 export const caseStudies: Record<string, CaseStudy> = {
+  'design-team': designTeam,
   wayfinder,
   whodeygo,
   outout,

@@ -104,9 +104,9 @@ export const projects: Project[] = [
   {
     slug: 'cwook',
     title: 'Cwook',
-    year: '2025',
+    year: '2024',
     description:
-      'A social media platform that merges the fun of user interaction and community building of a conventional social media platform with the robust payment and delivery capabilities of an e-commerce platform.',
+      'A self-initiated concept for a social app where you buy what you discover without leaving the feed, with payment and delivery built in.',
     image: img('zcbPU7BfcKi6zXZyyVzoT8rYbc.jpg'),
     animation: '/assets/lottie/cwook.json',
   },
@@ -152,7 +152,7 @@ export const gallery: GalleryItem[] = [
     format: 'mobile',
     paragraphs: [
       'Rhapsody of Realities reaches over 7 million daily readers across 242 countries, but the legacy mobile app suffered from a cluttered home screen, deep navigation, and a 41% week-one churn rate. User interviews with 30 readers across Nigeria, Ghana, and the UK revealed three pain points: finding today’s article took too many taps, language switching was buried in settings, and audio playback broke when the screen locked.',
-      'I led the redesign of the reading experience and information architecture. The new home screen surfaces today’s article, audio version, and language picker within one tap. I rebuilt the settings hierarchy from 4 levels deep to 2, and worked with engineering to fix background audio.',
+      'I led a team of 4 designers through the redesign of the reading experience and information architecture. The new home screen surfaces today’s article, audio version, and language picker within one tap, and won an A/B test against the old home. I rebuilt the settings hierarchy from 4 levels deep to 2, and worked with engineering to fix background audio.',
       'Post-launch metrics measured against a 6-week baseline showed average session duration rising from 3.2 to 5.8 minutes, week-one retention improving by 27%, and audio plays increasing 3.4x. Support tickets about language settings dropped by 64%. The app’s rating moved from 3.6 to 4.5 stars on Google Play within 90 days.',
     ],
     images: imgs(
