@@ -157,3 +157,17 @@ Screens: the six light screenshots from the old "TC Application" design (Framer-
 - Team management with unassigned learners (117172:70379) as axe-tutor-teams.
 - Lesson preview slide (117088:48208) as axe-lesson-slide.
 The old hash images are no longer referenced by the case study; they remain only in home.ts's legacy gallery data and the size table.
+
+## 26/10/2026 — Tendarly back, at lead level
+At the owner's request Tendarly returns (Works row, subtitle, Health filter, gallery text, case study), then gets the same pass as OutOut and AXE.
+Facts from the owner: both apps are live; Turi led the design with the internal team assigned to the project, as its only designer, under Heckerbella's design team lead; no usage figures; no Figma file with earlier versions. From the stores: Tendarly (patients) on Google Play by Heckerbella Limited, updated 16/09/2024; Tendarly Doctor on the App Store since 23/11/2023.
+- Meta: Company Heckerbella (now confirmed), Role Lead designer.
+- Two live links (patients on Google Play, doctors on the App Store). `website` is now a list with an optional `kind` label, so a study can link more than one product; Circuitmind, Fantasy One and Rhapsody moved to one-item lists.
+- Problem gains the doctors' side (limited reach). Solution points rewritten as outcomes for patients and doctors.
+- Route: Intake, Connect, Consult, Record, then Lead and Launch replace System.
+- Four key decisions: the assistant listens and the doctor decides; any available doctor first; the fee up front and the first session free; a note the patient keeps. No earlier versions survive, so "before" is the usual way and the images are final screens.
+- Impact: two cards, 2 apps live and 1 designer end to end, with a caveat that there are no usage figures. A year as a stat was dropped because CountUp would count it up from zero; a third card left an orphan at mid widths.
+- Looking back: agree measures before launch; design for urgent symptoms from the first wireframe.
+- Screens regrouped: Before the call, With the doctor.
+- Story interludes generated in Figma (ndqPxKr2yM1vjGErdzUtG7, gpt-image-2.5-sunburst, 3:2), natural daylight in whites and soft blues to match the app: one patient's Tuesday from a cough at 06:50 to the pharmacy at 12:30. One mockup only, the kitchen, with the real pre-session chat composited on (tools/composite.mjs, threshold 45). Sources in source/scenes/tendarly-story/.
+Open: the assistant is "Stacy" on the greeting screen and "Tendy" in the chat; the copy avoids naming it.

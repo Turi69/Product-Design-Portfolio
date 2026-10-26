@@ -41,8 +41,8 @@ export type CaseStudy = {
   slug: string;
   title: string;
   meta: { label: string; value: string }[];
-  /** Live product, where there is one. */
-  website?: { label: string; href: string };
+  /** Live product links, where there are any. `kind` replaces the "Live product" label. */
+  website?: { label: string; href: string; kind?: string }[];
   overview: { statement: string; body: string[] };
   problem: { statement: string; points: Point[] };
   solution: { statement: string; points: Point[] };
@@ -1115,7 +1115,7 @@ const circuitmind: CaseStudy = {
     { label: 'Role', value: 'Design lead, version 1 redesign' },
     { label: 'Year', value: '2024' },
   ],
-  website: { label: 'circuitmind.io', href: 'https://www.circuitmind.io/product' },
+  website: [{ label: 'circuitmind.io', href: 'https://www.circuitmind.io/product' }],
   overview: {
     statement: 'AI that designs circuits, made legible to the engineers who use it.',
     body: [
@@ -1213,7 +1213,7 @@ const fantasy: CaseStudy = {
     { label: 'Role', value: 'Lead designer' },
     { label: 'Year', value: '2024' },
   ],
-  website: { label: 'fantasy1.app', href: 'https://fantasy1.app/' },
+  website: [{ label: 'fantasy1.app', href: 'https://fantasy1.app/' }],
   overview: {
     statement: 'Fantasy Formula 1 for friends, settled head-to-head every race weekend.',
     body: [
@@ -1322,7 +1322,7 @@ const rhapsody: CaseStudy = {
     { label: 'Role', value: 'Lead designer, reading and IA' },
     { label: 'Year', value: '2025' },
   ],
-  website: { label: 'myapp.rhapsodyofrealities.org', href: 'https://myapp.rhapsodyofrealities.org/' },
+  website: [{ label: 'myapp.rhapsodyofrealities.org', href: 'https://myapp.rhapsodyofrealities.org/' }],
   overview: {
     statement: 'Today’s devotional, one tap away.',
     body: [
@@ -1424,6 +1424,229 @@ const rhapsody: CaseStudy = {
       },
     ],
   },
+};
+
+/* ------------------------------------------------------------------- Tendarly */
+
+const tendarly: CaseStudy = {
+  slug: 'tendarly',
+  title: 'Tendarly',
+  meta: [
+    { label: 'Category', value: 'Telemedicine apps' },
+    { label: 'Company', value: 'Heckerbella' },
+    { label: 'Role', value: 'Lead designer' },
+    { label: 'Year', value: '2023' },
+  ],
+  website: [
+    { kind: 'For patients', label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.tendarly.tendarly_patient&hl=en' },
+    { kind: 'For doctors', label: 'App Store', href: 'https://apps.apple.com/us/app/tendarly-doctor/id6470204751' },
+  ],
+  overview: {
+    statement: 'An assistant takes your history. A real doctor takes the call.',
+    body: [
+      'Tendarly is a telemedicine service in two apps. Patients describe their symptoms to an AI assistant, then talk to an available doctor in real time. Doctors run their consultations, notes and hours from Tendarly Doctor.',
+      // Inferred: that the doctor app's design was in Turi's scope; the original copy lists doctor dashboards among the features.
+      'At Heckerbella I led the design for both apps with the internal team assigned to the project, guided by our design team lead. Both are live on the app stores.',
+    ],
+  },
+  problem: {
+    // Inferred: the original copy does not state the problem.
+    statement: 'Seeing a doctor meant waiting, repeating your story, and losing the record afterwards.',
+    points: [
+      { title: 'Slow access', line: 'Patients wait to reach any doctor at all.' },
+      { title: 'Repeated history', line: 'Symptoms are explained from scratch at every visit.' },
+      { title: 'Lost records', line: 'Notes and prescriptions don’t stay with the patient.' },
+      { title: 'Limited reach', line: 'Doctors only see the patients who can get to them.' },
+    ],
+  },
+  solution: {
+    statement: 'Tell an assistant once, reach an available doctor, and leave with the note.',
+    points: [
+      { title: 'Tell your story once', line: 'The assistant gathers symptoms before the call, and the doctor reads them first.' },
+      { title: 'A doctor without the wait', line: 'Start a session with any available doctor, or search for one you trust.' },
+      { title: 'Leave with a record', line: 'Diagnosis, advice and prescription stay in the app, ready to download.' },
+      { title: 'Doctors work from anywhere', line: 'Doctors set their hours, consult and write notes in Tendarly Doctor.' },
+    ],
+  },
+  role: {
+    summary: 'I led the design with the project’s internal team, guided by Heckerbella’s design team lead.',
+    owned: ['Product design', 'Conversational UX', 'Wireframes', 'Design system', 'UI design', 'Prototyping', 'Design handoff'],
+    stops: [
+      {
+        stage: 'Intake',
+        did: ['Designed the assistant’s greeting and the pre-session chat that gathers symptoms for the doctor'],
+        artefact: {
+          kind: 'images',
+          format: 'mobile',
+          images: [
+            { img: c('yyUuhJ2yJokcchgViER5aNmOqU'), alt: 'Assistant greeting' },
+            { img: c('DaYzve7eKT6Bto845mtxV3QER8'), alt: 'Pre-session chat collecting symptoms' },
+          ],
+        },
+      },
+      {
+        stage: 'Connect',
+        did: ['Designed the route to a doctor: any available doctor first, search second, and the fee explained before the session'],
+        artefact: {
+          kind: 'images',
+          format: 'mobile',
+          images: [
+            { img: c('zC9L9pOD28UerxtJgwjb5WM3Yk'), alt: 'Start a session or search for a doctor' },
+            { img: c('lp316SCuTVyD0EHeMBjibjcAUE'), alt: 'The consultation fee, explained before the session' },
+            { img: c('ohfo1MXEdgMicY1iU8tqrcPDxY'), alt: 'Connecting to an available doctor' },
+          ],
+        },
+      },
+      {
+        stage: 'Consult',
+        did: ['Designed doctor profiles with ratings and reviews, and a free first session for new patients'],
+        artefact: {
+          kind: 'images',
+          format: 'mobile',
+          images: [
+            { img: c('Gc4CDBfDDSOT2pbh8E1bmvi5sg'), alt: 'Doctor profile with rating and reviews' },
+            { img: c('Gnp6OwHdnqoVJjyNjY7KTBqO1cE'), alt: 'Free first session coupon' },
+          ],
+        },
+      },
+      {
+        stage: 'Record',
+        did: ['Structured the doctor’s final note: observation, diagnosis and recommendation, with the prescription and a download'],
+        artefact: { kind: 'images', format: 'mobile', images: [{ img: c('vg2t5f405utpIi8J6oHofBJX6rk'), alt: 'Final consultation note' }] },
+      },
+      {
+        stage: 'Lead',
+        did: [
+          'Led the design with the internal team assigned to the project, from wireframes to launch',
+          // Inferred: how the reviews ran, and that one design system covered both apps; the original copy names prototypes for internal review and a cohesive design system.
+          'Took each flow to review as an interactive prototype, with guidance from Heckerbella’s design team lead',
+          'Built one design system for the patient and doctor apps, so engineers built both from the same components',
+        ],
+        artefact: { kind: 'chips', items: ['Interactive prototypes', 'Design reviews', 'Design system'] },
+      },
+      {
+        stage: 'Launch',
+        did: ['Both apps launched: Tendarly for patients on Google Play, and Tendarly Doctor on the App Store'],
+        artefact: { kind: 'chips', items: ['Google Play', 'App Store', 'Live since 2023'] },
+      },
+    ],
+    // No earlier versions survive, so "before" describes the usual way, and the images are final screens.
+    // Inferred: the before, why and trade-off lines; Turi to confirm.
+    decisions: [
+      {
+        title: 'The assistant listens, the doctor decides',
+        before: 'In a clinic or on a call, the patient explains everything from the start, in the time they are paying for.',
+        chose: 'An assistant takes symptoms in a short pre-session chat and passes them on. The doctor’s first message confirms they have read them.',
+        why: 'The paid minutes go to care rather than history, and the patient tells their story once.',
+        tradeoff: 'A chat before the call is one more step, so it stays short, never diagnoses, and ends by connecting a doctor.',
+        images: [
+          { img: c('DaYzve7eKT6Bto845mtxV3QER8'), alt: 'Pre-session chat with the assistant', label: 'Intake' },
+          { img: c('jW9Id3dkbO3SQe1Xl3vUjVMxhc'), alt: 'Active session, with the doctor’s first message confirming the reported symptoms', label: 'Hand-over' },
+        ],
+      },
+      {
+        title: 'Any available doctor first',
+        before: 'Most telemedicine apps open on a directory of doctors, so getting help starts with choosing one.',
+        chose: 'Home leads with Start a session, which connects the next available doctor. Search for a specific doctor sits second.',
+        why: 'Someone who feels unwell wants a doctor soon more than a choice of doctors.',
+        tradeoff: 'Patients don’t pick their doctor on the fast route, so the match arrives with a name, a photo, ratings and reviews.',
+        images: [
+          { img: c('zC9L9pOD28UerxtJgwjb5WM3Yk'), alt: 'Home: start a session or search for a doctor', label: 'Home' },
+          { img: c('ohfo1MXEdgMicY1iU8tqrcPDxY'), alt: 'Connecting to an available doctor', label: 'Matching' },
+          { img: c('Gc4CDBfDDSOT2pbh8E1bmvi5sg'), alt: 'The matched doctor’s profile, rating and reviews', label: 'Profile' },
+        ],
+      },
+      {
+        title: 'The fee up front, the first session free',
+        before: 'A fee that appears after the consultation comes as a surprise, and a new service asks for trust before it has earned any.',
+        chose: 'The fee is explained in plain words before the session starts, and a new patient’s first consultation is free.',
+        why: 'Nobody should finish a consultation unsure what it costs. A free first session lets people try a doctor on a phone before paying for one.',
+        tradeoff: 'A payment step comes before care. The explanation can be hidden once read, and the coupon takes the cost out of a first visit.',
+        images: [
+          { img: c('lp316SCuTVyD0EHeMBjibjcAUE'), alt: 'The consultation fee, explained before the session', label: 'Fee' },
+          { img: c('Gnp6OwHdnqoVJjyNjY7KTBqO1cE'), alt: 'Free first session coupon', label: 'First session' },
+        ],
+      },
+      {
+        title: 'A note the patient keeps',
+        before: 'Advice given on a call is easy to forget, and the next doctor starts from nothing.',
+        chose: 'Each consultation closes with a final note in three parts, observation, diagnosis and recommendation, plus the prescription, which the patient can download.',
+        why: 'The patient leaves with something a pharmacist or another doctor can read, and the history grows with every visit.',
+        tradeoff: 'Doctors write more after each call, so the note is a fixed structure to fill in, not a blank page.',
+        images: [{ img: c('vg2t5f405utpIi8J6oHofBJX6rk'), alt: 'Final note with observation, diagnosis, recommendation and prescription', label: 'Final note' }],
+      },
+    ],
+  },
+  impact: {
+    title: 'Two apps, live on the stores',
+    caveat: 'Both apps are live. I don’t have usage figures to share, so these are launch facts, not performance.',
+    // Inferred: the reflection; Turi to confirm or rewrite.
+    reflection: [
+      'I would agree the measures before launch: time to reach a doctor, repeat consultations, and whether doctors read the intake before the call. Without them I can show that the assistant shipped, not that it made care faster.',
+      'I would also design for urgent symptoms from the first wireframe. When someone describes chest pain or trouble breathing, the assistant should point them to emergency care, not a queue for a chat.',
+    ],
+    stats: [
+      { value: '2', label: 'Apps live', note: 'Tendarly for patients on Google Play, and Tendarly Doctor on the App Store since November 2023.' },
+      { value: '1', label: 'Designer, end to end', note: 'From wireframes to launch, guided by Heckerbella’s design team lead.' },
+    ],
+  },
+  screens: {
+    title: 'Hi-fi screens',
+    format: 'mobile',
+    groups: [
+      {
+        title: 'Before the call',
+        shots: [
+          { img: c('CBC5dl58Z9KnCA38TARH1UhppDw'), caption: 'Splash screen.' },
+          { img: c('yyUuhJ2yJokcchgViER5aNmOqU'), caption: 'The assistant introduces itself.' },
+          { img: c('zC9L9pOD28UerxtJgwjb5WM3Yk'), caption: 'Start a session or search for a doctor.' },
+          { img: c('DaYzve7eKT6Bto845mtxV3QER8'), caption: 'Pre-session chat with the assistant.' },
+          { img: c('lp316SCuTVyD0EHeMBjibjcAUE'), caption: 'The fee, explained before the session.' },
+          { img: c('Gnp6OwHdnqoVJjyNjY7KTBqO1cE'), caption: 'Free first session.' },
+          { img: c('ohfo1MXEdgMicY1iU8tqrcPDxY'), caption: 'Connecting to an available doctor.' },
+        ],
+      },
+      {
+        title: 'With the doctor',
+        shots: [
+          { img: c('Gc4CDBfDDSOT2pbh8E1bmvi5sg'), caption: 'Doctor profile, rating and reviews.' },
+          { img: c('jW9Id3dkbO3SQe1Xl3vUjVMxhc'), caption: 'An active session: the doctor has read the symptoms.' },
+          { img: c('vg2t5f405utpIi8J6oHofBJX6rk'), caption: 'The doctor’s final note.' },
+        ],
+      },
+    ],
+  },
+  // Staged scenes generated in Figma. Only one is a mockup (the kitchen), with the real pre-session chat composited on.
+  interludes: [
+    {
+      after: 0,
+      img: c('tendarly-story-morning'),
+      alt: 'A man sitting on the edge of his bed in the early morning, coughing into his fist.',
+      time: 'Tuesday, 06:50',
+      line: 'Two weeks of a cough that won’t clear, and no time for a clinic queue before work.',
+    },
+    {
+      after: 2,
+      img: c('tendarly-story-intake'),
+      alt: 'The same man in his kitchen, holding up a phone with Tendarly’s pre-session chat open.',
+      time: 'Tuesday, 07:05',
+      line: 'He tells the assistant his symptoms once, while the kettle boils.',
+    },
+    {
+      after: 3,
+      img: c('tendarly-story-doctor'),
+      alt: 'A doctor in a white coat at her desk, talking to a patient on a laptop.',
+      time: 'Tuesday, 07:12',
+      line: 'A doctor picks up, already reading what he reported.',
+    },
+    {
+      after: 4,
+      img: c('tendarly-story-pharmacy'),
+      alt: 'At a pharmacy counter, the man shows his phone to a pharmacist holding an inhaler.',
+      time: 'Tuesday, 12:30',
+      line: 'At lunch, the pharmacist reads his prescription from the final note.',
+    },
+  ],
 };
 
 /* ----------------------------------------------------------------- LemonSplit */
@@ -1555,6 +1778,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   azuri,
   circuitmind,
   fantasy,
+  tendarly,
   rhapsody,
   lemonsplit,
 };

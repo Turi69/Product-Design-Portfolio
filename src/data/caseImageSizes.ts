@@ -736,6 +736,22 @@ export const caseImageSizes: Record<string, [number, number]> = {
     1512,
     982
   ],
+  "tendarly-story-doctor": [
+    1536,
+    1024
+  ],
+  "tendarly-story-intake": [
+    1536,
+    1024
+  ],
+  "tendarly-story-morning": [
+    1536,
+    1024
+  ],
+  "tendarly-story-pharmacy": [
+    1536,
+    1024
+  ],
   "uRT85pL9PPgmhfDqD2tMEgWmM2I": [
     1440,
     1024

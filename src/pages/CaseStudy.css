@@ -160,6 +160,12 @@
 }
 
 /* Live product link: a status dot says it is real and running. */
+.case-lives {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
 .case-live {
   display: inline-flex;
   align-items: center;

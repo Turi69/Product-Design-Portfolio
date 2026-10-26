@@ -204,6 +204,21 @@ export const gallery: GalleryItem[] = [
     ),
   },
   {
+    label: 'Tendarly 2023',
+    format: 'mobile',
+    paragraphs: [
+      'As the lead designer for Tendarly, a telemedicine application, I created an intuitive interface that combines an AI-powered chatbot with real-time doctor consultations. The app’s advanced language model collects patient symptoms and medical history, automatically connecting them with available physicians without delay.',
+      'My responsibilities included creating UI wireframes, developing a cohesive design system, and creating interactive prototypes for internal review.',
+      'Notable features include AI-driven symptom assessment, secure patient-doctor transitions, comprehensive medical chat histories, detailed consultation notes, actionable follow-ups, and insightful doctor performance dashboards.',
+    ],
+    images: imgs(
+      'CBC5dl58Z9KnCA38TARH1UhppDw.png', 'yyUuhJ2yJokcchgViER5aNmOqU.png', 'zC9L9pOD28UerxtJgwjb5WM3Yk.png',
+      'jW9Id3dkbO3SQe1Xl3vUjVMxhc.png', 'lp316SCuTVyD0EHeMBjibjcAUE.png', 'ohfo1MXEdgMicY1iU8tqrcPDxY.png',
+      'Gc4CDBfDDSOT2pbh8E1bmvi5sg.png', 'Gnp6OwHdnqoVJjyNjY7KTBqO1cE.png', 'vg2t5f405utpIi8J6oHofBJX6rk.png',
+      'DaYzve7eKT6Bto845mtxV3QER8.png',
+    ),
+  },
+  {
     label: 'Azuri facility Management 2023',
     format: 'web',
     paragraphs: [

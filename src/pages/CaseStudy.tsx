@@ -255,17 +255,21 @@ export function CaseStudy({ study }: { study: Case }) {
               ))}
             </div>
             {study.website && (
-              <a className="case-live" href={study.website.href} target="_blank" rel="noreferrer">
-                <span className="case-live__dot" aria-hidden="true" />
-                <span>
-                  <span className="mono-label case-live__label">Live product</span>
-                  <span className="case-live__host">{study.website.label}</span>
-                </span>
-                <span className="case-live__arrow" aria-hidden="true">
-                  ↗
-                </span>
-                <span className="visually-hidden">, opens in a new tab</span>
-              </a>
+              <div className="case-lives">
+                {study.website.map((l) => (
+                  <a className="case-live" href={l.href} target="_blank" rel="noreferrer" key={l.href}>
+                    <span className="case-live__dot" aria-hidden="true" />
+                    <span>
+                      <span className="mono-label case-live__label">{l.kind ?? 'Live product'}</span>
+                      <span className="case-live__host">{l.label}</span>
+                    </span>
+                    <span className="case-live__arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                    <span className="visually-hidden">, opens in a new tab</span>
+                  </a>
+                ))}
+              </div>
             )}
           </Section>
 
